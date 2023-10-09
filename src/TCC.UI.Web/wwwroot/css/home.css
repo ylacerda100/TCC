@@ -361,7 +361,9 @@ align-items: center;
     margin-left: 5px; 
 }
 
-
+.botao-matricula{
+    padding:30px ;
+}
 .botao-matricula a{
     font-family: TiltNeon;
     margin-bottom: 1px;
