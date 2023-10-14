@@ -10,6 +10,10 @@ namespace TCC.Infra.Data.Mappings
         {
             builder.Property(c => c.Id)
             .HasColumnName("Id");
+
+            builder.Property(c => c.Enunciado)
+           .HasColumnType("varchar(max)")
+           .IsRequired();
         }
     }
 }

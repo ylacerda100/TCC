@@ -8,8 +8,6 @@ namespace TCC.Domain.Models
         {
 
         }
-
-        public Usuario Usuario { get; set; }
         public DateTime Timestamp { get; set; }
         public ItemLoja ItemComprado { get; set; }
 
