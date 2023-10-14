@@ -9,11 +9,31 @@ namespace TCC.Infra.Data.Mappings
         public void Configure(EntityTypeBuilder<Exercicio> builder)
         {
             builder.Property(c => c.Id)
-            .HasColumnName("Id");
+                .HasColumnName("Id");
 
             builder.Property(c => c.Enunciado)
-           .HasColumnType("varchar(max)")
-           .IsRequired();
+               .HasColumnType("varchar(max)")
+               .IsRequired();
+
+            builder.Property(c => c.AlternativaA)
+              .HasColumnType("varchar(max)")
+              .IsRequired();
+
+            builder.Property(c => c.AlternativaB)
+              .HasColumnType("varchar(max)")
+              .IsRequired();
+
+            builder.Property(c => c.AlternativaC)
+              .HasColumnType("varchar(max)")
+              .IsRequired();
+
+            builder.Property(c => c.AlternativaD)
+              .HasColumnType("varchar(max)")
+              .IsRequired();
+
+            builder.Property(c => c.Resposta)
+              .HasColumnType("varchar(max)")
+              .IsRequired();
         }
     }
 }
