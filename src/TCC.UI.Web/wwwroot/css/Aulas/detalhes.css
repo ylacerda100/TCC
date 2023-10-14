@@ -7,9 +7,32 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     margin-bottom: 40px;
+}
+
+.banner-aula {
+    padding: 20px;
+    margin: 55px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50vh;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0)30%,#000 100%);
+}
+
+.descricao-aula {
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+
+.titulo-aula {
+    color: var(--verde-destaque);
+    font-size: 4em;
 }
 
 .pdf-container {
@@ -21,7 +44,7 @@
 }
 
 .pdf-container > embed {
-    width: 44%;
+    width: 85%;
     height: 100%;
 }
 
@@ -32,6 +55,7 @@
     flex-direction: column;
     width: 100%;
     height: 50%;
+    background-color: var(--roxo-claro1);
 }
 
 .concluir-section {
@@ -50,10 +74,10 @@
     display: inline-block;
     padding: 10px;
     font-size: 1.2em;
-    background-color: transparent; /* Cor de fundo do botão */
+    background-color: transparent;
     color: #00ff88;
     text-decoration: none;
-    border: 2px solid #00ff88; /* Cor da borda vermelha */
+    border: 2px solid #00ff88;
     border-radius: 8px;
     transition: background-color 0.5s ease;
 }

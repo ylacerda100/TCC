@@ -6,6 +6,10 @@
 }
 
 <div class="aula-main-container">
+    <div class="banner-aula">
+        <h1 class="titulo-aula">@Html.DisplayFor(m => m.Nome)</h1>
+        <p class="descricao-aula">@Html.DisplayFor(m => m.Descricao)</p>
+    </div>
     <div class="pdf-container">
         <embed src="~/assets/pdf/@Html.DisplayFor(m => m.ContentUrl)" type="application/pdf" />
     </div>
