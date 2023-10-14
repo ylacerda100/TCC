@@ -41,11 +41,6 @@ namespace TCC.Application.Services
             _userManager = userManager;
         }
 
-        public Task<bool> AddPedidoToUser(PedidoLojaViewModel pedido, Usuario user)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Dispose()
         {
             GC.SuppressFinalize(this);
