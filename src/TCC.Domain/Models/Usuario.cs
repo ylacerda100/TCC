@@ -8,5 +8,8 @@ namespace TCC.Domain.Models
         public string Nome { get; set; }
         public long Xp { get; set; }
         public int QtdMoedas { get; set; }
+
+        public decimal MultiplicadorXp { get; set; }
+        public List<PedidoLoja> Pedidos { get; set; }
     }
 }

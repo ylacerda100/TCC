@@ -7,9 +7,8 @@ namespace TCC.Domain.Interfaces
     {
         Task<ItemLoja> GetById(Guid id);
         Task<IEnumerable<ItemLoja>> GetAll();
-
-        void Add(ItemLoja item);
+        Task<bool> Add(ItemLoja item);
         void Update(ItemLoja item);
-        void Remove(ItemLoja item);
+        Task<bool> Remove(ItemLoja item);
     }
 }

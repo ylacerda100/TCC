@@ -19,7 +19,7 @@
                 {
                     <a class="card" asp-controller="Cursos" asp-action="Detalhes" asp-route-name="@curso.Nome">
                         <div class="banner">
-                            <img class="icone" src="~/assets/img/Icons/variaveis.png" alt="Tipos de Dados">
+                            <img class="icone" src="~/assets/img/Icons/Cursos/@curso.IconUrl" alt="Tipos de Dados">
                             <div class="titulo">
                                 <h2>@Html.DisplayFor(t => curso.Nome)</h2>
                             </div>

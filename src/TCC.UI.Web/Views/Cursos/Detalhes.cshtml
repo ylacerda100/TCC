@@ -10,7 +10,7 @@
             <h1 class="titulo-curso">@Html.DisplayFor(m => m.Nome)</h1>
             <p class="descricao-curso">@Html.DisplayFor(m => m.Descricao)</p>
             <div class="botao-iniciar">
-                <a class="btn btn-primary" asp-area="Identity" asp-page="/Login/Registrar">
+            <a class="btn btn-primary" asp-controller="Aulas" asp-action="Detalhes" asp-route-name="@Model.Aulas.First(a => a.Number == 1).Nome">
                     Iniciar curso
                 </a>
             </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="lista-aulas">
                     <ul>
-                        @foreach (var aula in Model.Aulas)
+                        @foreach (var aula in Model.Aulas.OrderBy(a => a.Number))
                         {
                             <a asp-controller="Aulas" asp-action="Detalhes" asp-route-name="@aula.Nome">
                             <li>@Html.DisplayFor(a => aula.Nome)</li>
@@ -63,7 +63,7 @@
         </div>
         <div class="matricular-section">
             <div class="botao-iniciar">
-                <a class="btn btn-primary" asp-area="Identity" asp-page="/Login/Registrar">
+            <a class="btn btn-primary" asp-controller="Aulas" asp-action="Detalhes" asp-route-name="@Model.Aulas.First(a => a.Number == 1).Nome">
                     Iniciar curso
                 </a>
             </div>

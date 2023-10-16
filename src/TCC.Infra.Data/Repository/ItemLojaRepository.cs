@@ -28,9 +28,10 @@ public class ItemLojaRepository : IItemLojaRepository
         return await DbSet.ToListAsync();
     }
 
-    public void Add(ItemLoja item)
+    public async Task<bool> Add(ItemLoja item)
     {
         DbSet.Add(item);
+        return await Db.Commit();
     }
 
     public void Update(ItemLoja item)
@@ -38,9 +39,10 @@ public class ItemLojaRepository : IItemLojaRepository
         DbSet.Update(item);
     }
 
-    public void Remove(ItemLoja item)
+    public async Task<bool> Remove(ItemLoja item)
     {
         DbSet.Remove(item);
+        return await Db.Commit();
     }
     
     public void Dispose()

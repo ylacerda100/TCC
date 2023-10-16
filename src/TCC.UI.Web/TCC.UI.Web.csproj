@@ -19,6 +19,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="node_modules\%40sweetalert2\themes\bootstrap-4\bootstrap-4.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\bootstrap-4\bootstrap-4.min.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\bootstrap-4\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\borderless\borderless.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\borderless\borderless.min.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\borderless\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\bulma\bulma.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\bulma\bulma.min.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\bulma\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\dark\dark.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\dark\dark.min.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\dark\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\default\default.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\default\default.min.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\default\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\material-ui\material-ui.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\material-ui\material-ui.min.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\material-ui\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\minimal\minimal.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\minimal\minimal.min.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\minimal\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\wordpress-admin\package.json" />
+    <Content Include="node_modules\%40sweetalert2\themes\wordpress-admin\wordpress-admin.css" />
+    <Content Include="node_modules\%40sweetalert2\themes\wordpress-admin\wordpress-admin.min.css" />
     <Content Include="node_modules\.package-lock.json" />
     <Content Include="node_modules\is-dom-node-list\package.json" />
     <Content Include="node_modules\is-dom-node\package.json" />
@@ -51,12 +76,37 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\pdf\Matrizes\" />
+    <Folder Include="wwwroot\assets\pdf\EstruturaDeDados\" />
+    <Folder Include="wwwroot\assets\pdf\LacosDeRepeticao\" />
+    <Folder Include="wwwroot\assets\pdf\Vetores\" />
+    <Folder Include="wwwroot\assets\pdf\TiposDeDados\" />
     <Folder Include="wwwroot\assets\pdf\Variaveis\" />
     <Folder Include="wwwroot\assets\video\" />
     <Folder Include="wwwroot\js\Login\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="node_modules\%40sweetalert2\themes\bootstrap-4\bootstrap-4.scss" />
+    <None Include="node_modules\%40sweetalert2\themes\bootstrap-4\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\borderless\borderless.scss" />
+    <None Include="node_modules\%40sweetalert2\themes\borderless\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\bulma\bulma.scss" />
+    <None Include="node_modules\%40sweetalert2\themes\bulma\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\CHANGELOG.md" />
+    <None Include="node_modules\%40sweetalert2\themes\dark\dark.scss" />
+    <None Include="node_modules\%40sweetalert2\themes\dark\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\default\default.scss" />
+    <None Include="node_modules\%40sweetalert2\themes\default\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\LICENSE" />
+    <None Include="node_modules\%40sweetalert2\themes\material-ui\material-ui.scss" />
+    <None Include="node_modules\%40sweetalert2\themes\material-ui\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\minimal\minimal.scss" />
+    <None Include="node_modules\%40sweetalert2\themes\minimal\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\vite.config.js" />
+    <None Include="node_modules\%40sweetalert2\themes\wordpress-admin\animations.scss" />
+    <None Include="node_modules\%40sweetalert2\themes\wordpress-admin\README.md" />
+    <None Include="node_modules\%40sweetalert2\themes\wordpress-admin\wordpress-admin.scss" />
     <None Include="node_modules\is-dom-node-list\CHANGELOG.md" />
     <None Include="node_modules\is-dom-node-list\dist\is-dom-node-list.es.js" />
     <None Include="node_modules\is-dom-node-list\dist\is-dom-node-list.js" />

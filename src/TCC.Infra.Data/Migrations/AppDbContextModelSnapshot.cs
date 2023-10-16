@@ -181,6 +181,9 @@ namespace TCC.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
                     b.Property<int>("QtdMoedas")
                         .HasColumnType("int");
 
@@ -240,33 +243,33 @@ namespace TCC.Infra.Data.Migrations
 
                     b.Property<string>("AlternativaA")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("AlternativaB")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("AlternativaC")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("AlternativaD")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<Guid?>("AulaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Enunciado")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<int>("QtdMoedas")
                         .HasColumnType("int");
 
                     b.Property<string>("Resposta")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<int>("Xp")
                         .HasColumnType("int");
@@ -285,10 +288,20 @@ namespace TCC.Infra.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
 
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<long>("Duracao")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("ImagemUrl")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<decimal>("Multiplicador")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -298,15 +311,39 @@ namespace TCC.Infra.Data.Migrations
                     b.Property<int>("Preco")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ValidadeFim")
-                        .HasColumnType("datetime2");
+                    b.Property<long>("QtdXp")
+                        .HasColumnType("bigint");
 
-                    b.Property<DateTime>("ValidadeInicio")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("TipoItem")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Itens");
+                });
+
+            modelBuilder.Entity("TCC.Domain.Models.PedidoLoja", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemCompradoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UsuarioId")
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemCompradoId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Pedidos");
                 });
 
             modelBuilder.Entity("TCC.Domain.Models.Usuario", b =>
@@ -333,6 +370,9 @@ namespace TCC.Infra.Data.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<decimal>("MultiplicadorXp")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -450,6 +490,21 @@ namespace TCC.Infra.Data.Migrations
                         .HasForeignKey("AulaId");
                 });
 
+            modelBuilder.Entity("TCC.Domain.Models.PedidoLoja", b =>
+                {
+                    b.HasOne("TCC.Domain.Models.ItemLoja", "ItemComprado")
+                        .WithMany()
+                        .HasForeignKey("ItemCompradoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCC.Domain.Models.Usuario", null)
+                        .WithMany("Pedidos")
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("ItemComprado");
+                });
+
             modelBuilder.Entity("TCC.Domain.Models.Aula", b =>
                 {
                     b.Navigation("Exercicios");
@@ -458,6 +513,11 @@ namespace TCC.Infra.Data.Migrations
             modelBuilder.Entity("TCC.Domain.Models.Curso", b =>
                 {
                     b.Navigation("Aulas");
+                });
+
+            modelBuilder.Entity("TCC.Domain.Models.Usuario", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }

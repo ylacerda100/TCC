@@ -13,6 +13,7 @@ namespace TCC.Application.ViewModels
         [Key]
         public Guid Id { get; set; }
 
+        public int Number { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
 

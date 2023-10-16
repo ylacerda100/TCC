@@ -5,6 +5,7 @@ using NetDevPack.Messaging;
 using System.ComponentModel.DataAnnotations;
 using TCC.Domain.Models;
 using TCC.Infra.Data.Mappings;
+using TCC.Infra.Data.Migrations;
 
 namespace TCC.Infra.Data.Context;
 
@@ -22,6 +23,7 @@ public class AppDbContext : IdentityDbContext<Usuario>, IUnitOfWork
     public DbSet<Usuario> Usuarios { get; set; }
 
     public DbSet<Exercicio> Exercicios { get; set; }
+    public DbSet<PedidoLoja> Pedidos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,10 +47,14 @@ public class AppDbContext : IdentityDbContext<Usuario>, IUnitOfWork
         #region Usuario map
         modelBuilder.Entity<Usuario>()
                 .Property(e => e.Nome)
-                .HasMaxLength(250);
+        .HasMaxLength(250);
+
+        modelBuilder.Entity<Usuario>()
+            .Navigation(e => e.Pedidos)
+            .AutoInclude();
         #endregion
     }
-    
+
     public async Task<bool> Commit()
     {
         // After executing this line all the changes (from the Command Handler and Domain Event Handlers) 

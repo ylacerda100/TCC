@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
 using TCC.Application.ViewModels;
 using TCC.Domain.Models;
 
@@ -11,5 +7,8 @@ namespace TCC.Application.Interfaces
     public interface IUsuarioAppService : IDisposable
     {
         Task<IEnumerable<UsuarioViewModel>> GetAll();
+
+        Task<Usuario> GetCurrentUser();
+        Task<IdentityResult> UpdatePedidoUser(Usuario user, PedidoLoja pedido);
     }
 }

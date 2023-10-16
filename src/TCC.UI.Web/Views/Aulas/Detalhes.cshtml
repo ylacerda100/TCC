@@ -5,11 +5,33 @@
     ViewData["Title"] = "LogPlay - Aulas";
 }
 
-<body>
-    <div class="aula-main-container">
-        <embed src="~/assets/pdf/@Html.DisplayFor(m => m.ContentUrl)" width="80%" height="80%" type="application/pdf" />
+<div class="aula-main-container">
+    <div class="banner-aula">
+        <h1 class="titulo-aula">@Html.DisplayFor(m => m.Nome)</h1>
+        <p class="descricao-aula">@Html.DisplayFor(m => m.Descricao)</p>
     </div>
-</body>
+    <div class="pdf-container">
+        <embed src="~/assets/pdf/@Html.DisplayFor(m => m.ContentUrl)" type="application/pdf" />
+    </div>
+    <div class="exercicios-container">
+        <h2>Exercícios</h2>
+        <form>
+            @foreach (var exercicio in Model.Exercicios)
+            {
+                <div class="exercicio-element">
+                    <h3>@exercicio.Enunciado</h3>
+                </div>
+            }
+        </form>
+    </div>
+    <div class="concluir-section">
+        <div class="botao-concluir">
+            <a class="btn btn-primary" asp-controller="Aulas" asp-action="Detalhes" asp-route-name="">
+                Concluir aula
+            </a>
+        </div>
+    </div>
+</div>
 
 @section Styles{
     <link rel="stylesheet" href="~/css/Aulas/detalhes.css" asp-append-version="true" />

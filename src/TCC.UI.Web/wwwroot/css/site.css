@@ -37,6 +37,8 @@ body {
 }
 
 
+
+
 @font-face  {
     font-family: 'TiltNeon';
     src:url("../Fonts/TiltNeon-Regular-VariableFont_XROT,YROT.ttf");
@@ -49,4 +51,16 @@ body {
     --roxo-escuro: #201b2c;
     --roxo-claro1: #2f2841;
     --roxo-claro2: #514869;
+}
+
+.swal2-container.swal2-center > .swal2-popup {
+    background-color: var(--roxo-claro1) !important;
+}
+
+.swal2-html-container > h2, .swal2-title {
+    color: var(--verde-destaque) !important;
+}
+
+.swal2-html-container {
+    color: white !important
 }

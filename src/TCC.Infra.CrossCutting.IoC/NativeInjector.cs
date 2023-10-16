@@ -24,6 +24,7 @@ public static class NativeInjector
         services.AddScoped<IItemLojaRepository, ItemLojaRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IAulaRepository, AulaRepository>();
+        services.AddScoped<IPedidoLojaRepository, PedidoLojaRepository>();
 
         services.AddScoped<AppDbContext>();
     }

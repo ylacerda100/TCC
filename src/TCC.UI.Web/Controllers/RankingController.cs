@@ -18,7 +18,7 @@ namespace TCC.UI.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var users = await _usuarioAppService.GetAll();
-            return View(users.OrderBy(u => u.Xp));
+            return View(users.OrderByDescending(u => u.Xp));
         }
     }
 }

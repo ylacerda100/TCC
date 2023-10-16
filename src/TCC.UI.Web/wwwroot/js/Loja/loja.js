@@ -1,16 +1,25 @@
-﻿function verificarAlturaItens() {
-    var tabela = document.querySelector(".item-table");
-    var alturaItens = tabela.scrollHeight;
-    var alturaVisivel = tabela.clientHeight;
+﻿const comprar1 = document.getElementById('comprar');
 
-    if (alturaItens > alturaVisivel) {
-      
-        tabela.scrollTop = alturaItens - alturaVisivel;
-    }
-}
+const modal = document.getElementById('myModal');
+const modal2 = document.getElementById('myModal2');
+const confirmButton = document.getElementById('confirmButton');
+const cancelButton = document.getElementById('cancelButton');
 
+comprar1.addEventListener('click', function (e) {
+    e.preventDefault();
+    modal.style.display = 'flex';
+});
 
-window.addEventListener("load", verificarAlturaItens);
+comprar1.addEventListener('click', function (e) {
+    e.preventDefault();
+    modal2.style.display = 'flex';
+});
 
-
-window.addEventListener("resize", verificarAlturaItens);
+confirmButton.addEventListener('click', function () {
+    alert('Compra realizada com sucesso!');
+    modal.style.display = 'none';
+});
+cancelButton.addEventListener('click', function () {
+    alert('Compra cancelada.');
+    modal.style.display = 'none';
+});

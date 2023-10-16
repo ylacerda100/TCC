@@ -2,6 +2,7 @@
     background-color: var(--roxo-escuro);
     color: white;
     text-align: center;
+    width: 100%;
 }
 
 .wrapper {
