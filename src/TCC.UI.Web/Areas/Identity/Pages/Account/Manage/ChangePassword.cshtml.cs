@@ -74,7 +74,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
             /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirmar nova senha")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Compare("NewPassword", ErrorMessage = "A nova senha e a confirmação não são iguais.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -120,7 +120,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            StatusMessage = "Sua senha foi alterada com sucesso.";
 
             return RedirectToPage();
         }
