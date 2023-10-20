@@ -92,3 +92,8 @@
     width: 100%; /* Largura desejada */
     height: 500px; /* Altura desejada */
 }
+
+img{
+    width: 100vw;
+    height: 100vh;
+}
