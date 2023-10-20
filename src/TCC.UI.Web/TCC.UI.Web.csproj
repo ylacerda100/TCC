@@ -85,7 +85,6 @@
     <Folder Include="wwwroot\assets\pdf\LacosDeRepeticao\" />
     <Folder Include="wwwroot\assets\pdf\Vetores\" />
     <Folder Include="wwwroot\assets\pdf\TiposDeDados\" />
-    <Folder Include="wwwroot\assets\pdf\Variaveis\" />
     <Folder Include="wwwroot\assets\video\" />
     <Folder Include="wwwroot\js\Login\" />
   </ItemGroup>
