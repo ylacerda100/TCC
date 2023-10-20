@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using TCC.Application.Interfaces;
 using TCC.Application.Services;
 using TCC.Application.ViewModels;
@@ -30,6 +31,11 @@ namespace TCC.UI.Web.Controllers
         [HttpGet("Loja/load")]
         public IActionResult Load()
         {
+            if (!Debugger.IsAttached)
+            {
+                return NotFound();
+            }
+
             var itens = new List<ItemLojaViewModel>
             {
                 new ItemLojaViewModel

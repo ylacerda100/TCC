@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\pdf\Variaveis\Variaveis.pdf" />
     <Content Remove="wwwroot\assets\video\animation_lmma1dwj.mp4" />
   </ItemGroup>
 
@@ -67,6 +68,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="PdfiumViewer" Version="2.10.0" />
+    <PackageReference Include="PdfiumViewer.Native.x86.no_v8-no_xfa" Version="2018.4.8.256" />
+    <PackageReference Include="PdfiumViewer.Native.x86.v8-xfa" Version="2018.4.8.256" />
+    <PackageReference Include="PdfiumViewer.Native.x86_64.no_v8-no_xfa" Version="2018.4.8.256" />
+    <PackageReference Include="PdfiumViewer.Native.x86_64.v8-xfa" Version="2018.4.8.256" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,7 +86,6 @@
     <Folder Include="wwwroot\assets\pdf\LacosDeRepeticao\" />
     <Folder Include="wwwroot\assets\pdf\Vetores\" />
     <Folder Include="wwwroot\assets\pdf\TiposDeDados\" />
-    <Folder Include="wwwroot\assets\pdf\Variaveis\" />
     <Folder Include="wwwroot\assets\video\" />
     <Folder Include="wwwroot\js\Login\" />
   </ItemGroup>

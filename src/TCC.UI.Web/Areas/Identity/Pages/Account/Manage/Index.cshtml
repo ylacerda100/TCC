@@ -5,25 +5,65 @@
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-        </form>
+<style>
+    h3 {
+        color: var(--verde-destaque);
+        margin-left: 10px;
+    }
+
+    .form-control {
+        background-color: var(--roxo-claro2) !important;
+        color: white !important;
+        border: none;
+        margin: 10px;
+    }
+
+    .form-floating > input {
+        outline: none !important;
+    }
+
+    .form-label {
+        color: #f0ffffde;
+    }
+
+    .btn-primary {
+        background-color: transparent !important;
+        transition: background-color 0.5s ease;
+        border: 2px solid #00ff88;
+        color: #00ff88;
+        margin: 10px;
+    }
+
+        .btn-primary:hover {
+            background-color: darkgreen !important;
+            border: 2px solid white;
+        }
+
+</style>
+
+<body>
+    <h3>@ViewData["Title"]</h3>
+
+    <partial name="_StatusMessage" for="StatusMessage" />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form id="profile-form" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating">
+                    <input asp-for="Username" class="form-control shadow-lg" disabled />
+                    <label class="form-label">Email</label>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.PhoneNumber" class="form-control shadow-lg" />
+                    <label class="form-label">Telefone</label>
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
+                <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Salvar</button>
+            </form>
+        </div>
     </div>
-</div>
+</body>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

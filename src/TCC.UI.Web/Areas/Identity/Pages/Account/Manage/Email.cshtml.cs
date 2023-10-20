@@ -68,9 +68,9 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "O campo Novo Email é obrigatório!")]
             [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = "Novo email")]
             public string NewEmail { get; set; }
         }
 

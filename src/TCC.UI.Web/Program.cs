@@ -9,8 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
 
-builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddDefaultIdentity<Usuario>(options => {
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Password = new PasswordOptions
+    {
+        RequireDigit = false,
+        RequiredLength = 6,
+        RequireLowercase = false,
+        RequireUppercase = false,
+        RequireNonAlphanumeric = false
+    };
+}).AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Login/Entrar");
 // Add services to the container.

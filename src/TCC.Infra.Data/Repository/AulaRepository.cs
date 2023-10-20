@@ -42,7 +42,9 @@ namespace TCC.Infra.Data.Repository
 
         public async Task<Aula> GetByName(string name)
         {
-            return DbSet.FirstOrDefault(t => t.Nome.Contains(name));
+            return DbSet
+                .Include(a => a.Exercicios)
+                .FirstOrDefault(t => t.Nome.Contains(name));
         }
 
         public void Remove(Aula aula)

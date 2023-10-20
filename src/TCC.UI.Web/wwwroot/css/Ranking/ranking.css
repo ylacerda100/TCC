@@ -55,10 +55,6 @@ tfoot {
     background-color: rgba(221, 221, 221, 0.8);
 }
 
-footer{
-    position: relative !important;
-}
-
 
 @font-face {
     font-family: 'TiltNeon';
@@ -67,11 +63,5 @@ footer{
     font-style: normal;
 }
 
-@media (max-width: 767px) {
-
-    footer {
-        position: absolute !important;
-    }
-}
 
 

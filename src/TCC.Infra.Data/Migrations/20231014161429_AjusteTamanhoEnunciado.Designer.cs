@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TCC.Infra.Data.Context;
 
@@ -11,9 +12,10 @@ using TCC.Infra.Data.Context;
 namespace TCC.Infra.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231014161429_AjusteTamanhoEnunciado")]
+    partial class AjusteTamanhoEnunciado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,19 +245,19 @@ namespace TCC.Infra.Data.Migrations
 
                     b.Property<string>("AlternativaA")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("AlternativaB")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("AlternativaC")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("AlternativaD")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<Guid?>("AulaId")
                         .HasColumnType("uniqueidentifier");
@@ -269,7 +271,7 @@ namespace TCC.Infra.Data.Migrations
 
                     b.Property<string>("Resposta")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("Xp")
                         .HasColumnType("int");

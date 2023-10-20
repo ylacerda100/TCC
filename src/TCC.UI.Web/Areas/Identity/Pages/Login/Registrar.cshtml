@@ -28,18 +28,22 @@
                 <div class="text-field">
                     <label>Nome</label>
                     <input asp-for="Input.Nome" autocomplete="off" aria-required="true" autofocus />
+                    <span asp-validation-for="Input.Nome" class="text-danger"></span>
                 </div>
                 <div class="text-field">
                     <label>Email</label>
                     <input asp-for="Input.Email" autocomplete="off" aria-required="true" autofocus />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="text-field">
                     <label>Senha</label>
                     <input asp-for="Input.Password" autocomplete="off" aria-required="true" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="text-field">
                     <label>Confirmar senha</label>
                     <input asp-for="Input.ConfirmPassword" autocomplete="off" aria-required="true" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
                 <button id="login-submit" type="submit" class="botao-login">Registrar</button>
                 <div class="register-link">
