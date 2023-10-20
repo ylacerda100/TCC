@@ -13,7 +13,7 @@
 
     @if (ViewBag.Images != null)
     {
-        <div>
+        <div class="pdf-container">
             @foreach (var imageData in ViewBag.Images)
             {
                 <img src="data:image/png;base64,@Convert.ToBase64String(imageData)" />
@@ -21,12 +21,6 @@
         </div>
     }
 
-
-
-
-    @* <div class="pdf-container">
-        <embed src="~/assets/pdf/@Html.DisplayFor(m => m.ContentUrl)" type="application/pdf" />
-    </div> *@
     <div class="exercicios-container">
         <h2>Exercícios</h2>
         <form>
