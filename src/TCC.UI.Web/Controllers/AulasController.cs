@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.Intrinsics.Arm;
 using TCC.Application.Interfaces;
+using TCC.Application.ViewModels;
 
 namespace TCC.UI.Web.Controllers
 {
@@ -66,6 +67,12 @@ namespace TCC.UI.Web.Controllers
             }
 
             return View(aulaViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult ResponderExercicio(RespostaExercicioViewModel model)
+        {
+            return NotFound(new { message = "Deu certo", errorMessage="Teste" });
         }
     }
 }

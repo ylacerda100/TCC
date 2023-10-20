@@ -34,40 +34,39 @@
         <h2>Exercícios</h2>        
             @foreach (var exercicio in Model.Exercicios)
             {
-                <div class="exercicio-element">
+                <form method="post" id="formEx" asp-controller="Aulas" asp-action="ResponderExercicio" class="exercicio-element">
                     <h3>@exercicio.Enunciado</h3>
+                    @Html.Hidden("ExercicioId", exercicio.Id)
                     <label>
-                        <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaA">
+                    @Html.RadioButton("Resposta", exercicio.AlternativaA)
                         @exercicio.AlternativaA
                     </label>
                     <label>
-                        <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaB">
-                        @exercicio.AlternativaB
+                    @Html.RadioButton("Resposta", exercicio.AlternativaB)
+                    @exercicio.AlternativaB
                     </label>
 
                     @if (!string.IsNullOrEmpty(exercicio.AlternativaC))
                     {
                         <label>
-                            <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaC">
-                            @exercicio.AlternativaC
+                        @Html.RadioButton("Resposta", exercicio.AlternativaC)
+                        @exercicio.AlternativaC
                         </label>
                     }
                     
                     @if (!string.IsNullOrEmpty(exercicio.AlternativaD))
                     {
                         <label>
-                            <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaD">
-                            @exercicio.AlternativaD
+                        @Html.RadioButton("Resposta", exercicio.AlternativaD)
+                        @exercicio.AlternativaD
                         </label>
                     }
 
-                </div>
-            }
-                <div class="botao-verificar">
-                    <a class="btn btn-primary" >
-                        Responder
-                    </a>
-                </div>            
+                    <div class="botao-verificar">
+                    <button class="btn btn-primary botao-responder" type="submit" value="Submit" data-id="@exercicio.Id">Responder</button>
+                    </div>
+                </form>
+            }             
     </div>
 
     <div class="concluir-section">
@@ -81,4 +80,36 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/Aulas/detalhes.css" asp-append-version="true" />
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#formEx").submit(function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Aulas/ResponderExercicio", // Replace with your controller and action URL
+                    data: formData,
+                    dataType: "json",
+                    success: function (response) {
+                        // Handle the response (e.g., update a div with the message)
+                        alert(response.message);
+                    },
+                    error: function () {
+                        // Handle any errors
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!'
+                        })
+                    }
+                });
+            });
+        });
+    </script>
+
 }
