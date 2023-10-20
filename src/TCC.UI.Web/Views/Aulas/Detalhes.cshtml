@@ -9,6 +9,14 @@
     <div class="banner-aula">
         <h1 class="titulo-aula">@Html.DisplayFor(m => m.Nome)</h1>
         <p class="descricao-aula">@Html.DisplayFor(m => m.Descricao)</p>
+        
+        <div class="voltar-section">
+            <div class="botao-voltar">
+                <a class="btn btn-primary" asp-controller="Cursos" asp-action="Variáveis" asp-route-name="">
+                    Voltar para o Curso
+                </a>
+            </div>
+        </div>
     </div>
 
     @if (ViewBag.Images != null)
@@ -21,7 +29,59 @@
         </div>
     }
 
+
     <div class="exercicios-container">
+        <h2>Exercícios</h2>        
+        <form>
+            @foreach (var exercicio in Model.Exercicios)
+            {
+                <div class="exercicio-element">
+                    <h3>@exercicio.Enunciado</h3>
+                    <label>
+                        <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaA">
+                        @exercicio.AlternativaA
+                    </label>
+                    <label>
+                        <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaB">
+                        @exercicio.AlternativaB
+                    </label>
+                    <label>
+                        <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaC">
+                        @exercicio.AlternativaC
+                    </label>
+                    <label>
+                        <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaD">
+                        @exercicio.AlternativaD
+                    </label>
+
+                </div>
+            }
+        </form>
+                <div class="botao-verificar">
+                    <a class="btn btn-primary" >
+                        Verificar as Respostas
+                    </a>
+                </div>            
+    </div>
+</div>
+   
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    @* <div class="exercicios-container">
         <h2>Exercícios</h2>
         <form>
             @foreach (var exercicio in Model.Exercicios)
@@ -30,11 +90,11 @@
                     <h3>@exercicio.Enunciado</h3>
                 </div>
             }
-        </form>
-    </div>
+        </form> *@
+</div>
     <div class="concluir-section">
         <div class="botao-concluir">
-            <a class="btn btn-primary" asp-controller="Aulas" asp-action="Detalhes" asp-route-name="">
+            <a class="btn btn-primary" asp-controller="Aulas" asp-action="Variáveis" asp-route-name="">
                 Concluir aula
             </a>
         </div>
