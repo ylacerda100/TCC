@@ -32,7 +32,6 @@
 
     <div class="exercicios-container">
         <h2>Exercícios</h2>        
-        <form>
             @foreach (var exercicio in Model.Exercicios)
             {
                 <div class="exercicio-element">
@@ -45,53 +44,32 @@
                         <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaB">
                         @exercicio.AlternativaB
                     </label>
-                    <label>
-                        <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaC">
-                        @exercicio.AlternativaC
-                    </label>
-                    <label>
-                        <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaD">
-                        @exercicio.AlternativaD
-                    </label>
+
+                    @if (!string.IsNullOrEmpty(exercicio.AlternativaC))
+                    {
+                        <label>
+                            <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaC">
+                            @exercicio.AlternativaC
+                        </label>
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(exercicio.AlternativaD))
+                    {
+                        <label>
+                            <input type="radio" name="resposta_@exercicio.Id" value="@exercicio.AlternativaD">
+                            @exercicio.AlternativaD
+                        </label>
+                    }
 
                 </div>
             }
-        </form>
                 <div class="botao-verificar">
                     <a class="btn btn-primary" >
-                        Verificar as Respostas
+                        Responder
                     </a>
                 </div>            
     </div>
-</div>
-   
 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-    @* <div class="exercicios-container">
-        <h2>Exercícios</h2>
-        <form>
-            @foreach (var exercicio in Model.Exercicios)
-            {
-                <div class="exercicio-element">
-                    <h3>@exercicio.Enunciado</h3>
-                </div>
-            }
-        </form> *@
-</div>
     <div class="concluir-section">
         <div class="botao-concluir">
             <a class="btn btn-primary" asp-controller="Aulas" asp-action="Variáveis" asp-route-name="">
