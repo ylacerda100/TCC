@@ -1,7 +1,7 @@
 
 ### Projeto de TCC – Escola de Logica de Programação com elementos de gamificação para crianças carentes
 
-Este repositório contém o projeto de Trabalho de Conclusão de Curso (TCC) desenvolvido pela equipe de alunos (  nome de todos, Wescley Alves ), focado na criação de uma solução educacional inovadora para crianças carentes, combinando lógica de programação e gamificação.
+Este repositório contém o projeto de Trabalho de Conclusão de Curso (TCC) desenvolvido pela equipe de alunos (  nome de todos, Wescley Alves, Ygor Lacerda), focado na criação de uma solução educacional inovadora para crianças carentes, combinando lógica de programação e gamificação.
 
 Descrição
 Este projeto tem como objetivo principal melhorar o acesso à educação de qualidade para crianças em situação de carência, oferecendo uma abordagem de aprendizado lúdica e eficaz, baseada na lógica de programação e elementos de gamificação.
