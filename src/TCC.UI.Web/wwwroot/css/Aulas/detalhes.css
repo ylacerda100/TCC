@@ -23,9 +23,6 @@
     height: 50vh;
     background: linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0)30%,#000 100%);
 }
-PDF{
-    
-}
 
 .descricao-aula {
     color: white;
@@ -97,6 +94,6 @@ PDF{
 }
 
 img{
-    width: 100vw;
-    height: 100vh;
+    width: 38em;
+    height:80em;
 }
