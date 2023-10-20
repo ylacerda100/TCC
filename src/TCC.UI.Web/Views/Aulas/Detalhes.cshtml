@@ -10,9 +10,27 @@
         <h1 class="titulo-aula">@Html.DisplayFor(m => m.Nome)</h1>
         <p class="descricao-aula">@Html.DisplayFor(m => m.Descricao)</p>
     </div>
-    <div class="pdf-container">
+    <iframe id="pdfFrame" src="~/assets/pdf/Variaveis/Variaveis1.pdf" width="100%" height="500"></iframe>
+
+    <script>
+        // Use o PDF.js para exibir apenas a página do PDF
+        var pdfFrame = document.getElementById("pdfFrame");
+        pdfFrame.onload = function () {
+            var iframeDoc = pdfFrame.contentDocument;
+            iframeDoc.documentElement.style.overflow = "hidden";
+        };
+    </script>
+
+    
+
+
+
+
+
+
+    @* <div class="pdf-container">
         <embed src="~/assets/pdf/@Html.DisplayFor(m => m.ContentUrl)" type="application/pdf" />
-    </div>
+    </div> *@
     <div class="exercicios-container">
         <h2>Exercícios</h2>
         <form>
@@ -36,3 +54,11 @@
 @section Styles{
     <link rel="stylesheet" href="~/css/Aulas/detalhes.css" asp-append-version="true" />
 }
+<script>
+    // Use o PDF.js para exibir apenas a página do PDF
+    var pdfFrame = document.getElementById("pdfFrame");
+    pdfFrame.onload = function () {
+        var iframeDoc = pdfFrame.contentDocument;
+        iframeDoc.documentElement.style.overflow = "hidden";
+    };
+</script>

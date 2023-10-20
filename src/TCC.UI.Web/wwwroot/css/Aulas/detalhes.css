@@ -86,3 +86,9 @@
     background-color: darkgreen;
     border: 2px solid white;
 }
+
+#pdfFrame {
+    background-color: darkslateblue; /* Substitua "seucordefundo" pela cor do seu site */
+    width: 100%; /* Largura desejada */
+    height: 500px; /* Altura desejada */
+}
