@@ -96,8 +96,13 @@
                     data: formData,
                     dataType: "json",
                     success: function (response) {
-                        // Handle the response (e.g., update a div with the message)
-                        alert(response.message);
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Parabéns! Você acertou!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     },
                     error: function () {
                         // Handle any errors
