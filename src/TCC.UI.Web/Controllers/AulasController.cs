@@ -11,12 +11,20 @@ namespace TCC.UI.Web.Controllers
     public class AulasController : Controller
     {
         private readonly IAulaAppService _aulaAppService;
+        private readonly IExercicioAppService _exercicioAppService;
+        private readonly IUsuarioAppService _userAppService;
         private readonly IWebHostEnvironment _env;
 
-        public AulasController(IAulaAppService aulaAppService, IWebHostEnvironment env)
+        public AulasController(
+            IAulaAppService aulaAppService, 
+            IWebHostEnvironment env,
+            IExercicioAppService exercicioAppService,
+            IUsuarioAppService userAppService)
         {
             _aulaAppService = aulaAppService;
             _env = env;
+            _exercicioAppService = exercicioAppService;
+            _userAppService = userAppService;
         }
 
         public IActionResult Index()
@@ -68,9 +76,24 @@ namespace TCC.UI.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult ResponderExercicio(RespostaExercicioViewModel model)
+        public async Task<ActionResult> ResponderExercicio(RespostaExercicioViewModel model)
         {
-            return NotFound(new { message = "Deu certo", errorMessage="Teste" });
+            Guid.TryParse(model.ExercicioId, out var exId);
+            var exercicio = await _exercicioAppService.GetById(exId);
+            var user = await _userAppService.GetCurrentUser();
+
+            if (exercicio.Resposta == model.Resposta)
+            {
+                user.QtdMoedas += exercicio.QtdMoedas;
+                user.Xp += exercicio.Xp;
+
+                //update user
+
+
+                return Ok(new { success = true });
+            }
+
+            return Ok(new { success = false });
         }
     }
 }

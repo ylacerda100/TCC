@@ -12,6 +12,12 @@ namespace TCC.Infra.Data.Repository
         protected readonly DbSet<Exercicio> DbSet;
         public IUnitOfWork UnitOfWork => Db;
 
+        public ExercicioRepository(AppDbContext context)
+        {
+            Db = context;
+            DbSet = Db.Set<Exercicio>();
+        }
+
         public void Dispose()
         {
             Db.Dispose();
