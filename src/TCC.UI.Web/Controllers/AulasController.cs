@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PdfiumViewer;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Runtime.Intrinsics.Arm;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
 
