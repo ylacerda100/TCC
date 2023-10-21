@@ -17,6 +17,7 @@ public static class NativeInjector
         services.AddScoped<IItemLojaAppService, ItemLojaAppService>();
         services.AddScoped<IUsuarioAppService, UsuarioAppService>();
         services.AddScoped<IAulaAppService, AulaAppService>();
+        services.AddScoped<IExercicioAppService, ExercicioAppService>();
         //services.AddTransient<IEmailSender, EmailSender>();
 
         // Infra - Data
@@ -25,6 +26,7 @@ public static class NativeInjector
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IAulaRepository, AulaRepository>();
         services.AddScoped<IPedidoLojaRepository, PedidoLojaRepository>();
+        services.AddScoped<IExercicioRepository, ExercicioRepository>();
 
         services.AddScoped<AppDbContext>();
     }
