@@ -16,6 +16,10 @@ header {
 
 }
 
+footer{
+    position:relative !important;
+}
+
 h1 {
     font-size: 36px;
     color: var(--verde-destaque);
