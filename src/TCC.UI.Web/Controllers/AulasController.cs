@@ -88,8 +88,10 @@ namespace TCC.UI.Web.Controllers
 
             if (exercicio.Resposta == model.Resposta)
             {
+                var xp = exercicio.Xp * user.MultiplicadorXp;
+
                 user.QtdMoedas += exercicio.QtdMoedas;
-                user.Xp += exercicio.Xp;
+                user.Xp += (long)xp;
 
                 //update user
 
@@ -98,6 +100,7 @@ namespace TCC.UI.Web.Controllers
             }
 
             return Ok(new { success = false });
+
         }
     }
 }

@@ -86,30 +86,39 @@
     <script>
         $(document).ready(function () {
             $("#formEx").submit(function (e) {
-                e.preventDefault(); // Prevent the default form submission
+                e.preventDefault();
 
                 var formData = $(this).serialize();
 
                 $.ajax({
                     type: "POST",
-                    url: "/Aulas/ResponderExercicio", // Replace with your controller and action URL
+                    url: "/Aulas/ResponderExercicio",
                     data: formData,
                     dataType: "json",
                     success: function (response) {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Parabéns! Você acertou!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
+                        console.log(response)
+                        if (!response.success) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Resposta errada!',
+                                text: "Poxa, resposta errada."
+                            })
+                        }
+                        else {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Parabéns! Você acertou!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
                     },
                     error: function () {
-                        // Handle any errors
                         Swal.fire({
                             icon: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!'
+                            title: 'Ocorreu um erro inesperado!',
+                            text: 'Erro inesperado ao tentar responder o exercício.'
                         })
                     }
                 });

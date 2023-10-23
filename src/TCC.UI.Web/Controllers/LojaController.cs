@@ -41,8 +41,8 @@ namespace TCC.UI.Web.Controllers
                 new ItemLojaViewModel
                 {
                     Id = Guid.NewGuid(),
-                    Nome = "Bônus de XP",
-                    Descricao = "Bônus de XP de 75%",
+                    Nome = "Boost de XP",
+                    Descricao = "Boost de XP de 75%",
                     Preco = 500,
                     ImagemUrl = "75-XP.png",
                     Duracao = TimeSpan.FromDays(3).Ticks,
@@ -52,8 +52,8 @@ namespace TCC.UI.Web.Controllers
                 new ItemLojaViewModel
                 {
                     Id = Guid.NewGuid(),
-                    Nome = "Bônus de XP",
-                    Descricao = "Bônus de XP de 50%",
+                    Nome = "Boost de XP",
+                    Descricao = "Boost de XP de 50%",
                     Preco = 400,
                     ImagemUrl = "50-XP.png",
                     Duracao = TimeSpan.FromDays(3).Ticks,
@@ -63,8 +63,8 @@ namespace TCC.UI.Web.Controllers
                 new ItemLojaViewModel
                 {
                     Id = Guid.NewGuid(),
-                    Nome = "Bônus de XP",
-                    Descricao = "Bônus de XP de 25%",
+                    Nome = "Boost de XP",
+                    Descricao = "Boost de XP de 25%",
                     Preco = 300,
                     ImagemUrl = "25-XP.png",
                     Duracao = TimeSpan.FromDays(3).Ticks,

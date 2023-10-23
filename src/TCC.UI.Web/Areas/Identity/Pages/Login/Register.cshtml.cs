@@ -123,7 +123,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     UserName = Input.Email,
                     Pedidos = new List<PedidoLoja>(),
-                    QtdMoedas = 3000,
+                    QtdMoedas = 3000,   
                     MultiplicadorXp = 1.0m
                 };
 
