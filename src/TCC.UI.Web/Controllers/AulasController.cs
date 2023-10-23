@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using PdfiumViewer;
 using System.Drawing;
 using TCC.Application.Interfaces;
@@ -48,14 +47,21 @@ namespace TCC.UI.Web.Controllers
                 return NotFound();
             }
 
+            ConvertPdfToImage(aulaViewModel);
+
+            return View(aulaViewModel);
+        }
+
+        private void ConvertPdfToImage(AulaViewModel aulaViewModel)
+        {
             var filePath = Path.Combine(
                 _env.ContentRootPath, "wwwroot", "assets", "pdf", aulaViewModel.ContentUrl);
 
-            using (var document = PdfDocument.Load(filePath)) // C# Read PDF Document
+            using (var document = PdfDocument.Load(filePath))
             {
                 var images = new List<byte[]>();
                 var dpi = 300;
-                
+
                 for (int pageNumber = 0; pageNumber < document.PageCount; pageNumber++)
                 {
                     SizeF sizeInPoints = document.PageSizes[pageNumber];
@@ -71,8 +77,6 @@ namespace TCC.UI.Web.Controllers
                 }
                 ViewBag.Images = images;
             }
-
-            return View(aulaViewModel);
         }
 
         [HttpPost]
@@ -84,16 +88,18 @@ namespace TCC.UI.Web.Controllers
 
             if (exercicio.Resposta == model.Resposta)
             {
+                var xp = exercicio.Xp * user.MultiplicadorXp;
+
                 user.QtdMoedas += exercicio.QtdMoedas;
-                user.Xp += exercicio.Xp;
+                user.Xp += (long)xp;
 
-                //update user
-
+                //updat e user
 
                 return Ok(new { success = true });
             }
 
             return Ok(new { success = false });
+
         }
     }
 }

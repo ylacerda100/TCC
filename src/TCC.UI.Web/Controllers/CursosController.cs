@@ -605,7 +605,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Só pode conter elementos do mesmo tipo.",
                                 Resposta = "Permite armazenar múltiplos valores sob um único nome.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -616,7 +616,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Vetores são usados apenas em linguagens de programação específicas.",
                                 Resposta = "Uma variável é usada para armazenar um único valor, enquanto um vetor pode armazenar múltiplos valores.**",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -640,7 +640,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Usando aspas para envolver os elementos.",
                                 Resposta = "Usando colchetes para envolver os elementos.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -651,7 +651,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Usando o índice 2.",
                                 Resposta = "Usando o índice 0.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -675,7 +675,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "[35, 40, 45]",
                                 Resposta = "[30, 35, 40]",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -686,7 +686,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Adicionar elementos ao final do vetor.",
                                 Resposta = "Extrair partes específicas de um vetor.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     }
@@ -731,7 +731,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para evitar o uso de números.",
                                 Resposta = "Para armazenar e manipular informações.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -742,7 +742,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para evitar o uso de números.",
                                 Resposta = "Para armazenar e manipular informações.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -766,7 +766,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para evitar o uso de números.",
                                 Resposta = "Para armazenar e manipular informações.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -777,7 +777,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para evitar o uso de números.",
                                 Resposta = "Para armazenar e manipular informações.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -801,7 +801,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para evitar o uso de números.",
                                 Resposta = "Para armazenar e manipular informações.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -812,7 +812,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para evitar o uso de números.",
                                 Resposta = "Para armazenar e manipular informações.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     }

@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
-
 builder.Services.AddDefaultIdentity<Usuario>(options => {
     options.SignIn.RequireConfirmedAccount = true;
     options.Password = new PasswordOptions
