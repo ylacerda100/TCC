@@ -36,6 +36,7 @@
             {
                 <form method="post" id="formEx" asp-controller="Aulas" asp-action="ResponderExercicio" class="exercicio-element">
                     <h3>@exercicio.Enunciado</h3>
+                    <p>Acerte para ganhar @exercicio.QtdMoedas moedas.</p>
                     @Html.Hidden("ExercicioId", exercicio.Id)
                     <label>
                     @Html.RadioButton("Resposta", exercicio.AlternativaA)
@@ -96,7 +97,6 @@
                     data: formData,
                     dataType: "json",
                     success: function (response) {
-                        console.log(response)
                         if (!response.success) {
                             Swal.fire({
                                 icon: 'error',

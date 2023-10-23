@@ -93,8 +93,7 @@ namespace TCC.UI.Web.Controllers
                 user.QtdMoedas += exercicio.QtdMoedas;
                 user.Xp += (long)xp;
 
-                //update user
-
+                //updat e user
 
                 return Ok(new { success = true });
             }
