@@ -99,7 +99,6 @@ namespace TCC.UI.Web.Controllers
             }
 
             return Ok(new { success = false });
-
         }
     }
 }
