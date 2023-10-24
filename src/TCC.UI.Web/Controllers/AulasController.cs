@@ -42,7 +42,14 @@ namespace TCC.UI.Web.Controllers
                 return NotFound();
             }
 
-            var filePath = $"{_env.WebRootPath}/assets/pdf/TiposDeDados/TiposDeDados1.pdf";
+            var baseDir = $"{_env.WebRootPath}/assets/pdf";
+
+            if (!Directory.Exists(baseDir))
+            {
+                return BadRequest($"O diretório base não existe. Path: {baseDir}");
+            }
+
+            var filePath = $"{baseDir}/TiposDeDados/TiposDeDados1.pdf";
             try
             {
                 ConvertPdfToImage(filePath);
