@@ -16,9 +16,6 @@ header {
 
 }
 
-footer{
-    position:relative !important;
-}
 
 h1 {
     font-size: 36px;
@@ -32,6 +29,7 @@ main {
     background-color: var(--roxo-claro1);
     border-radius: 5px;
     box-shadow: 0px 0px 25px black;
+    position: relative;
    
 }
 
