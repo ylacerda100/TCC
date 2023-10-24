@@ -57,9 +57,9 @@ namespace TCC.UI.Web.Controllers
         private void ConvertPdfToImage(AulaViewModel aulaViewModel)
         {
             var filePath = Path.Combine(
-                _env.WebRootPath, "assets", "pdf", aulaViewModel.ContentUrl);
+                _env.WebRootPath, "assets", "pdf", "TiposDeDados\\TiposDeDados1.pdf");
 
-            using (var document = PdfDocument.Load(filePath.ToLower()))
+            using (var document = PdfDocument.Load(filePath))
             {
                 var images = new List<byte[]>();
                 var dpi = 300;
