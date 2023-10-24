@@ -31,10 +31,10 @@ namespace TCC.UI.Web.Controllers
         [HttpGet("Loja/load")]
         public IActionResult Load()
         {
-            if (!Debugger.IsAttached)
-            {
-                return NotFound();
-            }
+            //if (!Debugger.IsAttached)
+            //{
+            //    return NotFound();
+            //}
 
             var itens = new List<ItemLojaViewModel>
             {

@@ -59,7 +59,7 @@ namespace TCC.UI.Web.Controllers
             var filePath = Path.Combine(
                 _env.WebRootPath, "assets", "pdf", aulaViewModel.ContentUrl);
 
-            using (var document = PdfDocument.Load(filePath))
+            using (var document = PdfDocument.Load(filePath.ToLower()))
             {
                 var images = new List<byte[]>();
                 var dpi = 300;
