@@ -44,10 +44,10 @@ namespace TCC.UI.Web.Controllers
         [HttpGet("Cursos/load")]
         public IActionResult Load()
         {
-            if (!Debugger.IsAttached)
-            {
-                return NotFound();
-            }
+            //if (!Debugger.IsAttached)
+            //{
+            //    return NotFound();
+            //}
 
             var cursos = new List<Curso>
             {
