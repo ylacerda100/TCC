@@ -52,7 +52,8 @@ namespace TCC.UI.Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest($"Erro ao tentar converter PDF. {ex.Message} | {ex.StackTrace}");
+                var files = Directory.GetFiles(baseDir);
+                return BadRequest($"Erro ao tentar converter PDF. {filePath} | {ex.Message} | {ex.StackTrace} | Arquivos: {string.Join(';', files)}");
             }
 
             return View(aulaViewModel);
