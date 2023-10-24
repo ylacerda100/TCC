@@ -42,7 +42,7 @@ namespace TCC.UI.Web.Controllers
                 return NotFound();
             }
 
-            var filePath = $"{_env.WebRootPath}//assets//pdf//TiposDeDados//TiposDeDados1.pdf";
+            var filePath = $"{_env.WebRootPath}/assets/pdf/TiposDeDados/TiposDeDados1.pdf";
             try
             {
                 ConvertPdfToImage(filePath);
