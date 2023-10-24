@@ -32,15 +32,17 @@ namespace TCC.UI.Web.Controllers
         }
 
         [Authorize]
-        [HttpGet("Aulas/{name}")]
-        public async Task<IActionResult> Detalhes(string name)
+        [HttpGet("Aulas/{id}")]
+        public async Task<IActionResult> Detalhes(string id)
         {
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(id))
             {
                 return NotFound();
             }
 
-            var aulaViewModel = await _aulaAppService.GetByName(name);
+            Guid.TryParse(id, out var idGuid);
+
+            var aulaViewModel = await _aulaAppService.GetById(idGuid);
 
             if (aulaViewModel is null)
             {
