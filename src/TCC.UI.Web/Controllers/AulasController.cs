@@ -42,23 +42,21 @@ namespace TCC.UI.Web.Controllers
                 return NotFound();
             }
 
+            var filePath = $"{_env.WebRootPath}//assets//pdf//TiposDeDados//TiposDeDados1.pdf";
             try
             {
-                ConvertPdfToImage(aulaViewModel);
+                ConvertPdfToImage(filePath);
             }
             catch (Exception)
             {
-                return BadRequest($"Erro ao tentar converter PDF. Path: {_env.WebRootPath}");
+                return BadRequest($"Erro ao tentar converter PDF. Path: {filePath}");
             }
 
             return View(aulaViewModel);
         }
 
-        private void ConvertPdfToImage(AulaViewModel aulaViewModel)
+        private void ConvertPdfToImage(string filePath)
         {
-            var filePath = Path.Combine(
-                _env.WebRootPath, "assets", "pdf", "TiposDeDados\\TiposDeDados1.pdf");
-
             using (var document = PdfDocument.Load(filePath))
             {
                 var images = new List<byte[]>();
