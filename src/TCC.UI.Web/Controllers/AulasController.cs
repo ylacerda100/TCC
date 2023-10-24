@@ -57,7 +57,7 @@ namespace TCC.UI.Web.Controllers
         private void ConvertPdfToImage(AulaViewModel aulaViewModel)
         {
             var filePath = Path.Combine(
-                _env.ContentRootPath, "wwwroot", "assets", "pdf", aulaViewModel.ContentUrl);
+                _env.WebRootPath, "assets", "pdf", aulaViewModel.ContentUrl);
 
             using (var document = PdfDocument.Load(filePath))
             {
