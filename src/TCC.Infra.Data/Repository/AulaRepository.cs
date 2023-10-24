@@ -37,7 +37,9 @@ namespace TCC.Infra.Data.Repository
 
         public async Task<Aula> GetById(Guid id)
         {
-            return await DbSet.FindAsync(id);
+            return await DbSet
+                .Include(a => a.Exercicios)
+                .FirstAsync(t => t.Id == id);
         }
 
         public async Task<Aula> GetByName(string name)
