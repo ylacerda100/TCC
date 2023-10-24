@@ -42,7 +42,14 @@ namespace TCC.UI.Web.Controllers
                 return NotFound();
             }
 
-            ConvertPdfToImage(aulaViewModel);
+            try
+            {
+                ConvertPdfToImage(aulaViewModel);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Erro ao tentar converter PDF.");
+            }
 
             return View(aulaViewModel);
         }
