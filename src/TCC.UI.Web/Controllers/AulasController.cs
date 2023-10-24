@@ -44,25 +44,15 @@ namespace TCC.UI.Web.Controllers
 
             var baseDir = $"{_env.WebRootPath}/assets/pdf/TiposDeDados";
 
-            if (!Directory.Exists(baseDir))
-            {
-                return BadRequest($"O diretório base não existe. Path: {baseDir}");
-            }
-
             var filePath = $"{baseDir}/TiposDeDados1.pdf";
-
-            if (!Directory.Exists(filePath))
-            {
-                return BadRequest($"O diretório base não existe. Path: {filePath}");
-            }
 
             try
             {
                 ConvertPdfToImage(filePath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest($"Erro ao tentar converter PDF. Path: {filePath}");
+                return BadRequest($"Erro ao tentar converter PDF. {ex.Message} | {ex.StackTrace}");
             }
 
             return View(aulaViewModel);
@@ -70,26 +60,25 @@ namespace TCC.UI.Web.Controllers
 
         private void ConvertPdfToImage(string filePath)
         {
-            using (var document = PdfDocument.Load(filePath))
+            var document = PdfDocument.Load(filePath);
+
+            var images = new List<byte[]>();
+            var dpi = 300;
+
+            for (int pageNumber = 0; pageNumber < document.PageCount; pageNumber++)
             {
-                var images = new List<byte[]>();
-                var dpi = 300;
+                SizeF sizeInPoints = document.PageSizes[pageNumber];
+                int widthInPixels = (int)Math.Round(sizeInPoints.Width * (float)dpi / 72F);
+                int heightInPixels = (int)Math.Round(sizeInPoints.Height * (float)dpi / 72F);
 
-                for (int pageNumber = 0; pageNumber < document.PageCount; pageNumber++)
+                using (Image image = document.Render(pageNumber, widthInPixels, heightInPixels, dpi, dpi, true))
                 {
-                    SizeF sizeInPoints = document.PageSizes[pageNumber];
-                    int widthInPixels = (int)Math.Round(sizeInPoints.Width * (float)dpi / 72F);
-                    int heightInPixels = (int)Math.Round(sizeInPoints.Height * (float)dpi / 72F);
-
-                    using (Image image = document.Render(pageNumber, widthInPixels, heightInPixels, dpi, dpi, true))
-                    {
-                        ImageConverter converter = new ImageConverter();
-                        var imgBytes = (byte[])converter.ConvertTo(image, typeof(byte[]));
-                        images.Add(imgBytes);
-                    }
+                    ImageConverter converter = new ImageConverter();
+                    var imgBytes = (byte[])converter.ConvertTo(image, typeof(byte[]));
+                    images.Add(imgBytes);
                 }
-                ViewBag.Images = images;
             }
+            ViewBag.Images = images;
         }
 
         [HttpPost]
