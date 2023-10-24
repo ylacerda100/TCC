@@ -48,7 +48,7 @@ namespace TCC.UI.Web.Controllers
             }
             catch (Exception)
             {
-                return BadRequest("Erro ao tentar converter PDF.");
+                return BadRequest($"Erro ao tentar converter PDF. Path: {_env.WebRootPath}");
             }
 
             return View(aulaViewModel);
