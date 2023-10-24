@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Xml.Linq;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
 using TCC.Domain.Interfaces;
@@ -22,6 +23,11 @@ namespace TCC.Application.Services
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public async Task<AulaViewModel> GetById(Guid id)
+        {
+            return _mapper.Map<AulaViewModel>(await _aulaRepository.GetById(id));
         }
 
         public async Task<AulaViewModel> GetByName(string name)
