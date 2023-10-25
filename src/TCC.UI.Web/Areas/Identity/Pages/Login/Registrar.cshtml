@@ -45,6 +45,12 @@
                     <input asp-for="Input.ConfirmPassword" autocomplete="off" aria-required="true" />
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
+
+                @if (ViewData["StatusMessage"] != null)
+                {
+                    <span class="text-danger">@ViewData["StatusMessage"]</span>
+                }
+
                 <button id="login-submit" type="submit" class="botao-login">Registrar</button>
                 <div class="register-link">
                     <a asp-page="./Home/Index">Voltar para a home</a>

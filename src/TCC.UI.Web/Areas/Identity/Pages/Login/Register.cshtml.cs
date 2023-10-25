@@ -65,6 +65,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -102,6 +103,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "A senha e a confirmação não são iguais.")]
             public string ConfirmPassword { get; set; }
+
         }
 
 
@@ -159,11 +161,16 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account
                 }
                 foreach (var error in result.Errors)
                 {
+                    if (error.Code.Contains("DuplicateUserName"))
+                    {
+                        ViewData["StatusMessage"] = $"O email '{user.UserName}' já foi utilizado.";
+                    }
+
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
 
