@@ -133,7 +133,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = "Seu email não foi alterado.";
             return RedirectToPage();
         }
 
