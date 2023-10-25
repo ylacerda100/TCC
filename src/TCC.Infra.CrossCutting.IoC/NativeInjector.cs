@@ -18,7 +18,7 @@ public static class NativeInjector
         services.AddScoped<IUsuarioAppService, UsuarioAppService>();
         services.AddScoped<IAulaAppService, AulaAppService>();
         services.AddScoped<IExercicioAppService, ExercicioAppService>();
-        services.AddTransient<IEmailSender, SmtpEmailSender>();
+        services.AddTransient<IEmailSender, MailJetEmailSender>();
 
         // Infra - Data
         services.AddScoped<ICursoRepository, CursoRepository>();
