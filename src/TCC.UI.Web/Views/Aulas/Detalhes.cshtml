@@ -35,7 +35,7 @@
             @foreach (var exercicio in Model.Exercicios)
             {
                 <form method="post" id="formEx" asp-controller="Aulas" asp-action="ResponderExercicio" class="exercicio-element">
-                    <h3>@exercicio.Enunciado</h3>
+                    <h3 class="enunciado-exercicio">@exercicio.Enunciado</h3>
                     <p>Acerte para ganhar @exercicio.QtdMoedas moedas.</p>
                     @Html.Hidden("ExercicioId", exercicio.Id)
                     <label>
