@@ -17,7 +17,7 @@
             <div class="cards-container">
                 @foreach (var curso in Model)
                 {
-                    <a class="card" asp-controller="Cursos" asp-action="Detalhes" asp-route-name="@curso.Nome">
+                    <a class="card" asp-controller="Cursos" asp-action="Detalhes" asp-route-id="@curso.Id">
                         <div class="banner">
                             <img class="icone" src="~/assets/img/Icons/Cursos/@curso.IconUrl" alt="Tipos de Dados">
                             <div class="titulo">
