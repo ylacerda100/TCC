@@ -149,7 +149,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirme seu email",
-                        $"Por favor confirme sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a>.");
+                        $"Por favor confirme sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl).Replace("&amp;", "&")}'>clicando aqui</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

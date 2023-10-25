@@ -18,6 +18,15 @@ namespace TCC.Application.Services
                 Credentials = new NetworkCredential("logplay.suporte@outlook.com", "FcwpzL3CJ6SHES")
             };
 
+            var message = new MailMessage(
+                from: "logplay.suporte@outlook.com",
+                to: email,
+                subject: subject,
+                htmlMessage
+                );
+
+            message.IsBodyHtml = true;
+
             return client.SendMailAsync("logplay.suporte@outlook.com", email, subject, htmlMessage);
         }
     }
