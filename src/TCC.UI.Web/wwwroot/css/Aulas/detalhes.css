@@ -160,10 +160,10 @@ main pb-3 {
     height: 500px; /* Altura desejada */
 }
 
-img{
+/*img{
     width: 58em;
     height:70em;
-}
+}*/
 
 .exercicios-container {
     
@@ -223,4 +223,14 @@ img{
 
 #Resposta{
     accent-color: var(--verde-destaque);
+}
+
+@media only screen and (max-width:600px) {
+
+    img {
+        width:600px;
+        height:800px;
+    }
+    
+    }
 }
