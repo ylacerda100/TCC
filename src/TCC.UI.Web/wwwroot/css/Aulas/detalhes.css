@@ -228,7 +228,7 @@ main pb-3 {
 @media only screen and (max-width:600px) {
 
     img {
-        width:480px;
+        width:350px;
         height:700px;
     }
     
