@@ -5,20 +5,24 @@
     ViewData["Title"] = "Confirmação de registro";
 }
 
-<h1>@ViewData["Title"]</h1>
-@{
-    if (@Model.DisplayConfirmAccountLink)
-    {
-        <p>
-            Não enviaremos um email real para o endereço cadastrado para efeitos de teste.
-            Clique neste link para simular a confirmação da conta:<a id="confirm-link" href="@Model.EmailConfirmationUrl">Clique aqui para confirmar a conta.</a>
-        </p>
+<style>
+    .confirm-email-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 50vh;
     }
-    else
-    {
-<p>
-        Por favor, verifique seu email para confirmar a conta.
-</p>
-    }
-}
 
+    .confirm-email-container > h1{
+        color: var(--verde-destaque);
+    }
+</style>
+
+
+<div class="confirm-email-container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Enviamos um email de confirmação para o endereço informado. Por favor verifique sua caixa de entrada para confirmar a conta.</p>
+</div>
