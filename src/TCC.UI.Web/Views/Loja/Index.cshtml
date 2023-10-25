@@ -8,28 +8,30 @@
 	ViewData["Title"] = "LogPlay - Loja";
 }
 
-<header>
-    <h1>Loja de Itens</h1>
-    <div class="moedas">
-        Suas Moedas:
-        <span id="moedas-usuario">@UserManager.GetUserAsync(User).Result.QtdMoedas</span>
-    </div>
-</header>
+<div class="loja-main-container">
+    <header>
+        <h1>Loja de Itens</h1>
+        <div class="moedas">
+            Suas Moedas:
+            <span id="moedas-usuario">@UserManager.GetUserAsync(User).Result.QtdMoedas</span>
+        </div>
+    </header>
 
-<div class="cards-container">
-    @for (var i = 0; i < Model.Chunk(3).Count(); i++)
-    {
-        @foreach (var item in Model.Skip(i * 3).Take(3))
+    <div class="cards-container">
+        @for (var i = 0; i < Model.Chunk(3).Count(); i++)
         {
-            <div class="card">
-                <img src="~/assets/img/Loja/@item.ImagemUrl" alt="Item 1">
-                <h2>@item.Nome</h2>
-                <p>@item.Descricao</p>
-                <p>@item.Preco</p>
-                <button class="btnComprar" onclick="Comprar('@item.Id.ToString()')">Comprar</button>
-            </div>
+            @foreach (var item in Model.Skip(i * 3).Take(3))
+            {
+                <div class="card">
+                    <img src="~/assets/img/Loja/@item.ImagemUrl" alt="Item 1">
+                    <h2>@item.Nome</h2>
+                    <p>@item.Descricao</p>
+                    <p>@item.Preco</p>
+                    <button class="btnComprar" onclick="Comprar('@item.Id.ToString()')">Comprar</button>
+                </div>
+            }
         }
-    }
+    </div>
 </div>
 
 @section Scripts{

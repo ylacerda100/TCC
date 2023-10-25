@@ -11,6 +11,14 @@ RUN apt-get update -yq \
     && curl -sL https://deb.nodesource.com/setup_16.x | bash \
     && apt-get install nodejs -yq
 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
+
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+
+ENV LANG en_US.UTF-8 
+
 WORKDIR /src
 COPY ["src/TCC.UI.Web/TCC.UI.Web.csproj", "src/TCC.UI.Web/"]
 COPY ["src/TCC.Application/TCC.Application.csproj", "src/TCC.Application/"]
