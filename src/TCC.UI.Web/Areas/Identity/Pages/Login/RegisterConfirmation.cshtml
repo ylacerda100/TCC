@@ -18,6 +18,14 @@
     .confirm-email-container > h1{
         color: var(--verde-destaque);
     }
+
+    a{
+        color: var(--verde-destaque);
+    }
+
+    a:hover{
+            color: var(--verde-destaque);
+        }
 </style>
 
 
@@ -25,6 +33,6 @@
     <h1>@ViewData["Title"]</h1>
 
     <p>
-        Clique neste link para simular a confirmação da conta:<a id="confirm-link" href="@Model.EmailConfirmationUrl">Clique aqui para confirmar a conta.</a>
+        Clique neste link para simular a confirmação da conta:<br /><a id="confirm-link" href="@Model.EmailConfirmationUrl">Clique aqui para confirmar a conta.</a>
     </p>
 </div>
