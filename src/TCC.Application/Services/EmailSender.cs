@@ -11,14 +11,14 @@ namespace TCC.Application.Services
             SmtpClient client = new SmtpClient
             {
                 Port = 587,
-                Host = "smtp.gmail.com",
+                Host = "smtp-mail.outlook.com",
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential("logplay.suporte@outlook.com", "FcwpzL3CJ6SHES")
             };
 
-            return client.SendMailAsync("", email, subject, htmlMessage);
+            return client.SendMailAsync("logplay.suporte@outlook.com", email, subject, htmlMessage);
         }
     }
 }
