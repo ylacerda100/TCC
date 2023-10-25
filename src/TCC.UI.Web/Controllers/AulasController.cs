@@ -48,9 +48,9 @@ namespace TCC.UI.Web.Controllers
                 return NotFound();
             }
 
-            var baseDir = $"{_env.WebRootPath}/assets/pdf/TiposDeDados";
+            var baseDir = $"{_env.WebRootPath}/assets/pdf";
 
-            var filePath = $"{baseDir}/TiposDeDados1.pdf";
+            var filePath = $"{baseDir}/{aulaViewModel.ContentUrl}";
 
             try
             {
