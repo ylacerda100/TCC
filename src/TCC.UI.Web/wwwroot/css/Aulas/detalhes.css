@@ -230,7 +230,18 @@ main pb-3 {
     img {
         width:350px;
         height:700px;
+        
     }
-    
+    .banner-aula {
+        margin-bottom:20px;
+    }
+    .voltar-section {
+        margin-bottom:20px;
+
+
+    }
+
+
+
     }
 }
