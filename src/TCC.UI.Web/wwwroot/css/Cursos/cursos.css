@@ -32,6 +32,14 @@ body{
     margin:60px;
 }
 
+.titulo-card{
+    margin-bottom: 20px;
+}
+
+p{
+    margin-top: 20px;
+}
+
 .card {
     padding-bottom: 40px;
     background-color: var(--roxo-claro1);
@@ -51,6 +59,7 @@ body{
     .card img{
         width:60%;
         height:60%;
+        margin-bottom: 10px;
     }
 
     .card:hover {
@@ -69,11 +78,6 @@ body{
     
 }
 
-
-.titulo-card h2{
-    color:;
-
-}
 @media only screen and (max-width:600px){
     .cards-container{
         margin:50px;
