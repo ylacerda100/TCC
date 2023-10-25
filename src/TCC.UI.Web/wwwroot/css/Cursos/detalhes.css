@@ -188,4 +188,21 @@
     .descricao-curso{
         display: none;
     }
+
+    .curso-sidebar{
+        width: 60%;
+        padding: 20px;
+    }
+
+    .curso-aulas {
+        width: 60%;
+    }
+
+    .matricular-section {
+        height: 25vh;
+    }
+
+    .banner-curso{
+        height: 30vh;
+    }
 }
