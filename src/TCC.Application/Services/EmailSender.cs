@@ -4,7 +4,7 @@ using System.Net;
 
 namespace TCC.Application.Services
 {
-    public class EmailSender : IEmailSender
+    public class SmtpEmailSender : IEmailSender
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
