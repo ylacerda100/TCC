@@ -53,16 +53,23 @@ public class ItemLojaAppService : IItemLojaAppService
 
         var user = await _userAppService.GetCurrentUser();
         var item = await _itemLojaRepository.GetById(id);
-        
+        var errorTitle = "Não foi possível efetuar a compra.";
+
         if (item is null)
         {
-            result = new OperationResultViewModel("Item não encontrado.");
+            result = new OperationResultViewModel(
+                "Item não encontrado.",
+                errorTitle
+                );
             return result;
         }
 
         if (user.QtdMoedas < item.Preco)
         {
-            result = new OperationResultViewModel("Você não possui moedas suficiente.");
+            result = new OperationResultViewModel(
+                "Você não possui moedas suficiente.",
+                errorTitle
+                );
             return result;
         }
 
@@ -75,7 +82,10 @@ public class ItemLojaAppService : IItemLojaAppService
                 !pedidoUser.IsExpired()
                 )
             {
-                result = new OperationResultViewModel("Você já possui um boost ativo.");
+                result = new OperationResultViewModel(
+                    "Você já possui um boost ativo.",
+                    errorTitle
+                    );
                 return result;
             }
         }
