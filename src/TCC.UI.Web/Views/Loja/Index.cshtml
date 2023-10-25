@@ -54,7 +54,7 @@
                             if (!response.ok) {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Não foi possível efetuar a compra.',
+                                    title: `${response.title}`,
                                     text: `${response.errorMessage}`
                                 })
                             }
