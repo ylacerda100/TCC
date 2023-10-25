@@ -72,7 +72,9 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
             [Required(ErrorMessage = "O nome é obrigatório.")]
+            [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use somente letras por favor.")]
             [Display(Name = "Nome")]
             public string Nome { get; set; }
 
