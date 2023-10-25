@@ -8,101 +8,75 @@
 	ViewData["Title"] = "LogPlay - Loja";
 }
 
-<!DOCTYPE html>
+<header>
+    <h1>Loja de Itens</h1>
+    <div class="moedas">
+        Suas Moedas:
+        <span id="moedas-usuario">@UserManager.GetUserAsync(User).Result.QtdMoedas</span>
+    </div>
+</header>
 
-<html>
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="~/css/Loja/loja.css">
-       
-        <title>@ViewData["Title"]</title>
-    </head>
-
-<body>
-    <header>
-        <h1>Loja de Itens</h1>
-        <div class="moedas">
-            Suas Moedas: 
-            <span id="moedas-usuario">@UserManager.GetUserAsync(User).Result.QtdMoedas</span>
-        </div>
-    </header>
-
-    <div class="scrollable-content">
-        @for(var i = 0; i < Model.Chunk(3).Count(); i++)
+<div class="cards-container">
+    @for (var i = 0; i < Model.Chunk(3).Count(); i++)
+    {
+        @foreach (var item in Model.Skip(i * 3).Take(3))
         {
-            <table class="item-table">
-                <tr>
-                    @foreach (var item in Model.Skip(i*3).Take(3))
-                    {
-                        <td class="item">
-                            <img src="~/assets/img/Loja/@item.ImagemUrl" alt="Item 1">
-                            <h2>@item.Nome</h2>
-                            <p>@item.Descricao</p>
-                            <p>@item.Preco</p>
-                            <button class="btnComprar" onclick="Comprar('@item.Id.ToString()')">Comprar</button>
-                        </td>
-                    }
-                </tr>
-            </table>
-        }
-    </div>
-
-    <div class="modal-container" id="myModal">
-        <div class="modal-content" id="myModal2">
-            <p>Deseja confirmar a compra deste item?</p>
-            <div class="button-container">
-                <button class="button-modal" id="confirmButton">Sim</button>
-                <button class="button-modal" id="cancelButton">Não</button>
+            <div class="card">
+                <img src="~/assets/img/Loja/@item.ImagemUrl" alt="Item 1">
+                <h2>@item.Nome</h2>
+                <p>@item.Descricao</p>
+                <p>@item.Preco</p>
+                <button class="btnComprar" onclick="Comprar('@item.Id.ToString()')">Comprar</button>
             </div>
-        </div>
-    </div>
+        }
+    }
+</div>
 
-    @section Scripts{
+@section Scripts{
 
-        <script>
-            function Comprar(id) {
-                Swal.fire({
-                    title: 'Deseja confirmar a compra?',
-                    showCancelButton: true,
-                    cancelButtonText: 'Cancelar',
-                    confirmButtonText: 'Comprar',
-                    confirmButtonColor: '#201b2c',
-                    showLoaderOnConfirm: true,
-                    preConfirm: () => {
-                        //const baseURL = "https://localhost:7072"
-                        const baseURL = "https://logplay.net"
-                        console.log(this);
-                        $.get(`${baseURL}/Loja/Comprar/${id}`)
-                            .then(function (response) {
-                                if (!response.ok) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Não foi possível efetuar a compra.',
-                                        text: `${response.errorMessage}`
-                                    })
-                                }
-                                else {
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'Compra efetuada!',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-                                }
-                                return response
-                            })
-                        return promise;
-                    },
-                    allowOutsideClick: false
-                })
-            }
-        </script>
+    <script>
+        function Comprar(id) {
+            Swal.fire({
+                title: 'Deseja confirmar a compra?',
+                showCancelButton: true,
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Comprar',
+                confirmButtonColor: '#201b2c',
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    const baseURL = "https://localhost:7072"
+                    //const baseURL = "https://logplay.net"
+                    console.log(this);
+                    $.get(`${baseURL}/Loja/Comprar/${id}`)
+                        .then(function (response) {
+                            if (!response.ok) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Não foi possível efetuar a compra.',
+                                    text: `${response.errorMessage}`
+                                })
+                            }
+                            else {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Compra efetuada!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                            return response
+                        })
+                    return promise;
+                },
+                allowOutsideClick: false
+            })
+        }
+    </script>
 
     }
 
-</body>
 
-</html>
+@section Styles{
+    <link rel="stylesheet" href="~/css/Loja/loja.css">
+}
