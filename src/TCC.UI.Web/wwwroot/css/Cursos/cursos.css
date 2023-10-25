@@ -49,14 +49,12 @@ p{
     min-height: calc(33.33% - 10px);
     margin: 10px;
     padding: 40px;
-    /*flex-direction:;*/
     align-items: center;
     text-align: center;
     box-shadow: 10px 10px 10px rgb(10, 3, 3);
     text-decoration: none;
     color: white;
-    max-width: 80vh ;
-    min-width: 50vh;
+  
 }
     .card img{
         width:60%;
@@ -86,13 +84,14 @@ p{
     }
     .card{
         align-items:center;
-        min-height:50vh;
-        min-width:50vh;
-
+        min-height:30vh;
+        min-width:30vh;
 
     }
 
-
+    .titulo-card h2 {
+        font-size:1.2em;
+    }
 
 }
 
