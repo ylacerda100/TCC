@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="MailJet.NET" Version="1.6.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
   </ItemGroup>
 
