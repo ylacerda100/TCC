@@ -185,6 +185,10 @@
         font-size: 2em;
     }
 
+    .titulo-curso2 > h2 {
+        font-size: 1.5em;
+    }
+
     .curso-container {
         flex-direction: column-reverse;
         align-items: center;
