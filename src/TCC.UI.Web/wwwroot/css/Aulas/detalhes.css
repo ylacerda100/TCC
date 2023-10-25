@@ -123,7 +123,7 @@ main pb-3 {
 
 .concluir-section {
     display: flex;
-    /*align-items: ;*/
+    align-items: center;
     justify-content: center;
     width: 100%;
     height: 30vh;
@@ -208,12 +208,29 @@ img{
 .botao-verificar {
     display: flex;
     width: 100%;
-    height:
     align-items: center;
     justify-content: center;
     flex-direction:column;
 }
 
-.enunciado-exercicio{
+.botao-verificar > button{
+    width: 100%;
+}
+
+.enunciado-exercicio {
     color: var(--verde-destaque);
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #ffa500;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
 }
