@@ -22,7 +22,6 @@ namespace TCC.Application.Services
                 _config.GetValue<string>("MailJet:SecretKey")
             );
 
-
             var message = new MailMessage(
                 from: "logplay.suporte@outlook.com",
                 to: email,
