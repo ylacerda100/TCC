@@ -55,6 +55,8 @@ p{
     box-shadow: 10px 10px 10px rgb(10, 3, 3);
     text-decoration: none;
     color: white;
+    max-width: 80vh ;
+    min-width: 50vh;
 }
     .card img{
         width:60%;
