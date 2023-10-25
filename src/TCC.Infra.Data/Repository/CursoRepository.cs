@@ -19,7 +19,10 @@ public class CursoRepository : ICursoRepository
     
     public async Task<Curso> GetById(Guid id)
     {
-        return await DbSet.FindAsync(id);
+        return await DbSet
+                .Include(t => t.Aulas)
+                .ThenInclude(a => a.Exercicios)
+                .FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<IEnumerable<Curso>> GetAll()

@@ -1,9 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DtronixPdf;
+using DtronixPdf.ImageSharp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PdfiumViewer;
+using PDFiumCore;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Png;
 using System.Drawing;
+using System.Drawing.Imaging;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TCC.UI.Web.Controllers
 {
@@ -15,7 +21,7 @@ namespace TCC.UI.Web.Controllers
         private readonly IWebHostEnvironment _env;
 
         public AulasController(
-            IAulaAppService aulaAppService, 
+            IAulaAppService aulaAppService,
             IWebHostEnvironment env,
             IExercicioAppService exercicioAppService,
             IUsuarioAppService userAppService)
@@ -42,39 +48,38 @@ namespace TCC.UI.Web.Controllers
                 return NotFound();
             }
 
+            var baseDir = $"{_env.WebRootPath}/assets/pdf";
+
+            var filePath = $"{baseDir}/{aulaViewModel.ContentUrl}";
+
             try
             {
-                ConvertPdfToImage(aulaViewModel);
+                ConvertPdfToImage(filePath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest("Erro ao tentar converter PDF.");
+                var files = Directory.GetFiles(baseDir);
+                return BadRequest($"Erro ao tentar converter PDF. {filePath} | {ex.Message} | {ex.StackTrace} | Arquivos: {string.Join(';', files)}");
             }
 
             return View(aulaViewModel);
         }
 
-        private void ConvertPdfToImage(AulaViewModel aulaViewModel)
+        private void ConvertPdfToImage(string filePath)
         {
-            var filePath = Path.Combine(
-                _env.WebRootPath, "assets", "pdf", aulaViewModel.ContentUrl);
-
-            using (var document = PdfDocument.Load(filePath.ToLower()))
+            var images = new List<byte[]>();
+            using (var document = PdfDocument.Load(filePath, null))
             {
-                var images = new List<byte[]>();
-                var dpi = 300;
-
-                for (int pageNumber = 0; pageNumber < document.PageCount; pageNumber++)
+                for (int pageNumber = 0; pageNumber < document.Pages; pageNumber++)
                 {
-                    SizeF sizeInPoints = document.PageSizes[pageNumber];
-                    int widthInPixels = (int)Math.Round(sizeInPoints.Width * (float)dpi / 72F);
-                    int heightInPixels = (int)Math.Round(sizeInPoints.Height * (float)dpi / 72F);
+                    var page = document.GetPage(pageNumber);
+                    var result = page.Render(2);
+                    var image = result.GetImage();
 
-                    using (Image image = document.Render(pageNumber, widthInPixels, heightInPixels, dpi, dpi, true))
+                    using (var memoryStream = new MemoryStream())
                     {
-                        ImageConverter converter = new ImageConverter();
-                        var imgBytes = (byte[])converter.ConvertTo(image, typeof(byte[]));
-                        images.Add(imgBytes);
+                        image.Save(memoryStream, PngFormat.Instance);
+                        images.Add(memoryStream.ToArray());
                     }
                 }
                 ViewBag.Images = images;

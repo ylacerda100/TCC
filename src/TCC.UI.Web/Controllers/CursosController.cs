@@ -23,15 +23,10 @@ namespace TCC.UI.Web.Controllers
         }
 
         [Authorize]
-        [HttpGet("Cursos/{name}")]
-        public async Task<IActionResult> Detalhes(string name)
+        [HttpGet("Cursos/{id:guid}")]
+        public async Task<IActionResult> Detalhes(Guid? id)
         {
-            if (string.IsNullOrEmpty(name))
-            {
-                return NotFound();
-            }
-
-            var cursoViewModel = await _cursoAppService.GetByName(name);
+            var cursoViewModel = await _cursoAppService.GetById(id.Value);
 
             if (cursoViewModel is null)
             {
@@ -44,10 +39,10 @@ namespace TCC.UI.Web.Controllers
         [HttpGet("Cursos/load")]
         public IActionResult Load()
         {
-            if (!Debugger.IsAttached)
-            {
-                return NotFound();
-            }
+            //if (!Debugger.IsAttached)
+            //{
+            //    return NotFound();
+            //}
 
             var cursos = new List<Curso>
             {
