@@ -108,11 +108,22 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            if (Input.OldPassword == Input.NewPassword)
+            {
+                ViewData["ErrorMessage"] = "A senha não pode ser a mesma.";
+                return Page();
+            }
+
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
             if (!changePasswordResult.Succeeded)
             {
                 foreach (var error in changePasswordResult.Errors)
                 {
+                    if (error.Code == "PasswordMismatch")
+                    {
+                        ViewData["ErrorMessage"] = "A senha atual está incorreta.";
+                        return Page();
+                    }
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
                 return Page();
