@@ -142,8 +142,9 @@
     width: 20%;
     height: 100%;
     box-shadow: 0px 10px 40px #00000056;
-    /*border-radius: 20px;*/
+    border-radius: 20px;
     margin-top: 30px;
+    padding: 15px;
 }
 
 .sidebar-title {
@@ -179,6 +180,11 @@
 }
 
 @media only screen and (max-width:600px){
+
+    .titulo-curso{
+        font-size: 2em;
+    }
+
     .curso-container {
         flex-direction: column-reverse;
         align-items: center;
