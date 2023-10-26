@@ -1,4 +1,5 @@
 ﻿using NetDevPack.Domain;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TCC.Domain.Models
 {
@@ -11,8 +12,16 @@ namespace TCC.Domain.Models
 
         public DateTime Timestamp { get; set; }
 
+
+        [ForeignKey("Usuario")]
+        public Guid UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
+
+
+        [ForeignKey("ItemComprado")]
+        public Guid ItemCompradoId { get; set; }
+
         public ItemLoja ItemComprado { get; set; }
-        public ICollection<Usuario> Usuarios { get; set; }
 
         public bool IsExpired()
         {

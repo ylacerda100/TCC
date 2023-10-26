@@ -58,7 +58,7 @@ namespace TCC.Application.Services
 
         public async Task<Usuario> GetCurrentUser()
         {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = _httpContextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             return await _userManager
                 .Users
