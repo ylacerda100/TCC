@@ -22,6 +22,21 @@ namespace TCC.Infra.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("PedidoLojaUsuario", b =>
+                {
+                    b.Property<Guid>("PedidosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsuariosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PedidosId", "UsuariosId");
+
+                    b.HasIndex("UsuariosId");
+
+                    b.ToTable("PedidoLojaUsuario");
+                });
+
             modelBuilder.Entity("TCC.Domain.Models.ApplicationRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -332,14 +347,9 @@ namespace TCC.Infra.Data.Migrations
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ItemCompradoId");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Pedidos");
                 });
@@ -424,6 +434,21 @@ namespace TCC.Infra.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("PedidoLojaUsuario", b =>
+                {
+                    b.HasOne("TCC.Domain.Models.PedidoLoja", null)
+                        .WithMany()
+                        .HasForeignKey("PedidosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCC.Domain.Models.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("UsuariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TCC.Domain.Models.ApplicationRoleClaim", b =>
                 {
                     b.HasOne("TCC.Domain.Models.ApplicationRole", null)
@@ -497,10 +522,6 @@ namespace TCC.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TCC.Domain.Models.Usuario", null)
-                        .WithMany("Pedidos")
-                        .HasForeignKey("UsuarioId");
-
                     b.Navigation("ItemComprado");
                 });
 
@@ -512,11 +533,6 @@ namespace TCC.Infra.Data.Migrations
             modelBuilder.Entity("TCC.Domain.Models.Curso", b =>
                 {
                     b.Navigation("Aulas");
-                });
-
-            modelBuilder.Entity("TCC.Domain.Models.Usuario", b =>
-                {
-                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }

@@ -224,17 +224,11 @@ namespace TCC.Infra.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ItemCompradoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    ItemCompradoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pedidos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pedidos_AspNetUsers_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Pedidos_Itens_ItemCompradoId",
                         column: x => x.ItemCompradoId,
@@ -266,6 +260,30 @@ namespace TCC.Infra.Data.Migrations
                         column: x => x.AulaId,
                         principalTable: "Aulas",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PedidoLojaUsuario",
+                columns: table => new
+                {
+                    PedidosId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsuariosId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PedidoLojaUsuario", x => new { x.PedidosId, x.UsuariosId });
+                    table.ForeignKey(
+                        name: "FK_PedidoLojaUsuario_AspNetUsers_UsuariosId",
+                        column: x => x.UsuariosId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PedidoLojaUsuario_Pedidos_PedidosId",
+                        column: x => x.PedidosId,
+                        principalTable: "Pedidos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -318,14 +336,14 @@ namespace TCC.Infra.Data.Migrations
                 column: "AulaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PedidoLojaUsuario_UsuariosId",
+                table: "PedidoLojaUsuario",
+                column: "UsuariosId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Pedidos_ItemCompradoId",
                 table: "Pedidos",
                 column: "ItemCompradoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pedidos_UsuarioId",
-                table: "Pedidos",
-                column: "UsuarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -349,7 +367,7 @@ namespace TCC.Infra.Data.Migrations
                 name: "Exercicios");
 
             migrationBuilder.DropTable(
-                name: "Pedidos");
+                name: "PedidoLojaUsuario");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -361,10 +379,13 @@ namespace TCC.Infra.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Itens");
+                name: "Pedidos");
 
             migrationBuilder.DropTable(
                 name: "Cursos");
+
+            migrationBuilder.DropTable(
+                name: "Itens");
         }
     }
 }

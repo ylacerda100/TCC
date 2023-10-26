@@ -8,9 +8,11 @@ namespace TCC.Domain.Models
         {
 
         }
+
         public DateTime Timestamp { get; set; }
 
         public ItemLoja ItemComprado { get; set; }
+        public ICollection<Usuario> Usuarios { get; set; }
 
         public bool IsExpired()
         {
