@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "LogPlay - Ranking";
+    ViewData["Position"] = "Posição";
 }
 
 <head>
@@ -16,7 +17,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Posição</th>
+                    <th>@ViewData["Position"]</th>
                     <th>Nome do Aluno</th>
                     <th>XP</th>
                 </tr>
