@@ -99,7 +99,11 @@ public class ItemLojaAppService : IItemLojaAppService
         {
             Id = Guid.NewGuid(),
             Timestamp = DateTime.Now,
-            ItemComprado = item
+            ItemComprado = item,
+            ItemLoja = item,
+            ItemLojaId = id,
+            UsuarioId = user.Id,
+            Usuario = user
         };
 
         user.Pedidos.Add(newPedido);

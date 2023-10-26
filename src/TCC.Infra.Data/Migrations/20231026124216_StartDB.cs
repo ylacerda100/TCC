@@ -231,24 +231,6 @@ namespace TCC.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pedidos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pedidos_AspNetUsers_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Pedidos_Itens_ItemCompradoId",
-                        column: x => x.ItemCompradoId,
-                        principalTable: "Itens",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Pedidos_Itens_ItemLojaId",
-                        column: x => x.ItemLojaId,
-                        principalTable: "Itens",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
