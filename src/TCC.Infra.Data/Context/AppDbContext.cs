@@ -1,15 +1,24 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NetDevPack.Data;
 using NetDevPack.Messaging;
 using System.ComponentModel.DataAnnotations;
 using TCC.Domain.Models;
 using TCC.Infra.Data.Mappings;
-using TCC.Infra.Data.Migrations;
 
 namespace TCC.Infra.Data.Context;
 
-public class AppDbContext : IdentityDbContext<Usuario>, IUnitOfWork
+public class AppDbContext : IdentityDbContext<
+    Usuario, 
+    ApplicationRole, 
+    Guid, 
+    ApplicationUserClaim, 
+    ApplicationUserRole, 
+    ApplicationUserLogin, 
+    ApplicationRoleClaim, 
+    ApplicationUserToken
+    >, IUnitOfWork
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -43,6 +52,16 @@ public class AppDbContext : IdentityDbContext<Usuario>, IUnitOfWork
 
 
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<PedidoLoja>()
+           .HasOne(pedido => pedido.ItemLoja)
+           .WithMany(item => item.Pedidos)
+           .HasForeignKey(pedido => pedido.ItemLojaId);
+
+        modelBuilder.Entity<PedidoLoja>()
+            .HasOne(pedido => pedido.Usuario)
+            .WithMany(usuario => usuario.Pedidos)
+            .HasForeignKey(pedido => pedido.UsuarioId);
 
         #region Usuario map
         modelBuilder.Entity<Usuario>()

@@ -17,15 +17,16 @@ namespace TCC.Infra.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.21")
+                .HasAnnotation("ProductVersion", "6.0.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationRole", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -49,7 +50,7 @@ namespace TCC.Infra.Data.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationRoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,9 +64,8 @@ namespace TCC.Infra.Data.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -74,7 +74,7 @@ namespace TCC.Infra.Data.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationUserClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,9 +88,8 @@ namespace TCC.Infra.Data.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -99,7 +98,7 @@ namespace TCC.Infra.Data.Migrations
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationUserLogin", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128)
@@ -112,9 +111,8 @@ namespace TCC.Infra.Data.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -123,13 +121,13 @@ namespace TCC.Infra.Data.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationUserRole", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -138,10 +136,10 @@ namespace TCC.Infra.Data.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationUserToken", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128)
@@ -331,15 +329,20 @@ namespace TCC.Infra.Data.Migrations
                     b.Property<Guid>("ItemCompradoId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("ItemLojaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UsuarioId")
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemCompradoId");
+
+                    b.HasIndex("ItemLojaId");
 
                     b.HasIndex("UsuarioId");
 
@@ -348,8 +351,9 @@ namespace TCC.Infra.Data.Migrations
 
             modelBuilder.Entity("TCC.Domain.Models.Usuario", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(100)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -425,16 +429,16 @@ namespace TCC.Infra.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationRoleClaim", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("TCC.Domain.Models.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationUserClaim", b =>
                 {
                     b.HasOne("TCC.Domain.Models.Usuario", null)
                         .WithMany()
@@ -443,7 +447,7 @@ namespace TCC.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationUserLogin", b =>
                 {
                     b.HasOne("TCC.Domain.Models.Usuario", null)
                         .WithMany()
@@ -452,9 +456,9 @@ namespace TCC.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationUserRole", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("TCC.Domain.Models.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -467,7 +471,7 @@ namespace TCC.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("TCC.Domain.Models.ApplicationUserToken", b =>
                 {
                     b.HasOne("TCC.Domain.Models.Usuario", null)
                         .WithMany()
@@ -498,11 +502,23 @@ namespace TCC.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TCC.Domain.Models.Usuario", null)
+                    b.HasOne("TCC.Domain.Models.ItemLoja", "ItemLoja")
                         .WithMany("Pedidos")
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("ItemLojaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCC.Domain.Models.Usuario", "Usuario")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ItemComprado");
+
+                    b.Navigation("ItemLoja");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("TCC.Domain.Models.Aula", b =>
@@ -513,6 +529,11 @@ namespace TCC.Infra.Data.Migrations
             modelBuilder.Entity("TCC.Domain.Models.Curso", b =>
                 {
                     b.Navigation("Aulas");
+                });
+
+            modelBuilder.Entity("TCC.Domain.Models.ItemLoja", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 
             modelBuilder.Entity("TCC.Domain.Models.Usuario", b =>

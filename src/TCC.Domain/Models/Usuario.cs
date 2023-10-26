@@ -3,7 +3,7 @@ using NetDevPack.Domain;
 
 namespace TCC.Domain.Models
 {
-    public class Usuario : IdentityUser, IAggregateRoot
+    public class Usuario : IdentityUser<Guid>, IAggregateRoot
     {
         public string Nome { get; set; }
         public long Xp { get; set; }

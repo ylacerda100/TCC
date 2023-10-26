@@ -11,6 +11,13 @@ namespace TCC.Domain.Models
         public DateTime Timestamp { get; set; }
         public ItemLoja ItemComprado { get; set; }
 
+        //navigation
+        public ItemLoja ItemLoja { get; set; }
+        public Guid ItemLojaId { get; set; }
+        public Guid UsuarioId { get; set; }
+
+        public Usuario Usuario { get; set; }
+
         public bool IsExpired()
         {
             var duration = TimeSpan.FromTicks(ItemComprado.Duracao);

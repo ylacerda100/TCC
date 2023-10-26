@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TCC.Infra.Data.Migrations
 {
-    public partial class InitialCreationUser : Migration
+    public partial class StartDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace TCC.Infra.Data.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "varchar(100)", nullable: true)
@@ -27,7 +27,11 @@ namespace TCC.Infra.Data.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false),
+                    Xp = table.Column<long>(type: "bigint", nullable: false),
+                    QtdMoedas = table.Column<int>(type: "int", nullable: false),
+                    MultiplicadorXp = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
@@ -49,12 +53,49 @@ namespace TCC.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cursos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(100)", nullable: false),
+                    NivelCurso = table.Column<int>(type: "int", nullable: false),
+                    Duracao = table.Column<long>(type: "bigint", nullable: false),
+                    Xp = table.Column<int>(type: "int", nullable: false),
+                    QtdMoeda = table.Column<int>(type: "int", nullable: false),
+                    IconUrl = table.Column<string>(type: "varchar(100)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cursos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Itens",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(100)", nullable: false),
+                    ImagemUrl = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Preco = table.Column<int>(type: "int", nullable: false),
+                    Duracao = table.Column<long>(type: "bigint", nullable: false),
+                    Multiplicador = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    QtdXp = table.Column<long>(type: "bigint", nullable: false),
+                    TipoItem = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Itens", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "varchar(100)", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "varchar(100)", nullable: true),
                     ClaimValue = table.Column<string>(type: "varchar(100)", nullable: true)
                 },
@@ -75,7 +116,7 @@ namespace TCC.Infra.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "varchar(100)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "varchar(100)", nullable: true),
                     ClaimValue = table.Column<string>(type: "varchar(100)", nullable: true)
                 },
@@ -97,7 +138,7 @@ namespace TCC.Infra.Data.Migrations
                     LoginProvider = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
                     ProviderKey = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "varchar(100)", nullable: true),
-                    UserId = table.Column<string>(type: "varchar(100)", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,8 +155,8 @@ namespace TCC.Infra.Data.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "varchar(100)", nullable: false),
-                    RoleId = table.Column<string>(type: "varchar(100)", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -138,7 +179,7 @@ namespace TCC.Infra.Data.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "varchar(100)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LoginProvider = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
                     Name = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "varchar(100)", nullable: true)
@@ -152,6 +193,87 @@ namespace TCC.Infra.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Aulas",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(100)", nullable: false),
+                    ContentUrl = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Xp = table.Column<int>(type: "int", nullable: false),
+                    QtdMoedas = table.Column<int>(type: "int", nullable: false),
+                    CursoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Aulas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Aulas_Cursos_CursoId",
+                        column: x => x.CursoId,
+                        principalTable: "Cursos",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pedidos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ItemCompradoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ItemLojaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pedidos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pedidos_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pedidos_Itens_ItemCompradoId",
+                        column: x => x.ItemCompradoId,
+                        principalTable: "Itens",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pedidos_Itens_ItemLojaId",
+                        column: x => x.ItemLojaId,
+                        principalTable: "Itens",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Exercicios",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Enunciado = table.Column<string>(type: "varchar(max)", nullable: false),
+                    AlternativaA = table.Column<string>(type: "varchar(max)", nullable: false),
+                    AlternativaB = table.Column<string>(type: "varchar(max)", nullable: false),
+                    AlternativaC = table.Column<string>(type: "varchar(max)", nullable: false),
+                    AlternativaD = table.Column<string>(type: "varchar(max)", nullable: false),
+                    Resposta = table.Column<string>(type: "varchar(max)", nullable: false),
+                    Xp = table.Column<int>(type: "int", nullable: false),
+                    QtdMoedas = table.Column<int>(type: "int", nullable: false),
+                    AulaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Exercicios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Exercicios_Aulas_AulaId",
+                        column: x => x.AulaId,
+                        principalTable: "Aulas",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -192,6 +314,31 @@ namespace TCC.Infra.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Aulas_CursoId",
+                table: "Aulas",
+                column: "CursoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exercicios_AulaId",
+                table: "Exercicios",
+                column: "AulaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_ItemCompradoId",
+                table: "Pedidos",
+                column: "ItemCompradoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_ItemLojaId",
+                table: "Pedidos",
+                column: "ItemLojaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_UsuarioId",
+                table: "Pedidos",
+                column: "UsuarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -212,10 +359,25 @@ namespace TCC.Infra.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Exercicios");
+
+            migrationBuilder.DropTable(
+                name: "Pedidos");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Aulas");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Itens");
+
+            migrationBuilder.DropTable(
+                name: "Cursos");
         }
     }
 }

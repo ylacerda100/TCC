@@ -64,7 +64,7 @@ namespace TCC.Application.Services
                 .Users
                 .Include(u => u.Pedidos)
                 .ThenInclude(p => p.ItemComprado)
-                .FirstOrDefaultAsync(t => t.Id == userId);
+                .FirstOrDefaultAsync(t => t.Id.ToString() == userId);
         }
 
         public async Task<IdentityResult> UpdatePedidoUser(Usuario user, PedidoLoja pedido)
