@@ -18,7 +18,5 @@ namespace TCC.Domain.Models
         public decimal Multiplicador { get; set; }
         public long QtdXp { get; set; }
         public TipoItemLoja TipoItem { get; set; }
-
-        public List<PedidoLoja> Pedidos { get; set; }
     }
 }

@@ -329,20 +329,15 @@ namespace TCC.Infra.Data.Migrations
                     b.Property<Guid>("ItemCompradoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ItemLojaId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UsuarioId")
+                    b.Property<Guid?>("UsuarioId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemCompradoId");
-
-                    b.HasIndex("ItemLojaId");
 
                     b.HasIndex("UsuarioId");
 
@@ -502,23 +497,11 @@ namespace TCC.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TCC.Domain.Models.ItemLoja", "ItemLoja")
+                    b.HasOne("TCC.Domain.Models.Usuario", null)
                         .WithMany("Pedidos")
-                        .HasForeignKey("ItemLojaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TCC.Domain.Models.Usuario", "Usuario")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsuarioId");
 
                     b.Navigation("ItemComprado");
-
-                    b.Navigation("ItemLoja");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("TCC.Domain.Models.Aula", b =>
@@ -529,11 +512,6 @@ namespace TCC.Infra.Data.Migrations
             modelBuilder.Entity("TCC.Domain.Models.Curso", b =>
                 {
                     b.Navigation("Aulas");
-                });
-
-            modelBuilder.Entity("TCC.Domain.Models.ItemLoja", b =>
-                {
-                    b.Navigation("Pedidos");
                 });
 
             modelBuilder.Entity("TCC.Domain.Models.Usuario", b =>

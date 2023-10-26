@@ -53,16 +53,6 @@ public class AppDbContext : IdentityDbContext<
 
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<PedidoLoja>()
-           .HasOne(pedido => pedido.ItemLoja)
-           .WithMany(item => item.Pedidos)
-           .HasForeignKey(pedido => pedido.ItemLojaId);
-
-        modelBuilder.Entity<PedidoLoja>()
-            .HasOne(pedido => pedido.Usuario)
-            .WithMany(usuario => usuario.Pedidos)
-            .HasForeignKey(pedido => pedido.UsuarioId);
-
         #region Usuario map
         modelBuilder.Entity<Usuario>()
                 .Property(e => e.Nome)

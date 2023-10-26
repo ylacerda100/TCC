@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TCC.Infra.Data.Migrations
 {
-    public partial class StartDB : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -225,8 +225,7 @@ namespace TCC.Infra.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ItemCompradoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ItemLojaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -311,11 +310,6 @@ namespace TCC.Infra.Data.Migrations
                 name: "IX_Pedidos_ItemCompradoId",
                 table: "Pedidos",
                 column: "ItemCompradoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pedidos_ItemLojaId",
-                table: "Pedidos",
-                column: "ItemLojaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pedidos_UsuarioId",
