@@ -1,6 +1,6 @@
 ﻿
 body {
-    margin: 0;
+    margin-bottom: 120px;
     padding: 0;
     color: #fff;
     font-family: 'TiltNeon', sans-serif;
@@ -19,13 +19,14 @@ h1 {
 }
 
 .loja-main-container {
-    max-width: 1200px;
+    width: 100vw;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 
 .cards-container {
     display: flex;
@@ -39,7 +40,6 @@ h1 {
 
 .card {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: var(--roxo-claro1);
@@ -48,9 +48,6 @@ h1 {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: white;
-    width: 30%;
-    min-width: 20%;
-    margin-right: 20px;
     border-radius: 30px;
     border-color: var(--roxo-escuro);
     overflow: hidden;
