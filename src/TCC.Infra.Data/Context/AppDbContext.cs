@@ -50,6 +50,9 @@ public class AppDbContext : IdentityDbContext<Usuario>, IUnitOfWork
         .HasMaxLength(250);
 
         modelBuilder.Entity<Usuario>()
+            .HasMany(u => u.Pedidos);
+
+        modelBuilder.Entity<Usuario>()
             .Navigation(e => e.Pedidos)
             .AutoInclude();
         #endregion

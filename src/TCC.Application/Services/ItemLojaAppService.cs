@@ -116,6 +116,9 @@ public class ItemLojaAppService : IItemLojaAppService
         }
 
         await _userAppService.UpdatePedidoUser(user, newPedido);
+
+        result = new OperationResultViewModel<int>(user.QtdMoedas, true);
+
         return result;
     }
 }
