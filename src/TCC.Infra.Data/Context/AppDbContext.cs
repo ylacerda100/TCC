@@ -48,23 +48,11 @@ public class AppDbContext : IdentityDbContext<
         modelBuilder.ApplyConfiguration(new ItemLojaMap());
         modelBuilder.ApplyConfiguration(new AulaMap());
         modelBuilder.ApplyConfiguration(new ExercicioMap());
+        modelBuilder.ApplyConfiguration(new PedidoLojaMap());
+        modelBuilder.ApplyConfiguration(new UsuarioMap());
         #endregion
-
 
         base.OnModelCreating(modelBuilder);
-
-        #region Usuario map
-        modelBuilder.Entity<Usuario>()
-                .Property(e => e.Nome)
-        .HasMaxLength(250);
-
-        modelBuilder.Entity<Usuario>()
-            .HasMany(u => u.Pedidos);
-
-        modelBuilder.Entity<Usuario>()
-            .Navigation(e => e.Pedidos)
-            .AutoInclude();
-        #endregion
     }
 
     public async Task<bool> Commit()

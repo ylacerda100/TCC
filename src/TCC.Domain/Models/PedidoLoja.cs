@@ -10,7 +10,6 @@ namespace TCC.Domain.Models
         }
         public DateTime Timestamp { get; set; }
 
-        //navigation
         public ItemLoja ItemComprado { get; set; }
 
         public bool IsExpired()

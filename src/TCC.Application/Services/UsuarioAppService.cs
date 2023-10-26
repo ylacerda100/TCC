@@ -69,10 +69,10 @@ namespace TCC.Application.Services
 
         public async Task<IdentityResult> UpdatePedidoUser(Usuario user, PedidoLoja pedido)
         {
+            var result = await _userManager.UpdateAsync(user);
+
             _appDbContext.Pedidos.Add(pedido);
             _appDbContext.SaveChanges();
-
-            var result = await _userManager.UpdateAsync(user);
 
             return result;
         }

@@ -12,7 +12,7 @@ using TCC.Infra.Data.Context;
 namespace TCC.Infra.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231026131616_Init")]
+    [Migration("20231026161159_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
