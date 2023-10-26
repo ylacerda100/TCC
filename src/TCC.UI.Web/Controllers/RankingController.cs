@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using TCC.Application.Interfaces;
 
 namespace TCC.UI.Web.Controllers
@@ -17,6 +18,7 @@ namespace TCC.UI.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            ViewBag.Header = "Posição";
             var users = await _usuarioAppService.GetAll();
             return View(users.OrderByDescending(u => u.Xp).Take(10));
         }
