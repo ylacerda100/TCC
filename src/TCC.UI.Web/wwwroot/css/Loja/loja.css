@@ -64,7 +64,7 @@ h1 {
 }
 
 
-button {
+.btnComprar {
     background-color: var(--roxo-escuro);
     color: #fff;
     border-radius: 5px;
@@ -78,8 +78,8 @@ button {
     min-width: 50%;
 }
 
-button:hover {
-    background-color: #00ff88; 
+.btnComprar:hover {
+    background-color: #00ff88;
 }
 
 
