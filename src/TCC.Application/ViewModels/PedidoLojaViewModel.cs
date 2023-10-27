@@ -1,11 +1,13 @@
-﻿using TCC.Domain.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TCC.Application.ViewModels
 {
     public class PedidoLojaViewModel
     {
+        [Key]
+        public Guid Id { get; set; }
         public DateTime Timestamp { get; set; }
-        public ItemLoja ItemComprado { get; set; }
+        public ItemLojaViewModel ItemComprado { get; set; }
 
         public bool IsExpired()
         {
