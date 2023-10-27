@@ -8,35 +8,29 @@
     <title>@ViewData["Title"]</title>
 </head>
 
-<body>
-    <header>
-        <h1>Ranking de Alunos</h1>
-    </header>
-    <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>@ViewBag.Header</th>
-                    <th>Nome do Aluno</th>
-                    <th>XP</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                @foreach (var aluno in Model)
-                {
-                    <tr>
-                        <td>@(Model.ToList().IndexOf(aluno)+1)</td>
-                        <td>@Html.DisplayFor(a => aluno.Nome)</td>
-                        <td>@Html.DisplayFor(a => aluno.Xp)</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </main>
-</body>
-                    
 
-@section Styles{
-    <link rel="stylesheet" href="~/css/Ranking/ranking.css" asp-append-version="true" />
-}
+<div class="titulo">
+    <h1>Ranking de Alunos</h1>
+</div>
+
+<table class="tabela">
+    <thead>
+        <tr>
+            <th>@ViewBag.Header</th>
+            <th>Nome do Aluno</th>
+            <th>XP</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var aluno in Model)
+        {
+            <tr>
+                <td>@(Model.ToList().IndexOf(aluno) + 1)</td>
+                <td>@Html.DisplayFor(a => aluno.Nome)</td>
+                <td>@Html.DisplayFor(a => aluno.Xp)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<link href="~/css/ranking/ranking.css" rel="stylesheet" />
