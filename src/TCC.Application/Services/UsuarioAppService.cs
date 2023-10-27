@@ -17,17 +17,14 @@ namespace TCC.Application.Services
         private readonly IMapper _mapper;
         private readonly UserManager<Usuario> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private AppDbContext _appDbContext;
 
         public UsuarioAppService(
             IUsuarioRepository usuarioRepository,
             IMapper mapper,
             UserManager<Usuario> userManager,
-            IHttpContextAccessor httpContextAccessor,
-            AppDbContext context
+            IHttpContextAccessor httpContextAccessor
             )
         {
-            _appDbContext = context;
             _httpContextAccessor = httpContextAccessor;
             _usuarioRepository = usuarioRepository;
             _mapper = mapper;
