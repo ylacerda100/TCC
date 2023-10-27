@@ -25,14 +25,14 @@ public class AppDbContext : IdentityDbContext<
     }
     
     public DbSet<Curso> Cursos { get; set; }
-
     public DbSet<Aula> Aulas { get; set; }
     public DbSet<ItemLoja> Itens { get; set; }
-
     public DbSet<Usuario> Usuarios { get; set; }
 
     public DbSet<Exercicio> Exercicios { get; set; }
     public DbSet<PedidoLoja> Pedidos { get; set; }
+    public DbSet<ProgressoAula> Progressos { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,6 +50,8 @@ public class AppDbContext : IdentityDbContext<
         modelBuilder.ApplyConfiguration(new ExercicioMap());
         modelBuilder.ApplyConfiguration(new PedidoLojaMap());
         modelBuilder.ApplyConfiguration(new UsuarioMap());
+        modelBuilder.ApplyConfiguration(new ProgressoAulaMap());
+
         #endregion
 
         base.OnModelCreating(modelBuilder);
