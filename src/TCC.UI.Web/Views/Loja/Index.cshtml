@@ -59,7 +59,7 @@
                             }
                             else {
 
-                                $("#moedas-usuario").val(response.result)
+                                $("#moedas-usuario").text(`${response.result}`)
 
                                 Swal.fire({
                                     position: 'center',
@@ -72,7 +72,6 @@
                             }
                             return response
                         })
-                    return promise;
                 },
                 allowOutsideClick: false
             })
