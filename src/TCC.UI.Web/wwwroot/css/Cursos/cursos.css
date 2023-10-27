@@ -57,8 +57,8 @@ p{
   
 }
     .card img{
-        width:60%;
-        height:60%;
+        width:50%;
+        height:50%;
         margin-bottom: 10px;
     }
 
@@ -95,6 +95,16 @@ p{
 
 }
 
+@media only screen and (max-width:400px) {
+    
+    .card {
+        align-items: center;
+        min-height: 30vh;
+        min-width: 35vh;
+    }
+
+   
+}
 
 
 
@@ -112,9 +122,7 @@ p{
 
 
 
-
-
-/*body {
+    /*body {
     background: black;
 }
 
