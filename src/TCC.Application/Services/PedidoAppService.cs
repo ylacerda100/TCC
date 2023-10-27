@@ -20,9 +20,13 @@ namespace TCC.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> AddPedido(PedidoLojaViewModel pedido)
+        public async Task<bool> AddPedido(PedidoLojaViewModel pedido, Usuario user)
         {
             var domainPedido = _mapper.Map<PedidoLoja>(pedido);
+
+            domainPedido.UsuarioId = user.Id;
+            domainPedido.Usuario = user;
+
             return await _pedidoRepo.Add(domainPedido);
         }
 

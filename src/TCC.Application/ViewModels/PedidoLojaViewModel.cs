@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TCC.Domain.Models;
 
 namespace TCC.Application.ViewModels
 {
@@ -7,14 +8,8 @@ namespace TCC.Application.ViewModels
         [Key]
         public Guid Id { get; set; }
         public DateTime Timestamp { get; set; }
-        public ItemLojaViewModel ItemComprado { get; set; }
+        public Guid ItemCompradoId { get; set; }
 
-        public bool IsExpired()
-        {
-            var duration = TimeSpan.FromTicks(ItemComprado.Duracao);
-            var validade = Timestamp + duration;
-
-            return validade < DateTime.Now;
-        }
+        public Guid UsuarioId { get; set; }
     }
 }

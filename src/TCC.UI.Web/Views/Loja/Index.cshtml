@@ -45,8 +45,8 @@
                 confirmButtonColor: '#201b2c',
                 showLoaderOnConfirm: true,
                 preConfirm: () => {
-                    //const baseURL = "https://localhost:7072"
-                    const baseURL = "https://logplay.net"
+                    const baseURL = "https://localhost:7072"
+                    //const baseURL = "https://logplay.net"
                     console.log(this);
                     $.get(`${baseURL}/Loja/Comprar/${id}`)
                         .then(function (response) {

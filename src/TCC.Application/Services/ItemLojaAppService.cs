@@ -12,15 +12,19 @@ public class ItemLojaAppService : IItemLojaAppService
     private readonly IItemLojaRepository _itemLojaRepository;
     private readonly IMapper _mapper;
     private readonly IUsuarioAppService _userAppService;
+    private readonly IPedidoAppService _pedidoAppService;
+
 
     public ItemLojaAppService(
         IItemLojaRepository itemLojaRepository,
         IMapper mapper,
         IUsuarioAppService userAppService,
-        IPedidoLojaRepository pedidoRepository
+        IPedidoLojaRepository pedidoRepository,
+        IPedidoAppService pedidoAppService
     )
     {
         _userAppService = userAppService;
+        _pedidoAppService = pedidoAppService;
         _itemLojaRepository = itemLojaRepository;
         _mapper = mapper;
     }
@@ -90,16 +94,12 @@ public class ItemLojaAppService : IItemLojaAppService
             }
         }
 
-        if (user.Pedidos is null)
-        {
-            user.Pedidos = new List<PedidoLoja>();
-        }
-
-        var newPedido = new PedidoLoja()
+        var newPedido = new PedidoLojaViewModel()
         {
             Id = Guid.NewGuid(),
             Timestamp = DateTime.Now,
-            ItemComprado = item,
+            UsuarioId = user.Id,
+            ItemCompradoId = item.Id
         };
 
         user.QtdMoedas -= item.Preco;
@@ -114,9 +114,11 @@ public class ItemLojaAppService : IItemLojaAppService
                 break;
         }
 
-        await _userAppService.UpdatePedidoUser(user, newPedido);
+        var updateUser = await _userAppService.UpdateUser(user);
 
-        result = new OperationResultViewModel<int>(user.QtdMoedas, true);
+        var ok = await _pedidoAppService.AddPedido(newPedido, user);
+
+        result = new OperationResultViewModel<int>(user.QtdMoedas, ok);
 
         return result;
     }
