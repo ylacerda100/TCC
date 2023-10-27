@@ -102,7 +102,6 @@ public class ItemLojaAppService : IItemLojaAppService
             ItemComprado = item,
         };
 
-        user.Pedidos.Add(newPedido);
         user.QtdMoedas -= item.Preco;
 
         switch (item.TipoItem)

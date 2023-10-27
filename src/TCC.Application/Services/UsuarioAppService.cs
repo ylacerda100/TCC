@@ -67,12 +67,11 @@ namespace TCC.Application.Services
                 .FirstOrDefaultAsync(t => t.Id.ToString() == userId);
         }
 
-        public async Task<IdentityResult> UpdatePedidoUser(Usuario user, PedidoLoja pedido)
+        public async Task<int> UpdatePedidoUser(Usuario user, PedidoLoja pedido)
         {
-            var result = await _userManager.UpdateAsync(user);
-
+            pedido.UsuarioId = user.Id;
             _appDbContext.Pedidos.Add(pedido);
-            _appDbContext.SaveChanges();
+            var result = _appDbContext.SaveChanges();
 
             return result;
         }
