@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using TCC.Application.Interfaces;
 using TCC.Domain.Models;
 
@@ -34,6 +33,15 @@ namespace TCC.UI.Web.Controllers
             }
 
             return View(cursoViewModel);
+        }
+
+        [HttpGet("Cursos/IniciarCurso/{cursoId:guid}")]
+        public async Task<IActionResult> IniciarCurso(Guid? cursoId)
+        {
+            var curso = await _cursoAppService.GetById(cursoId.Value);
+            var firstAula = curso.Aulas.Find(a => a.Number == 1);
+
+            return RedirectToAction("Detalhes", "Aulas", new { firstAula.Id });
         }
 
         [HttpGet("Cursos/load")]
