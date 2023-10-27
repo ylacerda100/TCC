@@ -6,5 +6,6 @@ namespace TCC.Domain.Interfaces
     public interface IPedidoLojaRepository : IRepository<PedidoLoja>
     {
         Task<bool> Add(PedidoLoja item);
+        Task<IEnumerable<PedidoLoja>> GetAllFromUser(Usuario user);
     }
 }

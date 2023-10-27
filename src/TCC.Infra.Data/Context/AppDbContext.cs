@@ -1,15 +1,24 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NetDevPack.Data;
 using NetDevPack.Messaging;
 using System.ComponentModel.DataAnnotations;
 using TCC.Domain.Models;
 using TCC.Infra.Data.Mappings;
-using TCC.Infra.Data.Migrations;
 
 namespace TCC.Infra.Data.Context;
 
-public class AppDbContext : IdentityDbContext<Usuario>, IUnitOfWork
+public class AppDbContext : IdentityDbContext<
+    Usuario, 
+    ApplicationRole, 
+    Guid, 
+    ApplicationUserClaim, 
+    ApplicationUserRole, 
+    ApplicationUserLogin, 
+    ApplicationRoleClaim, 
+    ApplicationUserToken
+    >, IUnitOfWork
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -39,20 +48,11 @@ public class AppDbContext : IdentityDbContext<Usuario>, IUnitOfWork
         modelBuilder.ApplyConfiguration(new ItemLojaMap());
         modelBuilder.ApplyConfiguration(new AulaMap());
         modelBuilder.ApplyConfiguration(new ExercicioMap());
+        modelBuilder.ApplyConfiguration(new PedidoLojaMap());
+        modelBuilder.ApplyConfiguration(new UsuarioMap());
         #endregion
-
 
         base.OnModelCreating(modelBuilder);
-
-        #region Usuario map
-        modelBuilder.Entity<Usuario>()
-                .Property(e => e.Nome)
-        .HasMaxLength(250);
-
-        modelBuilder.Entity<Usuario>()
-            .Navigation(e => e.Pedidos)
-            .AutoInclude();
-        #endregion
     }
 
     public async Task<bool> Commit()

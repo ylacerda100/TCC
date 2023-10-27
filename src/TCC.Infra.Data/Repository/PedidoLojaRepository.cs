@@ -28,5 +28,10 @@ namespace TCC.Infra.Data.Repository
         {
             Db.Dispose();
         }
+
+        public async Task<IEnumerable<PedidoLoja>> GetAllFromUser(Usuario user)
+        {
+            return DbSet.Where(p => p.UsuarioId == user.Id);
+        }
     }
 }

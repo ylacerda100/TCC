@@ -4,6 +4,10 @@
     ViewData["Title"] = "LogPlay - Ranking";
 }
 
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+
 <body>
     <header>
         <h1>Ranking de Alunos</h1>
@@ -12,7 +16,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Posição</th>
+                    <th>@ViewBag.Header</th>
                     <th>Nome do Aluno</th>
                     <th>XP</th>
                 </tr>

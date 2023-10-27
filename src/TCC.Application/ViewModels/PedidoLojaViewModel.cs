@@ -1,18 +1,15 @@
-﻿using TCC.Domain.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using TCC.Domain.Models;
 
 namespace TCC.Application.ViewModels
 {
     public class PedidoLojaViewModel
     {
+        [Key]
+        public Guid Id { get; set; }
         public DateTime Timestamp { get; set; }
-        public ItemLoja ItemComprado { get; set; }
+        public Guid ItemCompradoId { get; set; }
 
-        public bool IsExpired()
-        {
-            var duration = TimeSpan.FromTicks(ItemComprado.Duracao);
-            var validade = Timestamp + duration;
-
-            return validade < DateTime.Now;
-        }
+        public Guid UsuarioId { get; set; }
     }
 }

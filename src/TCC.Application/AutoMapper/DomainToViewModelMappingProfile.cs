@@ -14,5 +14,7 @@ public class DomainToViewModelMappingProfile : Profile
         CreateMap<Exercicio, ExercicioViewModel>();
         CreateMap<ItemLoja, ItemLojaViewModel>();
         CreateMap<Usuario, UsuarioViewModel>();
+        CreateMap<PedidoLoja, PedidoLojaViewModel>();
+
     }
 }
