@@ -29,6 +29,7 @@ public static class NativeInjector
         services.AddScoped<IAulaRepository, AulaRepository>();
         services.AddScoped<IPedidoLojaRepository, PedidoLojaRepository>();
         services.AddScoped<IExercicioRepository, ExercicioRepository>();
+        services.AddScoped<IProgressoAulaRepository, ProgressoAulaRepository>();
 
         services.AddScoped<AppDbContext>();
     }
