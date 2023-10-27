@@ -16,6 +16,7 @@ namespace TCC.Application.ViewModels
 
         public IEnumerable<Exercicio> Exercicios { get; set; }
 
+        public Guid CursoId { get; set; }
         public int Xp { get; set; }
         public int QtdMoedas { get; set; }
     }

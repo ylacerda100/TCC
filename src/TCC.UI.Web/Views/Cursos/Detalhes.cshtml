@@ -12,7 +12,7 @@
             <div class="botao-iniciar">
             <a class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
                     Iniciar curso
-                </a>
+            </a>
             </div>
         </div>
         <div class="curso-container">
@@ -64,9 +64,9 @@
         </div>
         <div class="matricular-section">
             <div class="botao-iniciar">
-            <a class="btn btn-primary" asp-controller="Aulas" asp-action="Detalhes" asp-route-name="@Model.Aulas.First(a => a.Number == 1).Nome">
+            <a class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
                     Iniciar curso
-                </a>
+            </a>
             </div>
         </div>
     </div>
