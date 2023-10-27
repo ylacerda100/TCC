@@ -1,20 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
 using TCC.Domain.Interfaces;
 using TCC.Domain.Models;
 using TCC.Infra.Data.Context;
-using TCC.Infra.Data.Repository;
 
 namespace TCC.Application.Services
 {
