@@ -50,11 +50,11 @@ namespace TCC.Application.Services
         {
             var userId = _httpContextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return await _userManager
+            return _userManager
                 .Users
                 .Include(u => u.Pedidos)
                 .ThenInclude(p => p.ItemComprado)
-                .FirstOrDefaultAsync(t => t.Id.ToString() == userId);
+                .First(t => t.Id.ToString() == userId);
         }
 
         public async Task<bool> UpdateUser(Usuario user)

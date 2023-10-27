@@ -2,3 +2,8 @@
 @model TCC.UI.Web.Areas.Identity.Pages.Account.Manage.PedidosModel
 @{
 }
+
+@foreach (var pedido in Model.Pedidos)
+{
+    <p>@pedido.Id</p>
+}
