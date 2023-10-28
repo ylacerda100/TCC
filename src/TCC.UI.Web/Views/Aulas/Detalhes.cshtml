@@ -38,6 +38,8 @@
                     <h3 class="enunciado-exercicio">@exercicio.Enunciado</h3>
                     <p>Acerte para ganhar @exercicio.QtdMoedas moedas.</p>
                     @Html.Hidden("ExercicioId", exercicio.Id)
+                    @Html.Hidden("AulaId", Model.AulaId)
+
                     <label>
                     @Html.RadioButton("Resposta", exercicio.AlternativaA)
                         @exercicio.AlternativaA
@@ -86,7 +88,7 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
-            $("#formEx").submit(function (e) {
+            $("form").submit(function (e) {
                 e.preventDefault();
 
                 var formData = $(this).serialize();
@@ -106,7 +108,7 @@
                         }
                         else {
                             Swal.fire({
-                                position: 'center',
+                                position: 'center',     
                                 icon: 'success',
                                 title: 'Parabéns! Você acertou!',
                                 showConfirmButton: false,

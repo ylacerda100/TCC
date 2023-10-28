@@ -67,6 +67,11 @@ namespace TCC.UI.Web.Controllers
                 return BadRequest("O Curso não foi iniciado");
             }
 
+            if (string.IsNullOrWhiteSpace(model.Resposta))
+            {
+                return Json(new { success = false });
+            }
+
             var resposta = new RespostaAlunoExercicio
             {
                 UsuarioId = user.Id,
@@ -85,10 +90,10 @@ namespace TCC.UI.Web.Controllers
 
                 _userAppService.UpdateUser(user);
 
-                return Ok(new { success = true });
+                return Json(new { success = true });
             }
 
-            return Ok(new { success = false });
+            return Json(new { success = false });
         }
 
         [HttpGet("{id:guid}")]
