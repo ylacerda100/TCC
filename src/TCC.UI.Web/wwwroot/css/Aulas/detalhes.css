@@ -240,6 +240,16 @@ main pb-3 {
     accent-color: var(--verde-destaque);
 }
 
+.resposta-selecionada-errada {
+    color: red; /* Cor da opção selecionada */
+    font-weight: bold; /* Estilo da opção selecionada */
+}
+
+.resposta-selecionada-correta {
+    color: var(--verde-destaque); /* Cor da opção selecionada */
+    font-weight: bold; /* Estilo da opção selecionada */
+}
+
 @media only screen and (max-width:600px) {
 
     img {

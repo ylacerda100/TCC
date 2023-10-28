@@ -104,6 +104,7 @@
                             form.find("input[type=radio]").prop("disabled", true);
                             submitButton.prop("disabled", true);  // Desabilita o botão de envio
                             submitButton.text("Respondido");
+                            $("form input[type=radio]:checked").parent().addClass("resposta-selecionada-errada");
 
                             Swal.fire({
                                 icon: 'error',
@@ -115,6 +116,8 @@
                             form.find("input[type=radio]").prop("disabled", true);
                             submitButton.prop("disabled", true);  // Desabilita o botão de envio
                             submitButton.text("Respondido");
+                            $("form input[type=radio]:checked").parent().addClass("resposta-selecionada-correta");
+
                             Swal.fire({
                                 position: 'center',     
                                 icon: 'success',
