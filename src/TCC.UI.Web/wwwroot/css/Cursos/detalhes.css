@@ -118,7 +118,7 @@
     justify-content: center;
 }
 
-.curso-aulas .lista-aulas > ul > a {
+.curso-aulas .lista-aulas > ul > li {
     text-decoration: none;
     color: white;
     background-color: var(--roxo-claro1);
@@ -128,11 +128,11 @@
     width: 100%;
 }
 
-    .curso-aulas .lista-aulas > ul > a:hover {
-        text-decoration: none;
-        color: var(--verde-destaque);
-        background-color: var(--roxo-escuro);
-    }
+.curso-aulas .lista-aulas > ul > li:hover {
+    text-decoration: none;
+    color: var(--verde-destaque);
+    background-color: var(--roxo-escuro);
+}
 
 .curso-sidebar {
     display: flex;

@@ -24,9 +24,7 @@
                     <ul>
                         @foreach (var aula in Model.Aulas.OrderBy(a => a.Number))
                         {
-                            <a asp-controller="Aulas" asp-action="Detalhes" asp-route-id="@aula.Id">
                             <li>@Html.DisplayFor(a => aula.Nome)</li>
-                            </a>
                         }
                     </ul>
                 </div>

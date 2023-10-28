@@ -87,7 +87,7 @@ namespace TCC.UI.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ResponderExercicio(RespostaExercicioViewModel model)
+        public async Task<IActionResult> ResponderExercicio(RespostaExercicioViewModel model)
         {
             Guid.TryParse(model.ExercicioId, out var exId);
             var exercicio = await _exercicioAppService.GetById(exId);
@@ -106,6 +106,13 @@ namespace TCC.UI.Web.Controllers
             }
 
             return Ok(new { success = false });
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> ConcluirAula(Guid? aulaId)
+        {
+            var aula = await _aulaAppService.GetById(aulaId.Value);
+            return RedirectToAction("Detalhes", "Aulas", new { aula.Id });
         }
     }
 }

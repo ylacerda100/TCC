@@ -57,7 +57,8 @@ namespace TCC.UI.Web.Controllers
                 AulaId = firstAula.Id
             };
 
-            
+            await _progressoAppService.Add(progresso);
+
             return RedirectToAction("Detalhes", "Aulas", new { firstAula.Id });
         }
 
