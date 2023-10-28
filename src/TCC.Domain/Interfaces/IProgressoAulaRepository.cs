@@ -10,5 +10,6 @@ namespace TCC.Domain.Interfaces
         void Update(ProgressoAula progresso);
         Task<IEnumerable<ProgressoAula>> GetByAulaId(Guid aulaId);
         Task<ProgressoAula> GetByAulaIdAndUserId(Guid aulaId, Guid userId);
+        Task<IEnumerable<ProgressoAula>> GetByCursoIdAndUserId(Guid aulaId, Guid userId);
     }
 }

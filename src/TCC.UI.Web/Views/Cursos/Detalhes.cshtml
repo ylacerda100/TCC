@@ -1,5 +1,7 @@
 ﻿@using TCC.Domain.Enums;
 @model TCC.Application.ViewModels.CursoViewModel
+@inject TCC.Application.Interfaces.IProgressoAppService ProgressoAppService;
+@inject TCC.Application.Interfaces.IUsuarioAppService UsuarioAppService;
 
 @{
     ViewData["Title"] = "LogPlay - Cursos";
@@ -10,9 +12,21 @@
             <h1 class="titulo-curso">@Html.DisplayFor(m => m.Nome)</h1>
             <p class="descricao-curso">@Html.DisplayFor(m => m.Descricao)</p>
             <div class="botao-iniciar">
-            <a class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
-                    Iniciar curso
-            </a>
+            
+            
+                    
+                @if(await ProgressoAppService.IsCursoIniciado(Model.Id, UsuarioAppService.GetCurrentUser().Result.Id))
+                {
+                    <a class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
+                        Continuar
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
+                        Iniciar curso
+                    </a>
+                }
             </div>
         </div>
         <div class="curso-container">

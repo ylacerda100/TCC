@@ -30,7 +30,7 @@ namespace TCC.UI.Web.Controllers
         }
 
         [Authorize]
-        [HttpGet("Cursos/{id:guid}")]
+        [HttpGet("Cursos/{id:guid}")]               
         public async Task<IActionResult> Detalhes(Guid? id)
         {
             var cursoViewModel = await _cursoAppService.GetById(id.Value);
@@ -46,26 +46,33 @@ namespace TCC.UI.Web.Controllers
         [HttpGet("Cursos/IniciarCurso/{cursoId:guid}")]
         public async Task<IActionResult> IniciarCurso(Guid? cursoId)
         {
-            var curso = await _cursoAppService.GetById(cursoId.Value);
             var user = await _usuarioAppService.GetCurrentUser();
-            var firstAula = curso.Aulas.Find(a => a.Number == 1);
+            var curso = await _cursoAppService.GetById(cursoId.Value);
 
-            var progresso = await _progressoAppService.GetByAulaIdAndUserId(firstAula.Id, user.Id);
-           
-            if (progresso is null)
+            var progressos = await _progressoAppService.GetByCursoIdAndUserId(cursoId.Value, user.Id);
+
+            if (progressos is null || !progressos.Any())
             {
+                var aulaId = curso.Aulas.OrderBy(a => a.Number).First().Id;
+
                 var newProgresso = new ProgressoAula
                 {
                     UsuarioId = user.Id,
                     Status = Domain.Enums.StatusProgresso.EmAndamento,
-                    AulaId = firstAula.Id,
+                    AulaId = aulaId,
                     CursoId = curso.Id
                 };
 
                 await _progressoAppService.Add(newProgresso);
+                return RedirectToAction("Detalhes", "Aulas", new { id = aulaId });
             }
-            
-            return RedirectToAction("Detalhes", "Aulas", new { firstAula.Id });
+
+            var primeiraAulaNaoConcluida = progressos
+                .OrderBy(p => p.Aula.Number)
+                .Last(a => a.Status == Domain.Enums.StatusProgresso.EmAndamento)
+                .Aula;
+
+            return RedirectToAction("Detalhes", "Aulas", new { id = primeiraAulaNaoConcluida.Id });
         }
 
         [HttpGet("Cursos/load")]

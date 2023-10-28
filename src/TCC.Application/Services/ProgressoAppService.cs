@@ -32,7 +32,20 @@ namespace TCC.Application.Services
 
         public async Task<ProgressoAulaViewModel> GetByAulaIdAndUserId(Guid aulaId, Guid userId)
         {
-            return _mapper.Map<ProgressoAulaViewModel>(await _progressoRepo.GetByAulaIdAndUserId(aulaId, userId));
+            var result = await _progressoRepo.GetByAulaIdAndUserId(aulaId, userId);
+            return _mapper.Map<ProgressoAulaViewModel>(result);
+        }
+
+        public async Task<IEnumerable<ProgressoAulaViewModel>> GetByCursoIdAndUserId(Guid cursoId, Guid userId)
+        {
+            return _mapper.Map<IEnumerable<ProgressoAulaViewModel>>(await _progressoRepo.GetByCursoIdAndUserId(cursoId, userId));
+        }
+
+        public async Task<bool> IsCursoIniciado(Guid cursoId, Guid userId)
+        {
+            var cursoProgresso = await GetByCursoIdAndUserId(cursoId, userId);
+
+            return cursoProgresso != null && cursoProgresso.Any();
         }
     }
 }

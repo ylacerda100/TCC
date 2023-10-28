@@ -56,7 +56,17 @@ namespace TCC.Infra.Data.Repository
                 .Include(p => p.Curso)
                 .Include(p => p.Aula)
                 .ThenInclude(a => a.Exercicios)
-                .SingleOrDefaultAsync(p => p.AulaId == aulaId && p.UsuarioId == userId);
+                .FirstAsync(p => p.AulaId == aulaId && p.UsuarioId == userId);
+        }
+
+        public async Task<IEnumerable<ProgressoAula>> GetByCursoIdAndUserId(Guid cursoId, Guid userId)
+        {
+            return await DbSet
+                .Include(p => p.Curso)
+                .Include(p => p.Aula)
+                .ThenInclude(a => a.Exercicios)
+                .Where(p => p.CursoId == cursoId && p.UsuarioId == userId)
+                .ToListAsync();
         }
     }
 }

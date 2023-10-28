@@ -60,7 +60,7 @@ namespace TCC.UI.Web.Controllers
             var exercicio = await _exercicioAppService.GetById(exId);
             var user = await _userAppService.GetCurrentUser();
 
-            var progresso = _progressoAppService.GetByAulaIdAndUserId(aulaId, user.Id);
+            var progresso = await _progressoAppService.GetByAulaIdAndUserId(aulaId, user.Id);
 
             if (progresso is null)
             {
