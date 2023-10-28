@@ -112,7 +112,7 @@
 
                             disableForm(form, submitButton);
 
-                            addClassToRadioButton("resposta-selecionada-errada");
+                            addClassToRadioButton(form, "resposta-selecionada-errada");
 
                             showErrorAlertWithMessage(
                                 "Resposta errada!",
@@ -121,7 +121,7 @@
                         }
                         else {
                             disableForm(form, submitButton);
-                            addClassToRadioButton("resposta-selecionada-correta");
+                            addClassToRadioButton(form, "resposta-selecionada-correta");
 
                             Swal.fire({
                                 position: 'center',     
@@ -149,7 +149,7 @@
             submitButton.text("Respondido");
         }
 
-        function addClassToRadioButton(className){
+        function addClassToRadioButton(form, className){
             form.find("input[type=radio]:checked").parent().addClass(className);
         }
 
