@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using TCC.Domain.Models;
 
 namespace TCC.Application.ViewModels
 {
     public class RespostaAlunoExercicioViewModel
     {
+        [Key]
+        public Guid Id { get; set; }
+
+        [ForeignKey("Usuario")]
+        public Guid UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
+
+
+        [ForeignKey("Exercicio")]
+        public Guid ExercicioId { get; set; }
+        public Exercicio Exercicio { get; set; }
+        public string Resposta { get; set; }
     }
 }
