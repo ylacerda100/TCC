@@ -42,8 +42,15 @@
         color: #fff;
        
     }
-    
 
     .tabela tr:nth-child(odd) {
         background-color: var(--roxo-escuro);
     }
+
+#quinaDireita {
+    border-top-right-radius: 10px;
+}
+
+#quinaEsquerda {
+    border-top-left-radius: 10px;
+}
