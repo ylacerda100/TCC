@@ -19,6 +19,7 @@ public static class NativeInjector
         services.AddScoped<IAulaAppService, AulaAppService>();
         services.AddScoped<IExercicioAppService, ExercicioAppService>();
         services.AddScoped<IPedidoAppService, PedidoAppService>();
+        services.AddScoped<IProgressoAppService, ProgressoAppService>();
 
         //services.AddTransient<IEmailSender, MailJetEmailSender>();
 
