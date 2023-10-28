@@ -73,6 +73,12 @@
     border: 2px solid white;
 }
 
+    .botao-iniciar a:focus {
+        background-color: darkgreen;
+        border: 2px solid white;
+    }
+
+
 .curso-container {
     width: 100%;
     height: 100%;
