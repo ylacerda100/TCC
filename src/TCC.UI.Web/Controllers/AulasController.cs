@@ -69,7 +69,7 @@ namespace TCC.UI.Web.Controllers
 
             if (string.IsNullOrWhiteSpace(model.Resposta))
             {
-                return Json(new { success = false });
+                return Json(new { success = false, errorMessage = "Selecione uma das alternativas." });
             }
 
             var resposta = new RespostaAlunoExercicio
