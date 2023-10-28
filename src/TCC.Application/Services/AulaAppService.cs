@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
-using System.Xml.Linq;
+using DtronixPdf;
+using DtronixPdf.ImageSharp;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Png;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
 using TCC.Domain.Interfaces;
@@ -18,6 +21,27 @@ namespace TCC.Application.Services
         {
             _aulaRepository = aulaRepository;
             _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<byte[]>> ConvertPdfToImages(string filePath)
+        {
+            var images = new List<byte[]>();
+            using (var document = PdfDocument.Load(filePath, null))
+            {
+                for (int pageNumber = 0; pageNumber < document.Pages; pageNumber++)
+                {
+                    var page = document.GetPage(pageNumber);
+                    var result = page.Render(2);
+                    var image = result.GetImage();
+
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        image.Save(memoryStream, PngFormat.Instance);
+                        images.Add(memoryStream.ToArray());
+                    }
+                }
+                return images;
+            }
         }
 
         public void Dispose()

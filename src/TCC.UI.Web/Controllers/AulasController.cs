@@ -1,9 +1,5 @@
-﻿using DtronixPdf;
-using DtronixPdf.ImageSharp;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Png;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
 
@@ -48,41 +44,11 @@ namespace TCC.UI.Web.Controllers
             }
 
             var baseDir = $"{_env.WebRootPath}/assets/pdf";
-
             var filePath = $"{baseDir}/{aulaViewModel.ContentUrl}";
 
-            try
-            {
-                ConvertPdfToImage(filePath);
-            }
-            catch (Exception ex)
-            {
-                var files = Directory.GetFiles(baseDir);
-                return BadRequest($"Erro ao tentar converter PDF. {filePath} | {ex.Message} | {ex.StackTrace} | Arquivos: {string.Join(';', files)}");
-            }
+            ViewBag.Images = _aulaAppService.ConvertPdfToImages(filePath);
 
             return View(aulaViewModel);
-        }
-
-        private void ConvertPdfToImage(string filePath)
-        {
-            var images = new List<byte[]>();
-            using (var document = PdfDocument.Load(filePath, null))
-            {
-                for (int pageNumber = 0; pageNumber < document.Pages; pageNumber++)
-                {
-                    var page = document.GetPage(pageNumber);
-                    var result = page.Render(2);
-                    var image = result.GetImage();
-
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        image.Save(memoryStream, PngFormat.Instance);
-                        images.Add(memoryStream.ToArray());
-                    }
-                }
-                ViewBag.Images = images;
-            }
         }
 
         [HttpPost]

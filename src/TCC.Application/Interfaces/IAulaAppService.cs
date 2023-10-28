@@ -6,5 +6,6 @@ namespace TCC.Application.Interfaces
     {
         Task<AulaViewModel> GetByName(string name);
         Task<AulaViewModel> GetById(Guid id);
+        Task<IEnumerable<byte[]>> ConvertPdfToImages(string filePath);
     }
 }
