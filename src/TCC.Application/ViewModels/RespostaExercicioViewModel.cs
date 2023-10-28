@@ -8,6 +8,7 @@ namespace TCC.Application.ViewModels
 {
     public class RespostaExercicioViewModel
     {
+        public string AulaId { get; set; }
         public string ExercicioId { get; set; }
         public string Resposta { get; set; }
     }

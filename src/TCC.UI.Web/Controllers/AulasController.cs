@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
+using TCC.Domain.Models;
 
 namespace TCC.UI.Web.Controllers
 {
@@ -9,6 +10,7 @@ namespace TCC.UI.Web.Controllers
     {
         private readonly IAulaAppService _aulaAppService;
         private readonly IExercicioAppService _exercicioAppService;
+        private readonly IRespostaAlunoExercicioAppService _respostaAppService;
         private readonly IUsuarioAppService _userAppService;
         private readonly IProgressoAppService _progressoAppService;
         private readonly IWebHostEnvironment _env;
@@ -18,13 +20,15 @@ namespace TCC.UI.Web.Controllers
             IWebHostEnvironment env,
             IExercicioAppService exercicioAppService,
             IUsuarioAppService userAppService,
-            IProgressoAppService progressoAppService)
+            IProgressoAppService progressoAppService,
+            IRespostaAlunoExercicioAppService respostaAppService)
         {
             _aulaAppService = aulaAppService;
             _env = env;
             _exercicioAppService = exercicioAppService;
             _userAppService = userAppService;
             _progressoAppService = progressoAppService;
+            _respostaAppService = respostaAppService;
         }
 
         public IActionResult Index()
@@ -55,8 +59,26 @@ namespace TCC.UI.Web.Controllers
         public async Task<IActionResult> ResponderExercicio(RespostaExercicioViewModel model)
         {
             Guid.TryParse(model.ExercicioId, out var exId);
+            Guid.TryParse(model.AulaId, out var aulaId);
+
             var exercicio = await _exercicioAppService.GetById(exId);
             var user = await _userAppService.GetCurrentUser();
+
+            var progresso = _progressoAppService.GetByAulaIdAndUserId(aulaId, user.Id);
+
+            if (progresso is null)
+            {
+                return BadRequest("O Curso não foi iniciado");
+            }
+
+            var resposta = new RespostaAlunoExercicio
+            {
+                UsuarioId = user.Id,
+                ExercicioId = exId,
+                Resposta = model.Resposta
+            };
+
+            await _respostaAppService.Add(resposta);
 
             if (exercicio.Resposta == model.Resposta)
             {
@@ -65,7 +87,7 @@ namespace TCC.UI.Web.Controllers
                 user.QtdMoedas += exercicio.QtdMoedas;
                 user.Xp += (long)xp;
 
-                //updat e user
+                _userAppService.UpdateUser(user);
 
                 return Ok(new { success = true });
             }
