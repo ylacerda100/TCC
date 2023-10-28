@@ -20,6 +20,7 @@ public static class NativeInjector
         services.AddScoped<IExercicioAppService, ExercicioAppService>();
         services.AddScoped<IPedidoAppService, PedidoAppService>();
         services.AddScoped<IProgressoAppService, ProgressoAppService>();
+        services.AddScoped<IRespostaAlunoExercicioAppService, RespostaAlunoAppService>();
 
         //services.AddTransient<IEmailSender, MailJetEmailSender>();
 
@@ -31,6 +32,7 @@ public static class NativeInjector
         services.AddScoped<IPedidoLojaRepository, PedidoLojaRepository>();
         services.AddScoped<IExercicioRepository, ExercicioRepository>();
         services.AddScoped<IProgressoAulaRepository, ProgressoAulaRepository>();
+        services.AddScoped<IRespostaAlunoExercicioRepository, RespostaAlunoExercicioRepository>();
 
         services.AddScoped<AppDbContext>();
     }
