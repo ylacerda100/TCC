@@ -19,29 +19,34 @@ namespace TCC.Infra.Data.Repository
             DbSet = Db.Set<ProgressoAula>();
         }
 
-        public Task<bool> Add(ProgressoAula progresso)
+        public async Task<bool> Add(ProgressoAula progresso)
         {
-            throw new NotImplementedException();
+            DbSet.Add(progresso);
+            return await Db.Commit();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Db.Dispose();
         }
 
-        public Task<ProgressoAula> GetByAulaId(Guid aulaId)
+        public async Task<ProgressoAula> GetByAulaId(Guid aulaId)
         {
-            throw new NotImplementedException();
+            return await DbSet
+                .Include(p => p.Aula)
+                .FirstAsync(t => t.AulaId == aulaId);
         }
 
-        public Task<ProgressoAula> GetById(Guid id)
+        public async Task<ProgressoAula> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await DbSet
+                .Include(p => p.Aula)
+                .FirstAsync(t => t.Id == id);
         }
 
         public void Update(ProgressoAula progresso)
         {
-            throw new NotImplementedException();
+            DbSet.Update(progresso);
         }
     }
 }
