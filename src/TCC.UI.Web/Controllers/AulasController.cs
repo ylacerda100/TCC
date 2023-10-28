@@ -93,7 +93,7 @@ namespace TCC.UI.Web.Controllers
                 return Json(new { success = true });
             }
 
-            return Json(new { success = false });
+            return Json(new { success = false, respostaCerta = exercicio.Resposta });
         }
 
         [HttpGet("{id:guid}")]

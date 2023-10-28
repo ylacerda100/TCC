@@ -41,18 +41,18 @@
                     @Html.Hidden("AulaId", Model.AulaId)
 
                     <label>
-                    @Html.RadioButton("Resposta", exercicio.AlternativaA)
+                    @Html.RadioButton("Resposta", exercicio.AlternativaA, new {id="AlternativaA"})
                         @exercicio.AlternativaA
                     </label>
                     <label>
-                    @Html.RadioButton("Resposta", exercicio.AlternativaB)
+                    @Html.RadioButton("Resposta", exercicio.AlternativaB, new {id="AlternativaB"})
                     @exercicio.AlternativaB
                     </label>
 
                     @if (!string.IsNullOrEmpty(exercicio.AlternativaC))
                     {
                         <label>
-                        @Html.RadioButton("Resposta", exercicio.AlternativaC)
+                        @Html.RadioButton("Resposta", exercicio.AlternativaC, new {id="AlternativaC"})
                         @exercicio.AlternativaC
                         </label>
                     }
@@ -60,7 +60,7 @@
                     @if (!string.IsNullOrEmpty(exercicio.AlternativaD))
                     {
                         <label>
-                        @Html.RadioButton("Resposta", exercicio.AlternativaD)
+                        @Html.RadioButton("Resposta", exercicio.AlternativaD, new {id="AlternativaD"})
                         @exercicio.AlternativaD
                         </label>
                     }
@@ -94,6 +94,14 @@
                 var formData = form.serialize();
                 var submitButton = form.find("button[type=submit]");
 
+                if (!validateForm(form)) {
+                    showErrorAlertWithMessage(
+                        "Resposta errada!", 
+                        "Selecione uma das alternativas."
+                    );
+                    return;
+                }
+
                 $.ajax({
                     type: "POST",
                     url: "/Aulas/ResponderExercicio",
@@ -101,22 +109,19 @@
                     dataType: "json",
                     success: function (response) {
                         if (!response.success) {
-                            form.find("input[type=radio]").prop("disabled", true);
-                            submitButton.prop("disabled", true);  // Desabilita o botão de envio
-                            submitButton.text("Respondido");
-                            $("form input[type=radio]:checked").parent().addClass("resposta-selecionada-errada");
 
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Resposta errada!',
-                                text: `${response.errorMessage}`
-                            })
+                            disableForm(form, submitButton);
+
+                            addClassToRadioButton("resposta-selecionada-errada");
+
+                            showErrorAlertWithMessage(
+                                "Resposta errada!",
+                                `${response.errorMessage}`
+                            );
                         }
                         else {
-                            form.find("input[type=radio]").prop("disabled", true);
-                            submitButton.prop("disabled", true);  // Desabilita o botão de envio
-                            submitButton.text("Respondido");
-                            $("form input[type=radio]:checked").parent().addClass("resposta-selecionada-correta");
+                            disableForm(form, submitButton);
+                            addClassToRadioButton("resposta-selecionada-correta");
 
                             Swal.fire({
                                 position: 'center',     
@@ -128,15 +133,39 @@
                         }
                     },
                     error: function () {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Ocorreu um erro inesperado!',
-                            text: 'Erro inesperado ao tentar responder o exercício.'
-                        })
+
+                        showErrorAlertWithMessage(
+                            "Ocorreu um erro inesperado!",
+                            "Erro inesperado ao tentar responder o exercício."
+                        );
                     }
                 });
             });
         });
+
+        function disableForm(form, submitButton) {
+            form.find("input[type=radio]").prop("disabled", true);
+            submitButton.prop("disabled", true);
+            submitButton.text("Respondido");
+        }
+
+        function addClassToRadioButton(className){
+            form.find("input[type=radio]:checked").parent().addClass(className);
+        }
+
+        function validateForm(form) {
+            var radioButtons = form.find("input[name='Resposta']");
+
+            return radioButtons.is(":checked");
+        }
+
+        function showErrorAlertWithMessage(title, message){
+            Swal.fire({
+                icon: 'error',
+                title: title,
+                text: message
+            })
+        }
     </script>
 
 }
