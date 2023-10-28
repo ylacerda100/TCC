@@ -1,4 +1,6 @@
-﻿using TCC.Application.Interfaces;
+﻿using AutoMapper;
+using TCC.Application.Interfaces;
+using TCC.Application.ViewModels;
 using TCC.Domain.Interfaces;
 using TCC.Domain.Models;
 
@@ -7,8 +9,14 @@ namespace TCC.Application.Services
     public class ProgressoAppService : IProgressoAppService
     {
         private readonly IProgressoAulaRepository _progressoRepo;
-        public ProgressoAppService(IProgressoAulaRepository progressoAulaRepository)
+        private readonly IMapper _mapper;
+
+        public ProgressoAppService(
+            IProgressoAulaRepository progressoAulaRepository, 
+            IMapper mapper
+            )
         {
+            _mapper = mapper;
             _progressoRepo = progressoAulaRepository;
         }
 
@@ -22,9 +30,9 @@ namespace TCC.Application.Services
             GC.SuppressFinalize(this);
         }
 
-        public async Task<ProgressoAula> GetByAulaIdAndUserId(Guid aulaId, Guid userId)
+        public async Task<ProgressoAulaViewModel> GetByAulaIdAndUserId(Guid aulaId, Guid userId)
         {
-            return await _progressoRepo.GetByAulaIdAndUserId(aulaId, userId);
+            return _mapper.Map<ProgressoAulaViewModel>(await _progressoRepo.GetByAulaIdAndUserId(aulaId, userId));
         }
     }
 }

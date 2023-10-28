@@ -1,5 +1,5 @@
 ﻿@using TCC.Domain.Enums;
-@model TCC.Application.ViewModels.AulaViewModel
+@model TCC.Application.ViewModels.ProgressoAulaViewModel;
 
 @{
     ViewData["Title"] = "LogPlay - Aulas";
@@ -7,8 +7,8 @@
 
 <div class="aula-main-container">
     <div class="banner-aula">
-        <h1 class="titulo-aula">@Html.DisplayFor(m => m.Nome)</h1>
-        <p class="descricao-aula">@Html.DisplayFor(m => m.Descricao)</p>
+        <h1 class="titulo-aula">@Html.DisplayFor(m => m.Aula.Nome)</h1>
+        <p class="descricao-aula">@Html.DisplayFor(m => m.Aula.Descricao)</p>
         
         <div class="voltar-section">
             <div class="botao-voltar">
@@ -32,7 +32,7 @@
 
     <div class="exercicios-container">
         <h2>Exercícios</h2>        
-            @foreach (var exercicio in Model.Exercicios)
+            @foreach (var exercicio in Model.Aula.Exercicios)
             {
                 <form method="post" id="formEx" asp-controller="Aulas" asp-action="ResponderExercicio" class="exercicio-element">
                     <h3 class="enunciado-exercicio">@exercicio.Enunciado</h3>
@@ -72,7 +72,7 @@
 
     <div class="concluir-section">
         <div class="botao-concluir">
-            <a class="btn btn-primary" asp-controller="Aulas" asp-action="ConcluirAula" asp-route-id="@Model.id">
+            <a class="btn btn-primary" asp-controller="Aulas" asp-action="ConcluirAula" asp-route-id="@Model.Aula.Id">
                 Concluir aula
             </a>
         </div>

@@ -40,19 +40,15 @@ namespace TCC.UI.Web.Controllers
         [HttpGet("Aulas/{id:guid}")]
         public async Task<IActionResult> Detalhes(Guid? id)
         {
-            var aulaViewModel = await _aulaAppService.GetById(id.Value);
-
-            if (aulaViewModel is null)
-            {
-                return NotFound();
-            }
+            var user = await _userAppService.GetCurrentUser();
+            var progressoAula = await _progressoAppService.GetByAulaIdAndUserId(id.Value, user.Id);
 
             var baseDir = $"{_env.WebRootPath}/assets/pdf";
-            var filePath = $"{baseDir}/{aulaViewModel.ContentUrl}";
+            var filePath = $"{baseDir}/{progressoAula.Aula.ContentUrl}";
 
             ViewBag.Images = await _aulaAppService.ConvertPdfToImages(filePath);
 
-            return View(aulaViewModel);
+            return View(progressoAula);
         }
 
         [HttpPost]

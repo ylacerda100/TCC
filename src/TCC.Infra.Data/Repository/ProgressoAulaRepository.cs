@@ -53,7 +53,9 @@ namespace TCC.Infra.Data.Repository
         public async Task<ProgressoAula> GetByAulaIdAndUserId(Guid aulaId, Guid userId)
         {
             return await DbSet
+                .Include(p => p.Curso)
                 .Include(p => p.Aula)
+                .ThenInclude(a => a.Exercicios)
                 .SingleOrDefaultAsync(p => p.AulaId == aulaId && p.UsuarioId == userId);
         }
     }
