@@ -61,24 +61,32 @@
     <h1 class="titulo">Histórico de Pedidos</h1>
 </div>
 
-<table class="tabela">
-    <thead>
-        <tr>
-            <th id="quinaEsquerda">Item</th>
-            <th>Valor (Moedas)</th>
-            <th>Tipo</th>
-            <th id="quinaDireita">Data</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pedido in Model.Pedidos)
-        {
+@if (Model.Pedidos is null || !Model.Pedidos.Any())
+{
+    <p>Nenhum pedido foi encontrado.</p>
+}
+else
+{
+    <table class="tabela">
+
+        <thead>
             <tr>
-                <td>@pedido.ItemComprado.Descricao</td>
-                <td>@pedido.ItemComprado.Preco</td>
-                <td>@Html.DisplayFor(t => pedido.ItemComprado.TipoItem)</td>
-                <td>@pedido.Timestamp.ToString("dd/MM/yyyy")</td>
+                <th id="quinaEsquerda">Item</th>
+                <th>Valor (Moedas)</th>
+                <th>Tipo</th>
+                <th id="quinaDireita">Data</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var pedido in Model.Pedidos)
+            {
+                <tr>
+                    <td>@pedido.ItemComprado.Descricao</td>
+                    <td>@pedido.ItemComprado.Preco</td>
+                    <td>@Html.DisplayFor(t => pedido.ItemComprado.TipoItem)</td>
+                    <td>@pedido.Timestamp.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
