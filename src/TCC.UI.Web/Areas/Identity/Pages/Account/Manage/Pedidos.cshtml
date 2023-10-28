@@ -1,9 +1,82 @@
 ﻿@page
 @model TCC.UI.Web.Areas.Identity.Pages.Account.Manage.PedidosModel
 @{
+    ViewData["Title"] = "LogPlay - Pedidos";
 }
 
-@foreach (var pedido in Model.Pedidos)
-{
-    <p>@pedido.Id</p>
-}
+<style>
+    .titulo {
+        text-align: center; /* Centraliza o texto horizontalmente */
+        color: var(--verde-destaque);
+        margin-bottom: 30px;
+    }
+
+    .tabela-container {
+        flex: 1; /* Preenche o espaço disponível entre o título e o footer */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: auto; /* Adicione uma barra de rolagem quando necessário */
+    }
+
+    .tabela {
+        width: 90%;
+        border-collapse: collapse;
+        background-color: var(--roxo-claro2);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.5);
+        margin: 0 auto;
+        background-color: var(--roxo-claro2);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.5);
+        max-height: 400px;
+        overflow-y: auto;
+        border-radius: 10px;
+    }
+
+        .tabela th, .tabela td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .tabela th {
+            background-color: var(--roxo-claro1);
+            color: #fff;
+        }
+
+        .tabela tr:nth-child(odd) {
+            background-color: var(--roxo-escuro);
+        }
+
+    #quinaDireita {
+        border-top-right-radius: 10px;
+    }
+
+    #quinaEsquerda {
+        border-top-left-radius: 10px;
+    }
+</style>
+
+<div>
+    <h1 class="titulo">Histórico de Pedidos</h1>
+</div>
+
+<table class="tabela">
+    <thead>
+        <tr>
+            <th id="quinaEsquerda">ID Pedido</th>
+            <th>Item</th>
+            <th>ID Usuário</th>
+            <th id="quinaDireita">Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pedido in Model.Pedidos)
+        {
+            <tr>
+                <td>@pedido.Id</td>
+                <td>@pedido.ItemCompradoId</td>
+                <td>@pedido.UsuarioId</td>
+                <td>@pedido.Timestamp.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
