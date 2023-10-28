@@ -2,14 +2,10 @@
 using DtronixPdf.ImageSharp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PDFiumCore;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
-using System.Drawing;
-using System.Drawing.Imaging;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TCC.UI.Web.Controllers
 {
@@ -18,18 +14,21 @@ namespace TCC.UI.Web.Controllers
         private readonly IAulaAppService _aulaAppService;
         private readonly IExercicioAppService _exercicioAppService;
         private readonly IUsuarioAppService _userAppService;
+        private readonly IProgressoAppService _progressoAppService;
         private readonly IWebHostEnvironment _env;
 
         public AulasController(
             IAulaAppService aulaAppService,
             IWebHostEnvironment env,
             IExercicioAppService exercicioAppService,
-            IUsuarioAppService userAppService)
+            IUsuarioAppService userAppService,
+            IProgressoAppService progressoAppService)
         {
             _aulaAppService = aulaAppService;
             _env = env;
             _exercicioAppService = exercicioAppService;
             _userAppService = userAppService;
+            _progressoAppService = progressoAppService;
         }
 
         public IActionResult Index()
