@@ -34,11 +34,16 @@
     .tabela th, .tabela td {
         padding: 10px;
         text-align: center;
+        
     }
 
     .tabela th {
         background-color: var(--roxo-claro1);
         color: #fff;
+       
+    }
+    .tabela td {
+        border-radius: 10px;
     }
 
     .tabela tr:nth-child(odd) {
