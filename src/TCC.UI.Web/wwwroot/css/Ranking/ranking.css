@@ -42,9 +42,7 @@
         color: #fff;
        
     }
-    .tabela td {
-        border-radius: 10px;
-    }
+    
 
     .tabela tr:nth-child(odd) {
         background-color: var(--roxo-escuro);
