@@ -8,10 +8,18 @@ namespace TCC.UI.Web.Controllers
     public class CursosController : BaseController
     {
         private readonly ICursoAppService _cursoAppService;
+        private readonly IUsuarioAppService _usuarioAppService;
+        private readonly IProgressoAppService _progressoAppService;
 
-        public CursosController(ICursoAppService cursoAppService)
+        public CursosController(
+            ICursoAppService cursoAppService,
+            IUsuarioAppService usuarioAppService,
+            IProgressoAppService progressoAppService
+            )
         {
             _cursoAppService = cursoAppService;
+            _usuarioAppService = usuarioAppService;
+            _progressoAppService = progressoAppService;
         }
 
         [AllowAnonymous]
@@ -39,8 +47,17 @@ namespace TCC.UI.Web.Controllers
         public async Task<IActionResult> IniciarCurso(Guid? cursoId)
         {
             var curso = await _cursoAppService.GetById(cursoId.Value);
+            var user = await _usuarioAppService.GetCurrentUser();
             var firstAula = curso.Aulas.Find(a => a.Number == 1);
 
+            var progresso = new ProgressoAula
+            {
+                UsuarioId = user.Id,
+                Status = Domain.Enums.StatusProgresso.EmAndamento,
+                AulaId = firstAula.Id
+            };
+
+            
             return RedirectToAction("Detalhes", "Aulas", new { firstAula.Id });
         }
 

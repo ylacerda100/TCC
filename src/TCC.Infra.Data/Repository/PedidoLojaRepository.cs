@@ -31,7 +31,9 @@ namespace TCC.Infra.Data.Repository
 
         public async Task<IEnumerable<PedidoLoja>> GetAllFromUser(Usuario user)
         {
-            return DbSet.Where(p => p.UsuarioId == user.Id);
+            return DbSet
+                .Include(p => p.ItemComprado)
+                .Where(p => p.UsuarioId == user.Id);
         }
     }
 }

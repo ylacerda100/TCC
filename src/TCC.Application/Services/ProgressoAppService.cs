@@ -1,5 +1,6 @@
 ﻿using TCC.Application.Interfaces;
 using TCC.Domain.Interfaces;
+using TCC.Domain.Models;
 
 namespace TCC.Application.Services
 {
@@ -9,6 +10,11 @@ namespace TCC.Application.Services
         public ProgressoAppService(IProgressoAulaRepository progressoAulaRepository)
         {
             _progressoRepo = progressoAulaRepository;
+        }
+
+        public async Task<bool> Add(ProgressoAula progresso)
+        {
+            return await _progressoRepo.Add(progresso);
         }
 
         public void Dispose()

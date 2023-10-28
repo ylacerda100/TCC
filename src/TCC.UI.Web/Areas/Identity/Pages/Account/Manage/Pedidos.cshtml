@@ -62,9 +62,9 @@
 <table class="tabela">
     <thead>
         <tr>
-            <th id="quinaEsquerda">ID Pedido</th>
-            <th>Item</th>
-            <th>ID Usuário</th>
+            <th id="quinaEsquerda">Item</th>
+            <th>Valor (Moedas)</th>
+            <th>Tipo</th>
             <th id="quinaDireita">Data</th>
         </tr>
     </thead>
@@ -72,9 +72,9 @@
         @foreach (var pedido in Model.Pedidos)
         {
             <tr>
-                <td>@pedido.Id</td>
-                <td>@pedido.ItemCompradoId</td>
-                <td>@pedido.UsuarioId</td>
+                <td>@pedido.ItemComprado.Descricao</td>
+                <td>@pedido.ItemComprado.Preco</td>
+                <td>@Html.DisplayFor(t => pedido.ItemComprado.TipoItem)</td>
                 <td>@pedido.Timestamp.ToString("dd/MM/yyyy")</td>
             </tr>
         }

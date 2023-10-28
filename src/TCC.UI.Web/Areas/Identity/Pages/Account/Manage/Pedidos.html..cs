@@ -29,7 +29,8 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
         {
             var user = _mapper.Map<UsuarioViewModel>(await _userAppService.GetCurrentUser());
 
-            Pedidos = await _pedidoAppService.GetAllPedidosFromUser(user);
+            var result = await _pedidoAppService.GetAllPedidosFromUser(user);
+            Pedidos = result.OrderByDescending(r => r.Timestamp).Take(5);
         }
     }
 }
