@@ -32,6 +32,7 @@ public class AppDbContext : IdentityDbContext<
     public DbSet<Exercicio> Exercicios { get; set; }
     public DbSet<PedidoLoja> Pedidos { get; set; }
     public DbSet<ProgressoAula> Progressos { get; set; }
+    public DbSet<RespostaAlunoExercicio> RespostasAlunoExercicios { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -51,6 +52,7 @@ public class AppDbContext : IdentityDbContext<
         modelBuilder.ApplyConfiguration(new PedidoLojaMap());
         modelBuilder.ApplyConfiguration(new UsuarioMap());
         modelBuilder.ApplyConfiguration(new ProgressoAulaMap());
+        modelBuilder.ApplyConfiguration(new RespostaAlunoExercicioMap());
 
         #endregion
 

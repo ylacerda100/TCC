@@ -15,9 +15,16 @@ namespace TCC.Domain.Models
 
         public Aula Aula { get; set; }
 
+        [ForeignKey("Curso")]
+        public Guid CursoId { get; set; }
+
+        public Curso Curso { get; set; }
+
         public StatusProgresso Status { get; set; }
 
         public DateTime DataConclusao { get; set; }
+
+        public List<RespostaAlunoExercicio> RespostasExercicios { get; set; }
 
         public ProgressoAula()
         {
