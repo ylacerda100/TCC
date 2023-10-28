@@ -23,5 +23,11 @@ namespace TCC.Infra.Data.Repository
         {
             Db.Dispose();
         }
+
+        public async Task<bool> Add(RespostaAlunoExercicio resposta)
+        {
+            DbSet.Add(resposta);
+            return await Db.Commit();
+        }
     }
 }
