@@ -50,15 +50,21 @@ namespace TCC.UI.Web.Controllers
             var user = await _usuarioAppService.GetCurrentUser();
             var firstAula = curso.Aulas.Find(a => a.Number == 1);
 
-            var progresso = new ProgressoAula
+            var progresso = await _progressoAppService.GetByAulaIdAndUserId(firstAula.Id, user.Id);
+           
+            if (progresso is null)
             {
-                UsuarioId = user.Id,
-                Status = Domain.Enums.StatusProgresso.EmAndamento,
-                AulaId = firstAula.Id
-            };
+                var newProgresso = new ProgressoAula
+                {
+                    UsuarioId = user.Id,
+                    Status = Domain.Enums.StatusProgresso.EmAndamento,
+                    AulaId = firstAula.Id,
+                    CursoId = curso.Id
+                };
 
-            await _progressoAppService.Add(progresso);
-
+                await _progressoAppService.Add(newProgresso);
+            }
+            
             return RedirectToAction("Detalhes", "Aulas", new { firstAula.Id });
         }
 

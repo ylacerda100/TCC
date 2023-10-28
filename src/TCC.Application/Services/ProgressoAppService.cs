@@ -21,5 +21,10 @@ namespace TCC.Application.Services
         {
             GC.SuppressFinalize(this);
         }
+
+        public async Task<ProgressoAula> GetByAulaIdAndUserId(Guid aulaId, Guid userId)
+        {
+            return await _progressoRepo.GetByAulaIdAndUserId(aulaId, userId);
+        }
     }
 }

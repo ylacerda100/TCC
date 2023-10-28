@@ -5,5 +5,6 @@ namespace TCC.Application.Interfaces
     public interface IProgressoAppService : IDisposable
     {
         Task<bool> Add(ProgressoAula progresso);
+        Task<ProgressoAula> GetByAulaIdAndUserId(Guid aulaId, Guid userId);
     }
 }

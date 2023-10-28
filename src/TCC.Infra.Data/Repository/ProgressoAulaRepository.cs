@@ -30,11 +30,12 @@ namespace TCC.Infra.Data.Repository
             Db.Dispose();
         }
 
-        public async Task<ProgressoAula> GetByAulaId(Guid aulaId)
+        public async Task<IEnumerable<ProgressoAula>> GetByAulaId(Guid aulaId)
         {
             return await DbSet
                 .Include(p => p.Aula)
-                .FirstAsync(t => t.AulaId == aulaId);
+                .Where(t => t.AulaId == aulaId)
+                .ToListAsync();
         }
 
         public async Task<ProgressoAula> GetById(Guid id)
@@ -47,6 +48,13 @@ namespace TCC.Infra.Data.Repository
         public void Update(ProgressoAula progresso)
         {
             DbSet.Update(progresso);
+        }
+
+        public async Task<ProgressoAula> GetByAulaIdAndUserId(Guid aulaId, Guid userId)
+        {
+            return await DbSet
+                .Include(p => p.Aula)
+                .SingleOrDefaultAsync(p => p.AulaId == aulaId && p.UsuarioId == userId);
         }
     }
 }

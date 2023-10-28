@@ -46,7 +46,7 @@ namespace TCC.UI.Web.Controllers
             var baseDir = $"{_env.WebRootPath}/assets/pdf";
             var filePath = $"{baseDir}/{aulaViewModel.ContentUrl}";
 
-            ViewBag.Images = _aulaAppService.ConvertPdfToImages(filePath);
+            ViewBag.Images = await _aulaAppService.ConvertPdfToImages(filePath);
 
             return View(aulaViewModel);
         }
