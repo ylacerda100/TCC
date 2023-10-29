@@ -46,7 +46,7 @@ namespace TCC.Infra.Data.Repository
         public void Update(ProgressoAula progresso)
         {
             DbSet.Update(progresso);
-            Db.Commit();
+            Db.SaveChanges();
         }
 
         public async Task<ProgressoAula> GetByAulaIdAndUserId(Guid aulaId, Guid userId)

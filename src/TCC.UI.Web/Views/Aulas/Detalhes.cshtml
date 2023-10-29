@@ -319,6 +319,7 @@
                 .then(data => {
                     if (data.success === true){
                         window.location.href = baseURL + 'Aulas/' + data.nextAulaId;
+                        return;
                     }
                     console.log(data); // Exemplo de como acessar os dados da resposta
 
