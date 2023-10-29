@@ -12,20 +12,24 @@
             <h1 class="titulo-curso">@Html.DisplayFor(m => m.Nome)</h1>
             <p class="descricao-curso">@Html.DisplayFor(m => m.Descricao)</p>
             <div class="botao-iniciar">
-            
-            
-                    
+
                 @if(await ProgressoAppService.IsCursoIniciado(Model.Id, UsuarioAppService.GetCurrentUser().Result.Id))
                 {
-                    <a class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
+                    <button class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
                         Continuar
-                    </a>
+                    </button>
+                }
+                else if (await ProgressoAppService.IsCursoConcluido(Model.Id, UsuarioAppService.GetCurrentUser().Result.Id))
+                {
+                    <button class="btn btn-primary" disabled>
+                        Curso concluído
+                    </button>
                 }
                 else
                 {
-                    <a class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
+                    <button class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
                         Iniciar curso
-                    </a>
+                    </button>
                 }
             </div>
         </div>
@@ -76,9 +80,9 @@
         </div>
         <div class="matricular-section">
             <div class="botao-iniciar">
-            <a class="btn btn-primary" asp-controller="Cursos" asp-action="Index">
+            <button class="btn btn-primary" asp-controller="Cursos" asp-action="Index">
                     Todos os cursos
-            </a>
+            </button>
             </div>
         </div>
     </div>

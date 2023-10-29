@@ -319,6 +319,12 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success === true){
+
+                        if (data.isCursoConcluido) {
+                            window.location.href = baseURL + data.redirectUrl;
+                            return;
+                        }
+
                         window.location.href = baseURL + 'Aulas/' + data.nextAulaId;
                         return;
                     }

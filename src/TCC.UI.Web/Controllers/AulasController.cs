@@ -123,12 +123,12 @@ namespace TCC.UI.Web.Controllers
             //atualizar progresso
             _progressoAppService.ConcluirProgresso(progresso.Id);
 
-            var nextAula = progresso.Curso.Aulas.ToList().Find(a => a.Number == progresso.Aula.Number + 1);
-
-            if (nextAula is null)
+            if (await _progressoAppService.IsCursoConcluido(progresso.CursoId, user.Id))
             {
-                return RedirectToAction("Detalhes", "Cursos", new { progresso.CursoId });
+                return Json(new { success = true, isCursoConcluido = true, redirectUrl = $"Cursos/{progresso.CursoId}" });
             }
+
+            var nextAula = progresso.Curso.Aulas.ToList().Find(a => a.Number == progresso.Aula.Number + 1);
 
             //adicionar progresso next aula
             var newProgresso = new ProgressoAula
