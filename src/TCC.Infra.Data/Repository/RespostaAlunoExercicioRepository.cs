@@ -18,7 +18,6 @@ namespace TCC.Infra.Data.Repository
             DbSet = Db.Set<RespostaAlunoExercicio>();
         }
 
-
         public void Dispose()
         {
             Db.Dispose();

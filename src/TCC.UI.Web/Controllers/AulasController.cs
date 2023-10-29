@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
+using TCC.Domain.Enums;
 using TCC.Domain.Models;
 
 namespace TCC.UI.Web.Controllers
@@ -94,14 +95,58 @@ namespace TCC.UI.Web.Controllers
                 return Json(new { success = true });
             }
 
-            return Json(new { success = false, respostaCerta = exercicio.Resposta });
+            return Json(new 
+            { 
+                success = false, 
+                respostaCerta = exercicio.Resposta, 
+                errorMessage = "Que pena, resposta errada :(" 
+            });
         }
 
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> ConcluirAula(Guid? aulaId)
+        [HttpGet("aulas/concluir-aula/{aulaId:guid}")]
+        public async Task<IActionResult> ConcluirAula(Guid aulaId)
         {
-            var aula = await _aulaAppService.GetById(aulaId.Value);
-            return RedirectToAction("Detalhes", "Aulas", new { aula.Id });
+            //obter progresso
+            var user = await _userAppService.GetCurrentUser();
+            var progresso = await _progressoAppService.GetByAulaIdAndUserId(aulaId, user.Id);
+
+            //validar aula já concluída
+            if (progresso.Status == StatusProgresso.Concluido)
+            {
+                return Json(new { success = false, errorMessage = "Esta aula já foi concluída." });
+            }
+
+
+            //validar exercicios respondidos
+            var allExerciciosCount = progresso.Aula.Exercicios.Count();
+            
+            if (progresso.RespostasExercicios.Count != allExerciciosCount)
+            {
+                return Json(new { success = false, errorMessage = "Alguns exercícios estão sem resposta." });
+            }
+
+            //atualizar progresso
+            _progressoAppService.ConcluirProgresso(progresso.Id);
+
+            if (await _progressoAppService.IsCursoConcluido(progresso.CursoId, user.Id))
+            {
+                return Json(new { success = true, isCursoConcluido = true, redirectUrl = $"Cursos/{progresso.CursoId}" });
+            }
+
+            var nextAula = progresso.Curso.Aulas.ToList().Find(a => a.Number == progresso.Aula.Number + 1);
+
+            //adicionar progresso next aula
+            var newProgresso = new ProgressoAula
+            {
+                UsuarioId = user.Id,
+                Status = StatusProgresso.EmAndamento,
+                AulaId = nextAula.Id,
+                CursoId = progresso.CursoId
+            };
+
+            await _progressoAppService.Add(newProgresso);
+
+            return Json(new { success = true, nextAulaId = nextAula.Id });
         }
     }
 }

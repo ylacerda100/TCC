@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
+using TCC.Domain.Enums;
 using TCC.Domain.Interfaces;
 using TCC.Domain.Models;
 
@@ -45,7 +46,31 @@ namespace TCC.Application.Services
         {
             var cursoProgresso = await GetByCursoIdAndUserId(cursoId, userId);
 
-            return cursoProgresso != null && cursoProgresso.Any();
+            return cursoProgresso != null && cursoProgresso.Any(c => c.Status == StatusProgresso.EmAndamento);
+        }
+
+        public async void ConcluirProgresso(Guid progressoId)
+        {
+            var progressoDomain = await _progressoRepo.GetById(progressoId);
+
+            progressoDomain.DataConclusao = DateTime.Now;
+            progressoDomain.Status = StatusProgresso.Concluido;
+
+            _progressoRepo.Update(progressoDomain);
+        }
+
+        public async Task<bool> IsCursoConcluido(Guid cursoId, Guid userId)
+        {
+            var cursoProgresso = await GetByCursoIdAndUserId(cursoId, userId);
+
+            if (!cursoProgresso.Any())
+            {
+                return false;
+            }
+
+            var totalAulas = cursoProgresso.First().Curso.Aulas.Count();
+
+            return cursoProgresso.Count() == totalAulas && cursoProgresso.All(c => c.Status == StatusProgresso.Concluido);
         }
     }
 }
