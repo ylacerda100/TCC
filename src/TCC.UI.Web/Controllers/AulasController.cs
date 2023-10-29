@@ -89,7 +89,7 @@ namespace TCC.UI.Web.Controllers
                 user.QtdMoedas += exercicio.QtdMoedas;
                 user.Xp += (long)xp;
 
-                _userAppService.UpdateUser(user);
+                await _userAppService.UpdateUser(user);
 
                 return Json(new { success = true });
             }
