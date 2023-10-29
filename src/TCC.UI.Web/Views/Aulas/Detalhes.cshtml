@@ -53,12 +53,10 @@
                         {
                             id="AlternativaA-"+exercicio.Id.ToString(),
                             disabled = "disabled",
-                            data_resposta_correta = exercicio.Resposta
                         } :
                         new
                         {
                             id="AlternativaA-"+exercicio.Id.ToString(),
-                            data_resposta_correta = exercicio.Resposta
                         }
                     )
                         @exercicio.AlternativaA
@@ -74,12 +72,10 @@
                         {
                             id="AlternativaB-"+exercicio.Id.ToString(),
                             disabled = "disabled",
-                            data_resposta_correta = exercicio.Resposta
                         } :
                         new
                         {
                             id="AlternativaB-"+exercicio.Id.ToString(),
-                            data_resposta_correta = exercicio.Resposta
                         }
                     )
                     @exercicio.AlternativaB
@@ -99,12 +95,10 @@
                             {
                                 id="AlternativaC-"+exercicio.Id.ToString(),
                                 disabled = "disabled",
-                                data_resposta_correta = exercicio.Resposta
                             } :
                             new
                             {
                                 id="AlternativaC-"+exercicio.Id.ToString(),
-                                data_resposta_correta = exercicio.Resposta
                             }
                         )
                         @exercicio.AlternativaC
@@ -124,12 +118,10 @@
                                 {
                                     id="AlternativaD-"+exercicio.Id.ToString(),
                                     disabled = "disabled",
-                                    data_resposta_correta = exercicio.Resposta
                                 } :
                                 new
                                 {
                                     id="AlternativaD-"+exercicio.Id.ToString(),
-                                    data_resposta_correta = exercicio.Resposta
                                 }
                             )
                             @exercicio.AlternativaD
@@ -158,9 +150,18 @@
 
     <div class="concluir-section">
         <div class="botao-concluir">
-            <a class="btn btn-primary" onclick="concluirAula('@Model.AulaId.ToString()')">
-                Concluir aula
-            </a>
+            @if (Model.Curso.Aulas.Count() == Model.Aula.Number)
+            {
+                <a class="btn btn-primary" onclick="concluirAula('@Model.AulaId.ToString()')">
+                    Concluir curso
+                </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" onclick="concluirAula('@Model.AulaId.ToString()')">
+                    Concluir aula
+                </a>
+            }
         </div>
     </div>
 </div>
