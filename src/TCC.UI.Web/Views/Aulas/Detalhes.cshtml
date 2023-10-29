@@ -49,7 +49,11 @@
                         "Resposta", 
                         exercicio.AlternativaA,
                         isExercicioRespondido && resposta == exercicio.AlternativaA,
-                        new {id="AlternativaA"}
+                        new
+                        {
+                            id="AlternativaA", 
+                            disabled = isExercicioRespondido? "disabled" : string.Empty
+                        }
                     )
                         @exercicio.AlternativaA
                     </label>
@@ -59,7 +63,11 @@
                         "Resposta", 
                         exercicio.AlternativaB,
                         isExercicioRespondido && resposta == exercicio.AlternativaB,
-                        new {id="AlternativaB"}
+                        new
+                        {
+                            id="AlternativaB",
+                            disabled = isExercicioRespondido? "disabled" : string.Empty
+                        }
                     )
                     @exercicio.AlternativaB
                     </label>
@@ -73,7 +81,11 @@
                             "Resposta", 
                             exercicio.AlternativaC,
                             isChecked,
-                            new {id="AlternativaC"}
+                            new
+                            {
+                            id="AlternativaC",
+                            disabled = isExercicioRespondido? "disabled" : string.Empty
+                            }
                         )
                         @exercicio.AlternativaC
                         </label>
@@ -87,7 +99,11 @@
                                 "Resposta", 
                                 exercicio.AlternativaD,
                                 isChecked,
-                                new {id="AlternativaD"}
+                                new
+                                {
+                                id="AlternativaD",
+                                disabled = isExercicioRespondido? "disabled" : string.Empty
+                                }
                             )
                             @exercicio.AlternativaD
                             </label>
