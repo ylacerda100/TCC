@@ -15,9 +15,11 @@
 
                 @if(await ProgressoAppService.IsCursoIniciado(Model.Id, UsuarioAppService.GetCurrentUser().Result.Id))
                 {
-                    <button class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
-                        Continuar
-                    </button>
+                    <a asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
+                        <button class="btn btn-primary">
+                            Continuar
+                        </button>
+                    </a>
                 }
                 else if (await ProgressoAppService.IsCursoConcluido(Model.Id, UsuarioAppService.GetCurrentUser().Result.Id))
                 {
@@ -80,9 +82,12 @@
         </div>
         <div class="matricular-section">
             <div class="botao-iniciar">
-            <button class="btn btn-primary" asp-controller="Cursos" asp-action="Index">
+            <a asp-controller="Cursos" asp-action="Index">
+                <button class="btn btn-primary" >
                     Todos os cursos
-            </button>
+                </button>
+            </a>
+            
             </div>
         </div>
     </div>

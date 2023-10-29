@@ -63,7 +63,7 @@ namespace TCC.Application.Services
         {
             var cursoProgresso = await GetByCursoIdAndUserId(cursoId, userId);
 
-            return cursoProgresso.All(c => c.Status == StatusProgresso.Concluido);
+            return cursoProgresso.Any() && cursoProgresso.All(c => c.Status == StatusProgresso.Concluido);
         }
     }
 }
