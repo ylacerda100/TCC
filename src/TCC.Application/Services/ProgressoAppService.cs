@@ -47,5 +47,15 @@ namespace TCC.Application.Services
 
             return cursoProgresso != null && cursoProgresso.Any();
         }
+
+        public async void ConcluirProgresso(Guid progressoId)
+        {
+            var progressoDomain = await _progressoRepo.GetById(progressoId);
+
+            progressoDomain.DataConclusao = DateTime.Now;
+            progressoDomain.Status = Domain.Enums.StatusProgresso.Concluido;
+
+            _progressoRepo.Update(progressoDomain);
+        }
     }
 }

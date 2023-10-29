@@ -153,21 +153,12 @@
                         }
                     </div>
             </form>
-
-                @if (isExercicioRespondido)
-                {
-                    <script>
-                        $(document).ready(function () { 
-
-                        }
-                    </script>
-                }
             }             
     </div>
 
     <div class="concluir-section">
         <div class="botao-concluir">
-            <a class="btn btn-primary" asp-controller="Aulas" asp-action="ConcluirAula" asp-route-id="@Model.Aula.Id">
+            <a class="btn btn-primary" onclick="concluirAula('@Model.AulaId.ToString()')">
                 Concluir aula
             </a>
         </div>
@@ -313,6 +304,32 @@
             var textArea = document.createElement('textarea');
             textArea.innerHTML = encodedString;
             return textArea.value;
+        }
+    </script>
+
+    <script>
+        function concluirAula(aulaId) {
+            const baseURL = "https://localhost:7072/"
+            //const baseURL = "https://logplay.net/"
+
+            var url = baseURL + 'aulas/concluir-aula/' + aulaId;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === true){
+                        window.location.href = baseURL + 'Aulas/' + data.nextAulaId;
+                    }
+                    console.log(data); // Exemplo de como acessar os dados da resposta
+
+                    showErrorAlertWithMessage(
+                        "Não foi possível concluir a aula!",
+                        `${data.errorMessage}`
+                    );
+                })
+                .catch(error => {
+                    console.error('Ocorreu um erro:', error);
+                });
         }
     </script>
 }

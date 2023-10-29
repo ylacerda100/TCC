@@ -9,5 +9,6 @@ namespace TCC.Application.Interfaces
         Task<ProgressoAulaViewModel> GetByAulaIdAndUserId(Guid aulaId, Guid userId);
         Task<IEnumerable<ProgressoAulaViewModel>> GetByCursoIdAndUserId(Guid cursoId, Guid userId);
         Task<bool> IsCursoIniciado(Guid cursoId, Guid userId);
+        void ConcluirProgresso(Guid progressoId);
     }
 }

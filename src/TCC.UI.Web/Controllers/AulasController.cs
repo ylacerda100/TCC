@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TCC.Application.Interfaces;
 using TCC.Application.ViewModels;
+using TCC.Domain.Enums;
 using TCC.Domain.Models;
 
 namespace TCC.UI.Web.Controllers
@@ -97,11 +98,41 @@ namespace TCC.UI.Web.Controllers
             return Json(new { success = false, respostaCerta = exercicio.Resposta });
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("aulas/concluir-aula/{aulaId:guid}")]
         public async Task<IActionResult> ConcluirAula(Guid? aulaId)
         {
-            var aula = await _aulaAppService.GetById(aulaId.Value);
-            return RedirectToAction("Detalhes", "Aulas", new { aula.Id });
+            //obter progresso
+            var user = await _userAppService.GetCurrentUser();
+            var progresso = await _progressoAppService.GetByAulaIdAndUserId(aulaId.Value, user.Id);
+
+            //validar aula já concluída
+            if (progresso.Status == StatusProgresso.Concluido)
+            {
+                return Json(new { success = false, errorMessage = "Esta aula já foi concluída." });
+            }
+
+
+            //validar exercicios respondidos
+            var allExerciciosCount = progresso.Aula.Exercicios.Count();
+            
+            if (progresso.RespostasExercicios.Count != allExerciciosCount)
+            {
+                return Json(new { success = false, errorMessage = "Alguns exercícios estão sem resposta." });
+            }
+
+            //atualizar progresso
+            _progressoAppService.ConcluirProgresso(progresso.Id);
+
+            //redirect para proxima aula
+
+            var nextAula = progresso.Curso.Aulas.ToList().Find(a => a.Number == progresso.Aula.Number+1);
+
+            if (nextAula is null)
+            {
+                return RedirectToAction("Detalhes", "Cursos", new { progresso.CursoId });
+            }
+
+            return Json(new { success = true, nextAulaId = nextAula.Id });
         }
     }
 }

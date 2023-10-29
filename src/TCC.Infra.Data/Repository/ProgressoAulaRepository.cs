@@ -40,21 +40,21 @@ namespace TCC.Infra.Data.Repository
 
         public async Task<ProgressoAula> GetById(Guid id)
         {
-            return await DbSet
-                .Include(p => p.Aula)
-                .FirstAsync(t => t.Id == id);
+            return await DbSet.FindAsync(id);
         }
 
         public void Update(ProgressoAula progresso)
         {
             DbSet.Update(progresso);
+            Db.Commit();
         }
 
         public async Task<ProgressoAula> GetByAulaIdAndUserId(Guid aulaId, Guid userId)
         {
             return await DbSet
-                .Include(p => p.Curso)
                 .Include(p => p.RespostasExercicios)
+                .Include(p => p.Curso)
+                .ThenInclude(c => c.Aulas)
                 .Include(p => p.Aula)
                 .ThenInclude(a => a.Exercicios)
                 .FirstAsync(p => p.AulaId == aulaId && p.UsuarioId == userId);
