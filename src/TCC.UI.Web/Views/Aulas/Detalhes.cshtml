@@ -34,41 +34,134 @@
         <h2>Exercícios</h2>        
             @foreach (var exercicio in Model.Aula.Exercicios)
             {
-                <form method="post" id="formEx" asp-controller="Aulas" asp-action="ResponderExercicio" class="exercicio-element">
+                var isExercicioRespondido = Model?.RespostasExercicios != null && Model.RespostasExercicios.Exists(r => r.ExercicioId == exercicio.Id && !string.IsNullOrEmpty(r.Resposta));
+                var resposta = isExercicioRespondido ? Model?.RespostasExercicios?.FirstOrDefault(r => r.ExercicioId == exercicio.Id)?.Resposta : default;
+
+                <form method="post" id=@("formEx-"+exercicio.Id.ToString()) asp-controller="Aulas" asp-action="ResponderExercicio" class="exercicio-element">
                     <h3 class="enunciado-exercicio">@exercicio.Enunciado</h3>
                     <p>Acerte para ganhar @exercicio.QtdMoedas moedas.</p>
                     @Html.Hidden("ExercicioId", exercicio.Id)
-                    @Html.Hidden("AulaId", Model.AulaId)
+                    @Html.Hidden("AulaId", Model?.AulaId)
 
                     <label>
-                    @Html.RadioButton("Resposta", exercicio.AlternativaA, new {id="AlternativaA"})
+                    @Html.RadioButton(
+                        "Resposta", 
+                        exercicio.AlternativaA,
+                        isExercicioRespondido && resposta == exercicio.AlternativaA,
+                        isExercicioRespondido ?
+                        new
+                        {
+                            id="AlternativaA-"+exercicio.Id.ToString(),
+                            disabled = "disabled",
+                            data_resposta_correta = exercicio.Resposta
+                        } :
+                        new
+                        {
+                            id="AlternativaA-"+exercicio.Id.ToString(),
+                            data_resposta_correta = exercicio.Resposta
+                        }
+                    )
                         @exercicio.AlternativaA
                     </label>
+
                     <label>
-                    @Html.RadioButton("Resposta", exercicio.AlternativaB, new {id="AlternativaB"})
+                    @Html.RadioButton(
+                        "Resposta", 
+                        exercicio.AlternativaB,
+                        isExercicioRespondido && resposta == exercicio.AlternativaB,
+                        isExercicioRespondido ?
+                        new
+                        {
+                            id="AlternativaB-"+exercicio.Id.ToString(),
+                            disabled = "disabled",
+                            data_resposta_correta = exercicio.Resposta
+                        } :
+                        new
+                        {
+                            id="AlternativaB-"+exercicio.Id.ToString(),
+                            data_resposta_correta = exercicio.Resposta
+                        }
+                    )
                     @exercicio.AlternativaB
                     </label>
 
                     @if (!string.IsNullOrEmpty(exercicio.AlternativaC))
                     {
+                        var isChecked = isExercicioRespondido && resposta == exercicio.AlternativaC;
+
                         <label>
-                        @Html.RadioButton("Resposta", exercicio.AlternativaC, new {id="AlternativaC"})
+                        @Html.RadioButton(
+                            "Resposta", 
+                            exercicio.AlternativaC,
+                            isChecked,
+                            isExercicioRespondido ?
+                            new
+                            {
+                                id="AlternativaC-"+exercicio.Id.ToString(),
+                                disabled = "disabled",
+                                data_resposta_correta = exercicio.Resposta
+                            } :
+                            new
+                            {
+                                id="AlternativaC-"+exercicio.Id.ToString(),
+                                data_resposta_correta = exercicio.Resposta
+                            }
+                        )
                         @exercicio.AlternativaC
                         </label>
                     }
                     
                     @if (!string.IsNullOrEmpty(exercicio.AlternativaD))
                     {
+                        var isChecked = isExercicioRespondido && resposta == exercicio.AlternativaD;
                         <label>
-                        @Html.RadioButton("Resposta", exercicio.AlternativaD, new {id="AlternativaD"})
-                        @exercicio.AlternativaD
-                        </label>
+                            @Html.RadioButton(
+                                "Resposta", 
+                                exercicio.AlternativaD,
+                                isChecked,
+                                isExercicioRespondido ?
+                                new
+                                {
+                                    id="AlternativaD-"+exercicio.Id.ToString(),
+                                    disabled = "disabled",
+                                    data_resposta_correta = exercicio.Resposta
+                                } :
+                                new
+                                {
+                                    id="AlternativaD-"+exercicio.Id.ToString(),
+                                    data_resposta_correta = exercicio.Resposta
+                                }
+                            )
+                            @exercicio.AlternativaD
+                            </label>
                     }
 
                     <div class="botao-verificar">
-                    <button class="btn btn-primary botao-responder" type="submit" value="Submit" data-id="@exercicio.Id">Responder</button>
+                        @if (isExercicioRespondido)
+                        {
+                        <button class="btn btn-primary botao-responder" type="submit" value="Submit" data-id="@exercicio.Id" @(isExercicioRespondido ? "disabled" : "")>
+                            Respondido
+                            </button>
+
+                        }
+                        else
+                        {
+                        <button class="btn btn-primary botao-responder" type="submit" value="Submit" data-id="@exercicio.Id" @(isExercicioRespondido ? "disabled" : "")>
+                                Responder
+                            </button>
+
+                        }
                     </div>
-                </form>
+            </form>
+
+                @if (isExercicioRespondido)
+                {
+                    <script>
+                        $(document).ready(function () { 
+
+                        }
+                    </script>
+                }
             }             
     </div>
 
@@ -113,6 +206,15 @@
                             disableForm(form, submitButton);
 
                             addClassToRadioButton(form, "resposta-selecionada-errada");
+                            var respostaCorreta = decodeHtmlEntities(`${response.respostaCerta}`); // Decodifica entidades HTML
+
+                            form.find("input[type=radio]:not(:checked)").each(function () {
+                                var button = $(this);
+                                var valorBotao = button.val();
+                                if (valorBotao === respostaCorreta) {
+                                    button.parent().addClass("resposta-selecionada-correta");
+                                }
+                            });
 
                             showErrorAlertWithMessage(
                                 "Resposta errada!",
@@ -168,4 +270,49 @@
         }
     </script>
 
+    <script>
+        $(document).ready(function () {
+            @foreach (var exercicio in Model.Aula.Exercicios)
+            {
+                var isExercicioRespondido = Model?.RespostasExercicios != null && Model.RespostasExercicios.Exists(r => r.ExercicioId == exercicio.Id && !string.IsNullOrEmpty(r.Resposta));
+                var resposta = isExercicioRespondido ? Model?.RespostasExercicios?.FirstOrDefault(r => r.ExercicioId == exercicio.Id)?.Resposta : default;
+
+                if (!isExercicioRespondido)
+                {
+                    continue;
+                }
+
+                <text>
+                    setRadioButtonsColor('@exercicio.Id.ToString()', '@exercicio.Resposta', '@resposta'); 
+                </text>
+            }
+        });
+
+
+        function setRadioButtonsColor(exercicioId, respostaCorreta) {
+            var form = $("#formEx-" + exercicioId);
+            var radioButtons = form.find("input[name='Resposta']");
+
+            radioButtons.each(function () {
+                var button = $(this);
+                var valorBotao = button.val();
+
+                respostaCorreta = decodeHtmlEntities(respostaCorreta); // Decodifica entidades HTML
+
+                if (valorBotao.startsWith(respostaCorreta)) {
+                    // Resposta correta selecionada
+                    button.parent().addClass("resposta-selecionada-correta");
+                } else if (button.is(":checked")) {
+                    // Resposta incorreta selecionada
+                    button.parent().addClass("resposta-selecionada-errada");
+                }
+            });
+        }
+
+        function decodeHtmlEntities(encodedString) {
+            var textArea = document.createElement('textarea');
+            textArea.innerHTML = encodedString;
+            return textArea.value;
+        }
+    </script>
 }

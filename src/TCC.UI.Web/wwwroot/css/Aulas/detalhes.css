@@ -250,6 +250,15 @@ main pb-3 {
     font-weight: bold; /* Estilo da opção selecionada */
 }
 
+.btn.btn-primary[disabled] {
+    background-color: transparent !important;
+    color: #00ff88 !important;
+    text-decoration: none !important;
+    border: 2px solid #00ff88 !important;
+}
+
+
+
 @media only screen and (max-width:600px) {
 
     img {

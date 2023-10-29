@@ -18,6 +18,10 @@ namespace TCC.Domain.Models
         [ForeignKey("Exercicio")]
         public Guid ExercicioId { get; set; }
         public Exercicio Exercicio { get; set; }
+
+        [ForeignKey("ProgressoAula")]
+        public Guid ProgressoAulaId { get; set; }
+        public ProgressoAula ProgressoAula { get; set; }
         public string Resposta { get; set; }
     }
 }

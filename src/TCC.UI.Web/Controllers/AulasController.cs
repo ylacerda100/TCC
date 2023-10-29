@@ -76,7 +76,8 @@ namespace TCC.UI.Web.Controllers
             {
                 UsuarioId = user.Id,
                 ExercicioId = exId,
-                Resposta = model.Resposta
+                Resposta = model.Resposta,
+                ProgressoAulaId = progresso.Id
             };
 
             await _respostaAppService.Add(resposta);
@@ -88,7 +89,7 @@ namespace TCC.UI.Web.Controllers
                 user.QtdMoedas += exercicio.QtdMoedas;
                 user.Xp += (long)xp;
 
-                _userAppService.UpdateUser(user);
+                await _userAppService.UpdateUser(user);
 
                 return Json(new { success = true });
             }

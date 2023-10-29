@@ -54,6 +54,7 @@ namespace TCC.Infra.Data.Repository
         {
             return await DbSet
                 .Include(p => p.Curso)
+                .Include(p => p.RespostasExercicios)
                 .Include(p => p.Aula)
                 .ThenInclude(a => a.Exercicios)
                 .FirstAsync(p => p.AulaId == aulaId && p.UsuarioId == userId);
