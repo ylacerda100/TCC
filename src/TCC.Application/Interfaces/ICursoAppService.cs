@@ -12,5 +12,5 @@ public interface ICursoAppService : IDisposable
 
     Task<bool> Add(Curso curso);
 
-    Task<bool> Remove(CursoViewModel curso);
+    Task<bool> Remove(Guid cursoId);
 }

@@ -45,10 +45,9 @@ public class CursoAppService : ICursoAppService
         return await _cursoRepository.Add(curso);
     }
 
-    public async Task<bool> Remove(CursoViewModel curso)
+    public async Task<bool> Remove(Guid cursoId)
     {
-        var cursoDomain = _mapper.Map<Curso>(curso);
-
-        return await _cursoRepository.Remove(cursoDomain);
+        var curso = await _cursoRepository.GetById(cursoId);
+        return await _cursoRepository.Remove(curso);
     }
 }

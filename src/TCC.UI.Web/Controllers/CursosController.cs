@@ -648,7 +648,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaB = "Uma variável é usada para armazenar um único valor, enquanto um vetor pode armazenar múltiplos valores.",
                                 AlternativaC = "Vetores e variáveis são conceitos idênticos na programação.",
                                 AlternativaD = "Vetores são usados apenas em linguagens de programação específicas.",
-                                Resposta = "Uma variável é usada para armazenar um único valor, enquanto um vetor pode armazenar múltiplos valores.**",
+                                Resposta = "Uma variável é usada para armazenar um único valor, enquanto um vetor pode armazenar múltiplos valores.",
                                 Xp = 500,
                                 QtdMoedas = 100
                             }
@@ -867,7 +867,7 @@ namespace TCC.UI.Web.Controllers
 
             foreach (var curso in cursos)
             {
-                await _cursoAppService.Remove(curso);
+                await _cursoAppService.Remove(curso.Id);
             }
 
             return Ok();
