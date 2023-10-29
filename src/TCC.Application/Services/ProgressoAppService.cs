@@ -54,7 +54,7 @@ namespace TCC.Application.Services
             var progressoDomain = await _progressoRepo.GetById(progressoId);
 
             progressoDomain.DataConclusao = DateTime.Now;
-            progressoDomain.Status = Domain.Enums.StatusProgresso.Concluido;
+            progressoDomain.Status = StatusProgresso.Concluido;
 
             _progressoRepo.Update(progressoDomain);
         }
@@ -63,7 +63,14 @@ namespace TCC.Application.Services
         {
             var cursoProgresso = await GetByCursoIdAndUserId(cursoId, userId);
 
-            return cursoProgresso.Any() && cursoProgresso.All(c => c.Status == StatusProgresso.Concluido);
+            if (!cursoProgresso.Any())
+            {
+                return false;
+            }
+
+            var totalAulas = cursoProgresso.First().Curso.Aulas.Count();
+
+            return cursoProgresso.Count() == totalAulas && cursoProgresso.All(c => c.Status == StatusProgresso.Concluido);
         }
     }
 }

@@ -29,9 +29,11 @@
                 }
                 else
                 {
-                    <button class="btn btn-primary" asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
-                        Iniciar curso
-                    </button>
+                    <a asp-controller="Cursos" asp-action="IniciarCurso" asp-route-id="@Model.Id">
+                        <button class="btn btn-primary">
+                            Iniciar curso
+                        </button>
+                    </a>
                 }
             </div>
         </div>
