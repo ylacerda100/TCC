@@ -13,6 +13,9 @@ namespace TCC.Application.ViewModels
         public Guid UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
+        [ForeignKey("ProgressoAula")]
+        public Guid ProgressoAulaId { get; set; }
+        public ProgressoAula ProgressoAula { get; set; }
 
         [ForeignKey("Exercicio")]
         public Guid ExercicioId { get; set; }

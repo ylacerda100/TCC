@@ -1,5 +1,6 @@
 ﻿@using TCC.Domain.Enums;
 @model TCC.Application.ViewModels.ProgressoAulaViewModel;
+@inject TCC.Application.Interfaces.IRespostaAlunoExercicioAppService RespostaAppService;
 
 @{
     ViewData["Title"] = "LogPlay - Aulas";
@@ -34,39 +35,66 @@
         <h2>Exercícios</h2>        
             @foreach (var exercicio in Model.Aula.Exercicios)
             {
+                var isExercicioRespondido = Model?.RespostasExercicios != null && Model.RespostasExercicios.Exists(r => r.ExercicioId == exercicio.Id);
+                var resposta = isExercicioRespondido ? Model?.RespostasExercicios?.FirstOrDefault(r => r.ExercicioId == exercicio.Id)?.Resposta : default;
+
                 <form method="post" id="formEx" asp-controller="Aulas" asp-action="ResponderExercicio" class="exercicio-element">
                     <h3 class="enunciado-exercicio">@exercicio.Enunciado</h3>
                     <p>Acerte para ganhar @exercicio.QtdMoedas moedas.</p>
                     @Html.Hidden("ExercicioId", exercicio.Id)
-                    @Html.Hidden("AulaId", Model.AulaId)
+                    @Html.Hidden("AulaId", Model?.AulaId)
 
                     <label>
-                    @Html.RadioButton("Resposta", exercicio.AlternativaA, new {id="AlternativaA"})
+                    @Html.RadioButton(
+                        "Resposta", 
+                        exercicio.AlternativaA,
+                        isExercicioRespondido && resposta == exercicio.AlternativaA,
+                        new {id="AlternativaA"}
+                    )
                         @exercicio.AlternativaA
                     </label>
+
                     <label>
-                    @Html.RadioButton("Resposta", exercicio.AlternativaB, new {id="AlternativaB"})
+                    @Html.RadioButton(
+                        "Resposta", 
+                        exercicio.AlternativaB,
+                        isExercicioRespondido && resposta == exercicio.AlternativaB,
+                        new {id="AlternativaB"}
+                    )
                     @exercicio.AlternativaB
                     </label>
 
                     @if (!string.IsNullOrEmpty(exercicio.AlternativaC))
                     {
+                        var isChecked = isExercicioRespondido && resposta == exercicio.AlternativaC;
+
                         <label>
-                        @Html.RadioButton("Resposta", exercicio.AlternativaC, new {id="AlternativaC"})
+                        @Html.RadioButton(
+                            "Resposta", 
+                            exercicio.AlternativaC,
+                            isChecked,
+                            new {id="AlternativaC"}
+                        )
                         @exercicio.AlternativaC
                         </label>
                     }
                     
                     @if (!string.IsNullOrEmpty(exercicio.AlternativaD))
                     {
+                        var isChecked = isExercicioRespondido && resposta == exercicio.AlternativaD;
                         <label>
-                        @Html.RadioButton("Resposta", exercicio.AlternativaD, new {id="AlternativaD"})
-                        @exercicio.AlternativaD
-                        </label>
+                            @Html.RadioButton(
+                                "Resposta", 
+                                exercicio.AlternativaD,
+                                isChecked,
+                                new {id="AlternativaD"}
+                            )
+                            @exercicio.AlternativaD
+                            </label>
                     }
 
                     <div class="botao-verificar">
-                    <button class="btn btn-primary botao-responder" type="submit" value="Submit" data-id="@exercicio.Id">Responder</button>
+                    <button class="btn btn-primary botao-responder" type="submit" value="Submit" data-id="@exercicio.Id" @(isExercicioRespondido ? "disabled" : "")>Responder</button>
                     </div>
                 </form>
             }             

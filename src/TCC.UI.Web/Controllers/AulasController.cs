@@ -76,7 +76,8 @@ namespace TCC.UI.Web.Controllers
             {
                 UsuarioId = user.Id,
                 ExercicioId = exId,
-                Resposta = model.Resposta
+                Resposta = model.Resposta,
+                
             };
 
             await _respostaAppService.Add(resposta);
