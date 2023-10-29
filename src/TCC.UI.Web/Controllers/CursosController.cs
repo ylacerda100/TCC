@@ -867,7 +867,7 @@ namespace TCC.UI.Web.Controllers
 
             foreach (var curso in cursos)
             {
-                await _cursoAppService.Remove(curso);
+                await _cursoAppService.Remove(curso.Id);
             }
 
             return Ok();
