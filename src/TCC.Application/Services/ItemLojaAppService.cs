@@ -79,12 +79,11 @@ public class ItemLojaAppService : IItemLojaAppService
 
         if (user.Pedidos != null)
         {
-            var pedidoUser = user.Pedidos.FirstOrDefault(p => p.ItemComprado.Id == id);
+            var hasBoost = item.TipoItem == TipoItemLoja.Boost ? 
+                user.Pedidos.Any(p => p.ItemComprado.TipoItem == TipoItemLoja.Boost && !p.IsExpired()) :
+                false;
 
-            if (pedidoUser != null &&
-                pedidoUser.ItemComprado.TipoItem == TipoItemLoja.Boost &&
-                !pedidoUser.IsExpired()
-                )
+            if (hasBoost)
             {
                 result = new OperationResultViewModel(
                     "Você já possui um boost ativo.",
