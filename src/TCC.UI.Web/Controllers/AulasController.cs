@@ -99,11 +99,11 @@ namespace TCC.UI.Web.Controllers
         }
 
         [HttpGet("aulas/concluir-aula/{aulaId:guid}")]
-        public async Task<IActionResult> ConcluirAula(Guid? aulaId)
+        public async Task<IActionResult> ConcluirAula(Guid aulaId)
         {
             //obter progresso
             var user = await _userAppService.GetCurrentUser();
-            var progresso = await _progressoAppService.GetByAulaIdAndUserId(aulaId.Value, user.Id);
+            var progresso = await _progressoAppService.GetByAulaIdAndUserId(aulaId, user.Id);
 
             //validar aula já concluída
             if (progresso.Status == StatusProgresso.Concluido)
