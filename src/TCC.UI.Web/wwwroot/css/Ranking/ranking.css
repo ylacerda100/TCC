@@ -16,19 +16,20 @@
     justify-content: center;
     align-items: center;
     overflow: auto; /* Adicione uma barra de rolagem quando necessário */
-    
+    height: 100%;
+    width: 100%;
 }
 .tabela {
     width: 50%;
     border-collapse: collapse;
     background-color: var(--roxo-claro2);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1.5);
     margin: 0 auto;
     background-color: var(--roxo-claro2);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.5);
     max-height: 400px;
     overflow-y: auto;
     border-radius: 10px;
+    margin-bottom: 16px;
 }
 
     .tabela th, .tabela td {
