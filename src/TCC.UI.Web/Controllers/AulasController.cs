@@ -7,7 +7,7 @@ using TCC.Domain.Models;
 
 namespace TCC.UI.Web.Controllers
 {
-    public class AulasController : Controller
+    public class AulasController : BaseController
     {
         private readonly IAulaAppService _aulaAppService;
         private readonly IExercicioAppService _exercicioAppService;
@@ -127,6 +127,10 @@ namespace TCC.UI.Web.Controllers
 
             //atualizar progresso
             _progressoAppService.ConcluirProgresso(progresso.Id);
+
+            user.Xp += (long)(user.MultiplicadorXp * progresso.Aula.Xp);
+            user.QtdMoedas += progresso.Aula.QtdMoedas;
+            await _userAppService.UpdateUser(user);
 
             if (await _progressoAppService.IsCursoConcluido(progresso.CursoId, user.Id))
             {
