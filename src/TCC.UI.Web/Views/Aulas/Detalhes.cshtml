@@ -35,7 +35,7 @@
         <h2>Exercícios</h2>        
             @foreach (var exercicio in Model.Aula.Exercicios)
             {
-                var isExercicioRespondido = Model?.RespostasExercicios != null && Model.RespostasExercicios.Exists(r => r.ExercicioId == exercicio.Id);
+                var isExercicioRespondido = Model?.RespostasExercicios != null && Model.RespostasExercicios.Exists(r => r.ExercicioId == exercicio.Id && !string.IsNullOrEmpty(r.Resposta));
                 var resposta = isExercicioRespondido ? Model?.RespostasExercicios?.FirstOrDefault(r => r.ExercicioId == exercicio.Id)?.Resposta : default;
 
                 <form method="post" id="formEx" asp-controller="Aulas" asp-action="ResponderExercicio" class="exercicio-element">
@@ -49,11 +49,16 @@
                         "Resposta", 
                         exercicio.AlternativaA,
                         isExercicioRespondido && resposta == exercicio.AlternativaA,
+                        isExercicioRespondido ?
                         new
-                        {
-                            id="AlternativaA", 
-                            disabled = isExercicioRespondido? "disabled" : string.Empty
-                        }
+                            {
+                                id="AlternativaA",
+                                disabled = "disabled"
+                            } :
+                        new
+                            {
+                                id="AlternativaA"
+                            }
                     )
                         @exercicio.AlternativaA
                     </label>
@@ -63,10 +68,15 @@
                         "Resposta", 
                         exercicio.AlternativaB,
                         isExercicioRespondido && resposta == exercicio.AlternativaB,
+                        isExercicioRespondido ?
                         new
                         {
                             id="AlternativaB",
-                            disabled = isExercicioRespondido? "disabled" : string.Empty
+                            disabled = "disabled"
+                        } :
+                        new
+                        {
+                            id="AlternativaB"
                         }
                     )
                     @exercicio.AlternativaB
@@ -81,10 +91,15 @@
                             "Resposta", 
                             exercicio.AlternativaC,
                             isChecked,
+                            isExercicioRespondido ?
                             new
                             {
-                            id="AlternativaC",
-                            disabled = isExercicioRespondido? "disabled" : string.Empty
+                                id="AlternativaC",
+                                disabled = "disabled"
+                            } :
+                            new
+                            {
+                                id="AlternativaC"
                             }
                         )
                         @exercicio.AlternativaC
@@ -99,10 +114,15 @@
                                 "Resposta", 
                                 exercicio.AlternativaD,
                                 isChecked,
+                                isExercicioRespondido ?
                                 new
                                 {
-                                id="AlternativaD",
-                                disabled = isExercicioRespondido? "disabled" : string.Empty
+                                    id="AlternativaD",
+                                    disabled = "disabled"
+                                } :
+                                new
+                                {
+                                    id="AlternativaD"
                                 }
                             )
                             @exercicio.AlternativaD
