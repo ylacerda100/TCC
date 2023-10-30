@@ -80,8 +80,8 @@ section.module.content {
 .texto0 {
     font-family: TiltNeon;
     font-size: 1em;
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width:90%;
     text-align: center;
     text-justify: auto;
 }
