@@ -1,0 +1,18 @@
+﻿.btn-success {
+    background-color: green;
+    padding: 6px;
+}
+
+.btn-danger {
+    padding: 6px;
+}
+
+#moedas-usuario {
+    margin-right: 30px;
+    color: var(--verde-destaque);
+}
+
+/*@media only screen and (max-width: 400px) {
+    .moeda-logo {
+    }
+}*/
