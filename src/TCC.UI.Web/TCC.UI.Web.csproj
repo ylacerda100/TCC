@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\img\Home\moeda.gif" />
     <Content Remove="wwwroot\assets\pdf\Variaveis\Variaveis.pdf" />
     <Content Remove="wwwroot\assets\video\animation_lmma1dwj.mp4" />
   </ItemGroup>
