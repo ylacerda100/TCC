@@ -24,6 +24,11 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
+            <img src="~/assets/img/Home/xp.png" alt="xp" style="width: 45px; height: 45px;">
+            <span id="moedas-usuario">@UserManager.GetUserAsync(User).Result.Xp</span>
+    </li>
+    <li class="nav-item">
+            
             <img src="~/assets/img/Home/Coins.gif" alt="moedas" style="width: 45px; height: 45px;">
             <span id="moedas-usuario">@UserManager.GetUserAsync(User).Result.QtdMoedas</span>
     </li>
