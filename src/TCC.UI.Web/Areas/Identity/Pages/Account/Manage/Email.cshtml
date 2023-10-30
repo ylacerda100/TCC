@@ -43,7 +43,16 @@
         border: 2px solid white;
     }
 </style>
+<style media="screen and (max-width: 400px)">
+    .form-floating {
+        width: 26em;
+    }
 
+    .btn-primary {
+        margin: 3em;
+    }
+    
+</style>
 
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
@@ -70,7 +79,7 @@
                 <label asp-for="Input.NewEmail" class="form-label"></label>
                 <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
             </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Alterar Email</button>
+            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-75 btn btn-lg btn-primary">Alterar Email</button>
         </form>
     </div>
 </div>

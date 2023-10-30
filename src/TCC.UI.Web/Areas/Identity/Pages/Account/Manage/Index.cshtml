@@ -41,6 +41,18 @@
 
 </style>
 
+<style media="screen and (max-width: 400px)">
+    .form-floating {
+        width: 26em;
+    }
+
+    .btn-primary {
+        margin:3em;
+        
+    }
+ 
+</style>
+
 <body>
     <h3>@ViewData["Title"]</h3>
 
@@ -59,7 +71,7 @@
                     <label class="form-label">Telefone</label>
                     <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                 </div>
-                <button id="update-profile-button" type="submit" class="w-50 btn btn-mid btn-primary">Salvar</button>
+                <button id="update-profile-button" type="submit" class="w-75 btn btn-lg btn-primary">Salvar</button>
             </form>
         </div>
     </div>

@@ -99,16 +99,51 @@ p{
     
     .card {
         align-items: center;
+/*        min-height: 30vh;*/
+        min-width: 40vh;
+    }
+    .cards-container {
+        margin: 2em;
+    }
+   
+}
+
+@media only screen and (max-width:320px) {
+
+    .card {
+        align-items: center;
         min-height: 30vh;
         min-width: 35vh;
     }
 
-   
+    .cards-container {
+        margin: 2em;
+    }
 }
+@media only screen and (max-width:360px) {
 
+    .card {
+        align-items: center;
+        /*min-height: 30vh;*/
+        min-width: 35vh;
+    }
 
+    .cards-container {
+        margin: 2em;
+    }
+}
+@media only screen and (max-width:400px) {
 
+    .card {
+        align-items: center;
+        min-height: 30vh;
+        min-width: 35vh;
+    }
 
+    .cards-container {
+        margin: 2em;
+    }
+}
 
 
 

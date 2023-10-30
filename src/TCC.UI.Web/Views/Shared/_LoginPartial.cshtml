@@ -9,18 +9,59 @@
         background-color: green;
         padding: 6px;
     }
-   
+
    .btn-danger{
            padding: 6px;
        }
+
+    #moedas-usuario{
+        margin-right: 30px;
+        color: var(--verde-destaque);
+    }
+
+    #xp-usuario {
+        margin-right: 30px;
+        color: var(--verde-destaque);
+    }
+    .xp-logo{
+        width: 35px;
+        height: 35px;
+    }
+    .moeda-logo{
+        width: 40px;
+        height: 40px;
+    }
+    
+
 </style>
 
+<style media="screen and (max-width: 400px)">
+    .xp-logo, .moeda-logo{
+        width: 25px;
+        height: 25px;
+    }
+    
+</style>
+
+ 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    
     <li class="nav-item">
-            <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Bem Vindo @UserManager.GetUserAsync(User).Result.Nome!</a>
+        <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserAsync(User).Result.Nome.</a>
     </li>
+        <li class="nav-item">
+            <img class="xp-logo" src="~/assets/img/Home/nivel (1).png" alt="xp">
+            <span id="xp-usuario">@UserManager.GetUserAsync(User).Result.Xp</span>
+        </li>
+        <li class="nav-item">
+
+            <img class="moeda-logo" src="~/assets/img/Home/Coins.gif" alt="moedas">
+            <span id="moedas-usuario">@UserManager.GetUserAsync(User).Result.QtdMoedas</span>
+        </li>
+
+
     <li class="nav-item">
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button id="logout" type="submit" class="nav-link btn btn-danger text-white">Logout</button>
@@ -37,3 +78,4 @@ else
     </li>
 }
 </ul>
+
