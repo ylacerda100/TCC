@@ -69,7 +69,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required(ErrorMessage = "O campo Novo Email é obrigatório!")]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "O email é inválido.")]
             [Display(Name = "Novo email")]
             public string NewEmail { get; set; }
         }
