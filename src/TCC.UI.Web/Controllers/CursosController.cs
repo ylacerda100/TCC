@@ -769,12 +769,12 @@ namespace TCC.UI.Web.Controllers
                             },
                             new Exercicio()
                             {
-                                Enunciado = "Por que as variáveis são usadas na programação?",
-                                AlternativaA = "Para tornar o código mais complicado.",
-                                AlternativaB = "Para armazenar e manipular informações.",
-                                AlternativaC = "Para esconder informações do programa.",
-                                AlternativaD = "Para evitar o uso de números.",
-                                Resposta = "Para armazenar e manipular informações.",
+                                Enunciado = "Qual é a finalidade do tipo de variável \"string\"?",
+                                AlternativaA = "Armazenar números inteiros.",
+                                AlternativaB = "Armazenar números decimais.",
+                                AlternativaC = "Armazenar sequências de caracteres.",
+                                AlternativaD = "Representar valores verdadeiros ou falsos.",
+                                Resposta = "Armazenar sequências de caracteres.",
                                 Xp = 500,
                                 QtdMoedas = 100
                             }
@@ -793,23 +793,23 @@ namespace TCC.UI.Web.Controllers
                         {
                             new Exercicio()
                             {
-                                Enunciado = "Por que as variáveis são usadas na programação?",
-                                AlternativaA = "Para tornar o código mais complicado.",
-                                AlternativaB = "Para armazenar e manipular informações.",
-                                AlternativaC = "Para esconder informações do programa.",
-                                AlternativaD = "Para evitar o uso de números.",
-                                Resposta = "Para armazenar e manipular informações.",
+                                Enunciado = "Na linguagem de programação Python, qual é a sintaxe correta para declarar uma variável chamada \"idade\" e atribuir a ela o valor 30?",
+                                AlternativaA = "int idade = 30",
+                                AlternativaB = "idade:= 30",
+                                AlternativaC = "idade = 30",
+                                AlternativaD = "30 = idade",
+                                Resposta = "idade = 30",
                                 Xp = 500,
                                 QtdMoedas = 100
                             },
                             new Exercicio()
                             {
-                                Enunciado = "Por que as variáveis são usadas na programação?",
-                                AlternativaA = "Para tornar o código mais complicado.",
-                                AlternativaB = "Para armazenar e manipular informações.",
-                                AlternativaC = "Para esconder informações do programa.",
-                                AlternativaD = "Para evitar o uso de números.",
-                                Resposta = "Para armazenar e manipular informações.",
+                                Enunciado = "Qual é o propósito da atribuição de valores a variáveis em programação?",
+                                AlternativaA = "Declarar o nome de uma variável.",
+                                AlternativaB = "Informar o tipo de dado que a variável armazenará.",
+                                AlternativaC = "Armazenar informações em uma variável.",
+                                AlternativaD = "Definir o escopo de uma variável.",
+                                Resposta = "Armazenar informações em uma variável.",
                                 Xp = 500,
                                 QtdMoedas = 100
                             }
@@ -818,7 +818,7 @@ namespace TCC.UI.Web.Controllers
                     new Aula()
                     {
                         Number = 3,
-                         Id = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Descricao = "Aula 3",
                         ContentUrl = "Variaveis/Variaveis3.pdf",
                         Nome = "Aula 3: Escopo de Variáveis e Variáveis Estáticas",
@@ -828,23 +828,23 @@ namespace TCC.UI.Web.Controllers
                         {
                             new Exercicio()
                             {
-                                Enunciado = "Por que as variáveis são usadas na programação?",
-                                AlternativaA = "Para tornar o código mais complicado.",
-                                AlternativaB = "Para armazenar e manipular informações.",
-                                AlternativaC = "Para esconder informações do programa.",
-                                AlternativaD = "Para evitar o uso de números.",
-                                Resposta = "Para armazenar e manipular informações.",
+                                Enunciado = "O que é escopo global em programação?",
+                                AlternativaA = "O escopo onde variáveis são visíveis apenas dentro de funções.",
+                                AlternativaB = "O escopo onde variáveis são declaradas fora de qualquer função e podem ser acessadas de qualquer lugar no código.",
+                                AlternativaC = "O escopo onde variáveis são usadas para armazenar informações temporárias.",
+                                AlternativaD = "O escopo onde variáveis são usadas para armazenar informações específicas de uma função.",
+                                Resposta = "O escopo onde variáveis são declaradas fora de qualquer função e podem ser acessadas de qualquer lugar no código.",
                                 Xp = 500,
                                 QtdMoedas = 100
                             },
                             new Exercicio()
                             {
-                                Enunciado = "Por que as variáveis são usadas na programação?",
-                                AlternativaA = "Para tornar o código mais complicado.",
-                                AlternativaB = "Para armazenar e manipular informações.",
-                                AlternativaC = "Para esconder informações do programa.",
-                                AlternativaD = "Para evitar o uso de números.",
-                                Resposta = "Para armazenar e manipular informações.",
+                                Enunciado = "Para que as variáveis estáticas são frequentemente usadas?",
+                                AlternativaA = "Para armazenar informações temporárias.",
+                                AlternativaB = "Para declarar variáveis dentro de funções.",
+                                AlternativaC = "Para preservar o valor da variável entre diferentes chamadas de uma função.",
+                                AlternativaD = "Para limitar o acesso a variáveis em um programa.",
+                                Resposta = "Para preservar o valor da variável entre diferentes chamadas de uma função.",
                                 Xp = 500,
                                 QtdMoedas = 100
                             }
