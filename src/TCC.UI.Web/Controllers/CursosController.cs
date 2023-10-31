@@ -122,7 +122,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 1",
                         ContentUrl = "EstruturaDeDados/EstruturaDeDados1.pdf",
                         Nome = "Aula 1: O que são Estruturas de Dados?",
-                        QtdMoedas = 10,
+                        QtdMoedas = 200,
                         Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
@@ -135,7 +135,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para colorir o código.",
                                 Resposta = "Para organizar informações de forma eficiente.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -146,7 +146,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Uma bola de futebol.",
                                 Resposta = "Uma lista de nomes de amigos.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -157,7 +157,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 2",
                         ContentUrl = "EstruturaDeDados/EstruturaDeDados2.pdf",
                         Nome = "Aula 2: Arrays e Listas",
-                        QtdMoedas = 10,
+                        QtdMoedas = 200,
                         Xp = 1100,
                         Exercicios = new List<Exercicio>()
                         {
@@ -170,7 +170,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "As listas ligadas duplas ocupam menos espaço na memória.",
                                 Resposta = "As listas ligadas duplas permitem percorrer a lista em apenas uma direção.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -181,7 +181,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Não é utilizado em programação.",
                                 Resposta = "Permite organizar dados em múltiplas dimensões.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -192,7 +192,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 3",
                         ContentUrl = "EstruturaDeDados/EstruturaDeDados3.pdf",
                         Nome = "Aula 3: Pilhas e Filas",
-                        QtdMoedas = 10,
+                        QtdMoedas = 200,
                         Xp = 1200,
                         Exercicios = new List<Exercicio>()
                         {
@@ -205,7 +205,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Dequeue",
                                 Resposta = "Push",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -216,7 +216,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Em uma fila, o primeiro elemento adicionado é o último a ser removido.",
                                 Resposta = "Em uma fila, o primeiro elemento adicionado é o último a ser removido.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     }
@@ -626,7 +626,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 1",
                         ContentUrl = "Vetores/Vetores1.pdf",
                         Nome = "Aula 1: Introdução a Vetores",
-                        QtdMoedas = 10,
+                        QtdMoedas = 200,
                         Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
@@ -661,7 +661,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 2",
                         ContentUrl = "Vetores/Vetores2.pdf",
                         Nome = "Aula 2: Declaração e Inicialização de Vetores",
-                        QtdMoedas = 10,
+                        QtdMoedas = 200,
                         Xp = 1100,
                         Exercicios = new List<Exercicio>()
                         {
@@ -696,7 +696,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 3",
                         ContentUrl = "Vetores/Vetores3.pdf",
                         Nome = "Aula 3: Acesso a Elementos de Vetores",
-                        QtdMoedas = 10,
+                        QtdMoedas = 200,
                         Xp = 1200,
                         Exercicios = new List<Exercicio>()
                         {
