@@ -50,8 +50,7 @@
 
     .btn-primary {
         margin: 3em;
-    }
-    
+    }  
 </style>
 
 <h3>@ViewData["Title"]</h3>
@@ -75,10 +74,18 @@
                 </div>
             }
             <div class="form-floating">
-                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" />
+                <input asp-for="Input.NewEmail" class="form-control" autocomplete="off" aria-required="true" />
                 <label asp-for="Input.NewEmail" class="form-label"></label>
                 <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
             </div>
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="form-floating">
+                    <span class="text-danger">@TempData["ErrorMessage"]</span>
+                </div>
+            }
+
             <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-75 btn btn-lg btn-primary">Alterar Email</button>
         </form>
     </div>

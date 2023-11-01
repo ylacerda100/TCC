@@ -116,6 +116,13 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
             var email = await _userManager.GetEmailAsync(user);
             if (Input.NewEmail != email)
             {
+                //tentar obter um user com o novo email
+                var validateEmail = _userManager.FindByEmailAsync(Input.NewEmail);
+                if (validateEmail.Result != null)
+                {
+                    TempData["ErrorMessage"] = $"O email '{Input.NewEmail}' já foi utilizado.";
+                    return RedirectToPage();
+                }
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -133,7 +140,8 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
                 return RedirectToPage();
             }
 
-            StatusMessage = "Seu email não foi alterado.";
+            TempData["ErrorMessage"] = $"O novo email deve ser diferente do atual.";
+
             return RedirectToPage();
         }
 
