@@ -74,7 +74,7 @@
                 </div>
             }
             <div class="form-floating">
-                <input asp-for="Input.NewEmail" class="form-control" autocomplete="off" aria-required="true" />
+                <input asp-for="Input.NewEmail" autocomplete="off" class="form-control" aria-required="true" onfocus="this.setAttribute('autocomplete', 'off');" />
                 <label asp-for="Input.NewEmail" class="form-label"></label>
                 <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
             </div>
@@ -93,4 +93,10 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(document).ready(function () {
+            $('#Input_NewEmail').attr('autocomplete', 'off');
+        });
+    </script>
 }
