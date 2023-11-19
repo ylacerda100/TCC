@@ -292,10 +292,8 @@
                 respostaCorreta = decodeHtmlEntities(respostaCorreta); // Decodifica entidades HTML
 
                 if (valorBotao.startsWith(respostaCorreta)) {
-                    // Resposta correta selecionada
                     button.parent().addClass("resposta-selecionada-correta");
                 } else if (button.is(":checked")) {
-                    // Resposta incorreta selecionada
                     button.parent().addClass("resposta-selecionada-errada");
                 }
             });
@@ -328,7 +326,6 @@
                         window.location.href = baseURL + 'Aulas/' + data.nextAulaId;
                         return;
                     }
-                    console.log(data); // Exemplo de como acessar os dados da resposta
 
                     showErrorAlertWithMessage(
                         "Não foi possível concluir a aula!",

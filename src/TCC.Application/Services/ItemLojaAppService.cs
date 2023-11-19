@@ -109,7 +109,8 @@ public class ItemLojaAppService : IItemLojaAppService
                 user.MultiplicadorXp += item.Multiplicador;
                 break;
             case TipoItemLoja.PacoteXp:
-                user.Xp += item.QtdXp;
+                var xp = item.QtdXp * user.MultiplicadorXp;
+                user.Xp += (long)xp;
                 break;
         }
 
