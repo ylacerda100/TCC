@@ -62,6 +62,12 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
+        /// 
+
+        public bool DisplayConfirmAccountLink { get; set; }
+
+        public string EmailConfirmationUrl { get; set; }
+
         public class InputModel
         {
             /// <summary>
@@ -124,7 +130,32 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
                 }
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+                DisplayConfirmAccountLink = true;
+                if (DisplayConfirmAccountLink)
+                {
+                    await _userManager.SetEmailAsync(user, Input.NewEmail);
+
+                    user.UserName = Input.NewEmail;
+
+                    var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                    //confirm the new email right away
+                    var result = await _userManager.ConfirmEmailAsync(user, emailConfirmationToken);
+
+                    IsEmailConfirmed = result.Succeeded;
+                    StatusMessage = result.Succeeded ? "Email alterado com sucesso." : "Erro ao tentar alterar email";
+
+                    if (IsEmailConfirmed) 
+                    {
+                        await _userManager.SetUserNameAsync(user, Input.NewEmail);
+                        Email = Input.NewEmail;
+                        Input = new InputModel { };
+                    }
+                    return Page();
+                }
+
                 var callbackUrl = Url.Page(
                     "/Account/ConfirmEmailChange",
                     pageHandler: null,

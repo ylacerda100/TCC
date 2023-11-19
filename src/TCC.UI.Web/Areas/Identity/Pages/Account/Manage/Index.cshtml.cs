@@ -63,6 +63,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
 
         private async Task LoadAsync(Usuario user)
         {
+            StatusMessage = string.Empty;
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
@@ -79,7 +80,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Não foi possível encontrar o usuário '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadAsync(user);
@@ -91,7 +92,7 @@ namespace TCC.UI.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Não foi possível encontrar o usuário '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
