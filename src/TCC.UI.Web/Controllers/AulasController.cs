@@ -92,7 +92,7 @@ namespace TCC.UI.Web.Controllers
 
                 await _userAppService.UpdateUser(user);
 
-                return Json(new { success = true });
+                return Json(new { success = true, userXp = user.Xp, userMoedas = user.QtdMoedas });
             }
 
             return Json(new 
