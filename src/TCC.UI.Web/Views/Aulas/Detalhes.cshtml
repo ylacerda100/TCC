@@ -224,6 +224,9 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+
+                            $("#xp-usuario").text(`${response.userXp}`)
+                            $("#moedas-usuario").text(`${response.userMoedas}`)
                         }
                     },
                     error: function () {
