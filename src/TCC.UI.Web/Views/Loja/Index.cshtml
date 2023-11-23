@@ -13,7 +13,7 @@
         <h1>Loja de Itens</h1>
         <div class="moedas">
             Suas Moedas:
-            <span id="moedas-usuario">@UserManager.GetUserAsync(User).Result.QtdMoedas</span>
+            <span id="moedas-usuario-loja">@UserManager.GetUserAsync(User).Result.QtdMoedas</span>
         </div>
     </header>
 
@@ -59,7 +59,9 @@
                             }
                             else {
 
-                                $("#moedas-usuario").text(`${response.result}`)
+                                $("#moedas-usuario").text(`${response.result.qtdMoedas}`)
+                                $("#moedas-usuario-loja").text(`${response.result.qtdMoedas}`)
+                                $("#xp-usuario").text(`${response.result.qtdXp}`)
 
                                 Swal.fire({
                                     position: 'center',

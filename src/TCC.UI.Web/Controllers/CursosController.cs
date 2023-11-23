@@ -122,7 +122,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 1",
                         ContentUrl = "EstruturaDeDados/EstruturaDeDados1.pdf",
                         Nome = "Aula 1: O que são Estruturas de Dados?",
-                        QtdMoedas = 200,
+                        QtdMoedas = 100,
                         Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
@@ -157,8 +157,8 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 2",
                         ContentUrl = "EstruturaDeDados/EstruturaDeDados2.pdf",
                         Nome = "Aula 2: Arrays e Listas",
-                        QtdMoedas = 200,
-                        Xp = 1100,
+                        QtdMoedas = 100,
+                        Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
                             new Exercicio()
@@ -221,8 +221,8 @@ namespace TCC.UI.Web.Controllers
                         }
                     }
                 },
-                Duracao = 200,
-                QtdMoeda = 30,
+                Duracao = 10,
+                QtdMoeda = 1000,
                 Xp = 5000
             };
 
@@ -248,7 +248,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 1",
                         ContentUrl = "LacosDeRepeticao/LacosDeRepeticao1.pdf",
                         Nome = "Aula 1: Introdução aos Laços de Repetição",
-                        QtdMoedas = 10,
+                        QtdMoedas = 100,
                         Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
@@ -261,7 +261,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Uma estrutura usada apenas em Python.",
                                 Resposta = "Uma estrutura que permite executar um conjunto de instruções várias vezes.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -272,7 +272,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Controlar a execução de um programa.",
                                 Resposta = "Percorrer sequências e executar um conjunto de instruções para cada elemento.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -283,8 +283,8 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 2",
                         ContentUrl = "LacosDeRepeticao/LacosDeRepeticao2.pdf",
                         Nome = "Aula 2: Laço \"for\" em Python",
-                        QtdMoedas = 10,
-                        Xp = 1100,
+                        QtdMoedas = 100,
+                        Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
                             new Exercicio()
@@ -296,7 +296,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Controlar a execução de um programa.",
                                 Resposta = "Percorrer sequências e executar um conjunto de instruções para cada elemento.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -307,7 +307,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Um programa extenso.",
                                 Resposta = "Uma sequência para percorrer.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -318,7 +318,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 3",
                         ContentUrl = "LacosDeRepeticao/LacosDeRepeticao3.pdf",
                         Nome = "Aula 3: Laço \"while\" e Laço \"do-while\"",
-                        QtdMoedas = 10,
+                        QtdMoedas = 150,
                         Xp = 1200,
                         Exercicios = new List<Exercicio>()
                         {
@@ -331,7 +331,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Ele só pode ser usado em situações complexas.",
                                 Resposta = "Ele sempre executa o bloco de código pelo menos uma vez.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -342,13 +342,13 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Usando um laço \"if\" antes do \"while\".",
                                 Resposta = "Utilizando um laço \"while\" com uma condição de saída no início.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     }
                 },
-                Duracao = 200,
-                QtdMoeda = 30,
+                Duracao = 9,
+                QtdMoeda = 1000,
                 Xp = 5000
             };
 
@@ -374,7 +374,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 1",
                         ContentUrl = "Matrizes/Matrizes1.pdf",
                         Nome = "Aula 1: Introdução às Matrizes na Lógica de Programação",
-                        QtdMoedas = 10,
+                        QtdMoedas = 100,
                         Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
@@ -387,7 +387,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Nenhuma das alternativas.",
                                 Resposta = "Estruturas de dados bidimensionais que organizam informações em linhas e colunas.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -398,7 +398,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Não é possível acessar elementos de uma matriz.",
                                 Resposta = "Usando índices de linha e coluna.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -409,8 +409,8 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 2",
                         ContentUrl = "Matrizes/Matrizes2.pdf",
                         Nome = "Aula 2: Declaração e Inicialização de Matrizes",
-                        QtdMoedas = 10,
-                        Xp = 1100,
+                        QtdMoedas = 100,
+                        Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
                             new Exercicio()
@@ -422,7 +422,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Atribuir nomes aos elementos da matriz.",
                                 Resposta = "Reservar espaço de armazenamento para a matriz.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -433,7 +433,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Nomear os elementos da matriz.",
                                 Resposta = "Preencher a matriz com valores ou dados.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -457,7 +457,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Nenhuma das alternativas.",
                                 Resposta = "Estruturas podem armazenar valores nomeados, enquanto enumerações são usadas para representar conjuntos de valores constantes.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -468,13 +468,13 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Nenhuma das alternativas.",
                                 Resposta = "Tipos definidos pelo usuário permitem criar estruturas de dados personalizadas para representar informações complexas.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     }
                 },
-                Duracao = 200,
-                QtdMoeda = 30,
+                Duracao = 10,
+                QtdMoeda = 1000,
                 Xp = 5000
             };
 
@@ -500,7 +500,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 1",
                         ContentUrl = "TiposDeDados/TiposDeDados1.pdf",
                         Nome = "Aula 1: Estruturas e Registros em Python",
-                        QtdMoedas = 10,
+                        QtdMoedas = 100,
                         Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
@@ -513,7 +513,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Nenhuma das alternativas.",
                                 Resposta = "collections",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -524,7 +524,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "",
                                 Resposta = "Falso",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -535,8 +535,8 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 2",
                         ContentUrl = "TiposDeDados/TiposDeDados2.pdf",
                         Nome = "Aula 2: Declaração e Inicialização de Vetores",
-                        QtdMoedas = 10,
-                        Xp = 1100,
+                        QtdMoedas = 100,
+                        Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
                             new Exercicio()
@@ -548,7 +548,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Nenhuma das alternativas.",
                                 Resposta = "enum",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -559,7 +559,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "",
                                 Resposta = "Verdadeiro",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     },
@@ -570,7 +570,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 3",
                         ContentUrl = "TiposDeDados/TiposDeDados3.pdf",
                         Nome = "Aula 3: Acesso a Elementos de Vetores",
-                        QtdMoedas = 10,
+                        QtdMoedas = 200,
                         Xp = 1200,
                         Exercicios = new List<Exercicio>()
                         {
@@ -583,7 +583,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Nenhuma das alternativas.",
                                 Resposta = "Estruturas podem armazenar valores nomeados, enquanto enumerações são usadas para representar conjuntos de valores constantes.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             },
                             new Exercicio()
                             {
@@ -594,13 +594,13 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Nenhuma das alternativas.",
                                 Resposta = "Tipos definidos pelo usuário permitem criar estruturas de dados personalizadas para representar informações complexas.",
                                 Xp = 500,
-                                QtdMoedas = 1
+                                QtdMoedas = 100
                             }
                         }
                     }
                 },
                 Duracao = 200,
-                QtdMoeda = 30,
+                QtdMoeda = 1000,
                 Xp = 5000
             };
 
@@ -662,7 +662,7 @@ namespace TCC.UI.Web.Controllers
                         ContentUrl = "Vetores/Vetores2.pdf",
                         Nome = "Aula 2: Declaração e Inicialização de Vetores",
                         QtdMoedas = 200,
-                        Xp = 1100,
+                        Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
                             new Exercicio()
@@ -725,8 +725,8 @@ namespace TCC.UI.Web.Controllers
                         }
                     }
                 },
-                Duracao = 200,
-                QtdMoeda = 30,
+                Duracao = 8,
+                QtdMoeda = 1000,
                 Xp = 5000
             };
 
@@ -752,7 +752,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 1",
                         ContentUrl = "Variaveis/Variaveis1.pdf",
                         Nome = "Aula 1: Introdução às Variáveis",
-                        QtdMoedas = 10,
+                        QtdMoedas = 100,
                         Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
@@ -765,7 +765,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para evitar o uso de números.",
                                 Resposta = "Para armazenar e manipular informações.",
                                 Xp = 500,
-                                QtdMoedas = 100
+                                QtdMoedas = 50
                             },
                             new Exercicio()
                             {
@@ -776,7 +776,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Representar valores verdadeiros ou falsos.",
                                 Resposta = "Armazenar sequências de caracteres.",
                                 Xp = 500,
-                                QtdMoedas = 100
+                                QtdMoedas = 50
                             }
                         }
                     },
@@ -787,8 +787,8 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 2",
                         ContentUrl = "Variaveis/Variaveis2.pdf",
                         Nome = "Aula 2: Declaração e Atribuição de Variáveis",
-                        QtdMoedas = 10,
-                        Xp = 1100,
+                        QtdMoedas = 100,
+                        Xp = 1000,
                         Exercicios = new List<Exercicio>()
                         {
                             new Exercicio()
@@ -800,7 +800,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "30 = idade",
                                 Resposta = "idade = 30",
                                 Xp = 500,
-                                QtdMoedas = 100
+                                QtdMoedas = 50
                             },
                             new Exercicio()
                             {
@@ -811,7 +811,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Definir o escopo de uma variável.",
                                 Resposta = "Armazenar informações em uma variável.",
                                 Xp = 500,
-                                QtdMoedas = 100
+                                QtdMoedas = 50
                             }
                         }
                     },
@@ -822,7 +822,7 @@ namespace TCC.UI.Web.Controllers
                         Descricao = "Aula 3",
                         ContentUrl = "Variaveis/Variaveis3.pdf",
                         Nome = "Aula 3: Escopo de Variáveis e Variáveis Estáticas",
-                        QtdMoedas = 10,
+                        QtdMoedas = 100,
                         Xp = 1200,
                         Exercicios = new List<Exercicio>()
                         {
@@ -835,7 +835,7 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "O escopo onde variáveis são usadas para armazenar informações específicas de uma função.",
                                 Resposta = "O escopo onde variáveis são declaradas fora de qualquer função e podem ser acessadas de qualquer lugar no código.",
                                 Xp = 500,
-                                QtdMoedas = 100
+                                QtdMoedas = 50
                             },
                             new Exercicio()
                             {
@@ -846,13 +846,13 @@ namespace TCC.UI.Web.Controllers
                                 AlternativaD = "Para limitar o acesso a variáveis em um programa.",
                                 Resposta = "Para preservar o valor da variável entre diferentes chamadas de uma função.",
                                 Xp = 500,
-                                QtdMoedas = 100
+                                QtdMoedas = 50
                             }
                         }
                     }
                 },
-                Duracao = 200,
-                QtdMoeda = 30,
+                Duracao = 6,
+                QtdMoeda = 1000,
                 Xp = 5000
             };
 
