@@ -118,7 +118,7 @@ public class ItemLojaAppService : IItemLojaAppService
 
         var ok = await _pedidoAppService.AddPedido(newPedido, user);
 
-        result = new OperationResultViewModel<int>(user.QtdMoedas, ok);
+        result = new OperationResultViewModel<object>(new { qtdMoedas = user.QtdMoedas, qtdXp = user.Xp }, ok);
 
         return result;
     }
